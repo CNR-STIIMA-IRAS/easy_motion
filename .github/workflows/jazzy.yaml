@@ -25,7 +25,7 @@ jobs:
 
       - name: install python dep
         run: |
-          python3 -m pip install -r easy_motion/requirements.txt
+          python3 -m pip install --break-system-packages -r easy_motion/requirements.txt
 
       - name: build and test
         uses: ros-tooling/action-ros-ci@v0.4
