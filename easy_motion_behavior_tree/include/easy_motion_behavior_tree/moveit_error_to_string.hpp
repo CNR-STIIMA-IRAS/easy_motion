@@ -1,8 +1,8 @@
 #pragma once
 
 #include <string>
-#include <moveit/utils/moveit_error_code.hpp>
-// Starting from MoveIt2 for jazzi the API to convert the MoveItErrorCode to string has changed.
+
+// Starting from MoveIt2 for jazzy the API to convert the MoveItErrorCode to string has changed.
 // Newer MoveIt2 provides:
 //   - header: <moveit/utils/moveit_error_code.hpp>
 //   - function: moveit::core::errorCodeToString(...)
