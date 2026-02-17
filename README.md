@@ -1,4 +1,6 @@
 # Easy Motion
+[![humble](https://github.com/CNR-STIIMA-IRAS/easy_motion/actions/workflows/humble.yaml/badge.svg)](https://github.com/CNR-STIIMA-IRAS/easy_motion/actions/workflows/humble.yaml)
+[![jazzy](https://github.com/CNR-STIIMA-IRAS/easy_motion/actions/workflows/jazzy.yaml/badge.svg)](https://github.com/CNR-STIIMA-IRAS/easy_motion/actions/workflows/jazzy.yaml)
 
 This repository is initially developed for **DRIMS2 Summer School** as a simplified interface for planinng and control, and provides a motion control stack based on ROS 2 and MoveIt (through Pymoveit2). It includes behavior tree integration, motion command interfaces, and an action server for handling motion requests.
 
