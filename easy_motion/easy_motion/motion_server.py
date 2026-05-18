@@ -251,10 +251,10 @@ class MotionServer(Node):
         M_ee_from_virtual = transform_to_affine(self.T_ee_from_virtual)
         M_base_virtual_goal = M_base_link_reference @ M_reference_goal @ np.linalg.inv(M_ee_from_virtual)
 
-        T_base_virtual_goal = affine_to_transform(M_base_virtual_goal, self.base_link_name, 'pose_goal_frame')
+        M_base_ee_goal = affine_to_transform(M_base_virtual_goal, self.base_link_name, 'pose_goal_frame')
 
         # Apply the transform to the goal pose
-        transformed_pose = transform_to_pose_stamped(T_base_virtual_goal)
+        transformed_pose = transform_to_pose_stamped(M_base_ee_goal)
         self.get_logger().info(
             f"Applying virtual offset: {self.T_ee_from_virtual.transform}"
         )
@@ -288,9 +288,16 @@ class MotionServer(Node):
         M_frame_delta = pose_stamped_to_affine(relative_pose)
 
         # Convert delta to BASE frame
-        M_base_delta = M_base_frame @ M_frame_delta
-        R_delta = M_base_delta[:3, :3]
-        p_delta = M_base_delta[:3, 3]
+        # M_base_delta = M_base_frame @ M_frame_delta
+        # R_delta = M_base_delta[:3, :3]
+        # p_delta = M_base_delta[:3, 3]
+        R_base_frame = M_base_frame[:3, :3]
+
+        R_frame_delta = M_frame_delta[:3, :3]
+        p_frame_delta = M_frame_delta[:3, 3]
+
+        p_delta = R_base_frame @ p_frame_delta
+        R_delta = R_base_frame @ R_frame_delta @ R_base_frame.T
 
         # --- Apply translation in base frame ---
         p_goal = p_ee + p_delta
@@ -734,7 +741,6 @@ class MotionServer(Node):
 
         # TODO: when a start state is specified, should the relative displacement be computed from the start state instead of the current state?
         if goal_handle.request.relative_motion:
-            print("HERE", flush=True)
             goal_pose = self._apply_relative_offset(goal_pose)
 
         self.broadcast_pose_goal_tf(goal_pose)  # For debugging purposes show the goal pose
