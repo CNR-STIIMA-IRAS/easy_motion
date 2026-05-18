@@ -627,7 +627,8 @@ class MotionServer(Node):
                 ik_req.ik_request.robot_state.joint_state = self.moveit2.joint_state
             else:
                 self.get_logger().error("Joint state not yet available, cannot compute IK.")
-                return None, MoveItErrorCodes.INVALID_ROBOT_STATE
+                return_code.val = MoveItErrorCodes.INVALID_ROBOT_STATE
+                return None, return_code
 
         # Call the IK service
         future = self.compute_ik_client.call_async(ik_req)
