@@ -313,7 +313,6 @@ class ControllerManagerClient(Node):
         
         return True
     
-    @staticmethod
     def _interface_to_joint_name(interface_name: str) -> str:
         return interface_name.split("/")[0]
 
