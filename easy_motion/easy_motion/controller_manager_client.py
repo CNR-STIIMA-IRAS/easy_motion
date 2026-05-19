@@ -3,6 +3,7 @@ from rclpy.node import Node
 
 from builtin_interfaces.msg import Duration
 
+from controller_manager_msgs.msg import ControllerState
 from controller_manager_msgs.srv import (
     ListControllers,
     LoadController,
@@ -10,7 +11,6 @@ from controller_manager_msgs.srv import (
     SwitchController,
     UnloadController,
 )
-
 
 class ControllerManagerClient(Node):
     def __init__(
@@ -74,7 +74,7 @@ class ControllerManagerClient(Node):
                     f"{self.controller_manager_name}/{name}"
                 )
 
-    def _call(self, client, request, service_name: str) -> rclpy.client.ClientResponse | None:
+    def _call(self, client, request, service_name: str):
         future = client.call_async(request)
 
         rclpy.spin_until_future_complete(
@@ -90,7 +90,7 @@ class ControllerManagerClient(Node):
 
         return response
 
-    def list_controllers(self) -> list[ListControllers.Response.ControllerState]:
+    def list_controllers(self) -> list[ControllerState]:
         request = ListControllers.Request()
 
         response = self._call(
@@ -108,7 +108,7 @@ class ControllerManagerClient(Node):
 
         return response.controller
 
-    def get_controller(self, controller_name: str) -> ListControllers.Response.ControllerState | None:
+    def get_controller(self, controller_name: str) -> ControllerState | None:
         for controller in self.list_controllers():
             if controller.name == controller_name:
                 return controller
@@ -313,6 +313,29 @@ class ControllerManagerClient(Node):
         
         return True
     
+    @staticmethod
+    def _interface_to_joint_name(interface_name: str) -> str:
+        return interface_name.split("/")[0]
+
+    def get_controller_command_joints(self, controller_name: str) -> list[str]:
+        controller = self.get_controller(controller_name)
+
+        if controller is None:
+            return []
+
+        interfaces = list(controller.required_command_interfaces)
+
+        if not interfaces:
+            interfaces = list(controller.claimed_interfaces)
+
+        joints = sorted({
+            self._interface_to_joint_name(interface)
+            for interface in interfaces
+            if "/" in interface
+        })
+
+        return joints
+
     def get_controller_infos_for_joints(
         self,
         joints: list[str],
