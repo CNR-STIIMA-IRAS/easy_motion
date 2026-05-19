@@ -6,7 +6,7 @@ from rclpy.action import ActionServer
 from rclpy.action.server import ServerGoalHandle
 from rclpy.node import Node
 
-from easy_motion_msgs.action import MoveToPose, MoveToJoint, PlanToPose, PlanToJoint, ExecutePlannedTrajectory
+from easy_motion_msgs.action import MoveToPose, MoveToJoint, PlanToPose, PlanToJoint
 from easy_motion_msgs.srv import AttachObject, DetachObject, GetIK, GetFK
 from geometry_msgs.msg import PoseStamped, TransformStamped
 from tf2_ros import Buffer, TransformListener, TransformException, TransformBroadcaster
@@ -117,13 +117,6 @@ class MotionServer(Node):
             "plan_to_joint",
             execute_callback=self.plan_to_joint_callback,
             cancel_callback=self.plan_to_joint_cancel_callback,
-        )
-        self.execute_trajectory_action_server = ActionServer(
-            self,
-            ExecutePlannedTrajectory,
-            "execute_planned_trajectory",
-            execute_callback=self.execute_planned_trajectory_callback,
-            cancel_callback=self.execute_planned_trajectory_cancel_callback,
         )
         self.attach_service = self.create_service(
             AttachObject,
@@ -534,7 +527,7 @@ class MotionServer(Node):
 
         self.moveit2.max_velocity = self.global_velocity_scaling * velocity_scaling
         self.moveit2.max_acceleration = self.global_acceleration_scaling * acceleration_scaling
-
+        
         for attempt in range(1, max_attempts + 1):
             self.get_logger().info(f"[Attempt {attempt}/{max_attempts}] Planning to configuration")
 
@@ -708,19 +701,6 @@ class MotionServer(Node):
         goal_handle.succeed()
         return action_result
 
-    def execute_planned_trajectory_cancel_callback(self, goal_handle):
-        pass
-
-    def execute_planned_trajectory_callback(self, goal_handle: ServerGoalHandle) -> ExecutePlannedTrajectory.Result:
-        self.get_logger().info(f"Executing trajectory...")
-
-        motion_result = self._execute_planned_trajectory(goal_handle.request.trajectory)
-        action_result = ExecutePlannedTrajectory.Result()
-        action_result.result.val = motion_result.val
-
-        goal_handle.succeed()
-        return action_result
-
     def plan_to_joint_cancel_callback(self, goal_handle):
         pass
 
@@ -733,6 +713,7 @@ class MotionServer(Node):
         if joints_start:
             self.get_logger().info(f"Planning from joint {joints_start} to {joints_goal}")
         else:
+            self.moveit2.wait_new_joint_state()
             self.get_logger().info(f"Planning from current config to {joints_goal}")
 
         max_motion_retries = self.get_parameter('max_motion_retries').get_parameter_value().integer_value
@@ -759,6 +740,7 @@ class MotionServer(Node):
         if joints_start:
             self.get_logger().info(f"Planning from joint {joints_start} to goal pose.")
         else:
+            self.moveit2.wait_new_joint_state()
             self.get_logger().info(f"Planning from current config to goal pose.")
 
         # TODO: when a start state is specified, should the relative displacement be computed from the start state instead of the current state?

@@ -4,7 +4,7 @@ from rclpy.action import ActionClient
 
 from typing import Tuple, Optional, List
 
-from easy_motion_msgs.action import MoveToPose, MoveToJoint, PlanToPose, PlanToJoint, ExecutePlannedTrajectory
+from easy_motion_msgs.action import MoveToPose, MoveToJoint, PlanToPose, PlanToJoint
 from easy_motion_msgs.srv import AttachObject, DetachObject, GetIK, GetFK
 
 from geometry_msgs.msg import PoseStamped
@@ -12,6 +12,7 @@ from control_msgs.action import GripperCommand
 from moveit_msgs.msg import MoveItErrorCodes
 
 from trajectory_msgs.msg import JointTrajectory
+from moveit_msgs.action import ExecuteTrajectory
 
 class MotionClient(Node):
     """ROS 2 Client for controlling robot motion and gripper.
@@ -30,7 +31,7 @@ class MotionClient(Node):
                  move_to_joint_action_name:str ='move_to_joint',
                  plan_to_pose_action_name:str ='plan_to_pose',
                  plan_to_joint_action_name:str ='plan_to_joint',
-                 execute_planned_trajectory_action_name ='execute_planned_trajectory',
+                 execute_trajectory_action_name ='execute_trajectory',
                  gripper_action_name:str ='/gripper_action_controller/gripper_cmd'):
         super().__init__('motion_client_node', use_global_arguments=False)
         """Initialize the MotionClient.
@@ -49,21 +50,22 @@ class MotionClient(Node):
         self.declare_parameter('move_to_joint_action_name', move_to_joint_action_name)
         self.declare_parameter('plan_to_pose_action_name', plan_to_pose_action_name)
         self.declare_parameter('plan_to_joint_action_name', plan_to_joint_action_name)
-        self.declare_parameter('execute_planned_trajectory_action_name', execute_planned_trajectory_action_name)
+        self.declare_parameter('execute_trajectory_action_name', execute_trajectory_action_name)
         self.declare_parameter('gripper_action_name', gripper_action_name)
 
         move_to_pose_action_name = self.get_parameter('move_to_pose_action_name').get_parameter_value().string_value
         move_to_joint_action_name = self.get_parameter('move_to_joint_action_name').get_parameter_value().string_value
         plan_to_pose_action_name = self.get_parameter('plan_to_pose_action_name').get_parameter_value().string_value
         plan_to_joint_action_name = self.get_parameter('plan_to_joint_action_name').get_parameter_value().string_value
-        execute_planned_trajectory_action_name = self.get_parameter('execute_planned_trajectory_action_name').get_parameter_value().string_value
+        execute_trajectory_action_name = self.get_parameter('execute_trajectory_action_name').get_parameter_value().string_value
         gripper_action_name = self.get_parameter('gripper_action_name').get_parameter_value().string_value
 
         self.move_to_pose_client = ActionClient(self, MoveToPose, move_to_pose_action_name)
         self.move_to_joint_client = ActionClient(self, MoveToJoint, move_to_joint_action_name)
         self.plan_to_pose_client = ActionClient(self, PlanToPose, plan_to_pose_action_name)
         self.plan_to_joint_client = ActionClient(self, PlanToJoint, plan_to_joint_action_name)
-        self.execute_planned_trajectory_client = ActionClient(self, ExecutePlannedTrajectory, execute_planned_trajectory_action_name)
+        self.execute_trajectory_client = ActionClient(self, ExecuteTrajectory, execute_trajectory_action_name)
+
         self.gripper_client = ActionClient(self, GripperCommand, gripper_action_name)
         self.attach_object_client = self.create_client(AttachObject, 'attach_object')
         self.detach_object_client = self.create_client(DetachObject, 'detach_object')
@@ -80,8 +82,8 @@ class MotionClient(Node):
             raise RuntimeError("PlanToPose action server not available")
         if not self.plan_to_joint_client.wait_for_server(timeout_sec=10.0):
             raise RuntimeError("PlanToJoint action server not available")
-        if not self.execute_planned_trajectory_client.wait_for_server(timeout_sec=10.0):
-            raise RuntimeError("ExecutePlannedTrajectory action server not available")
+        if not self.execute_trajectory_client.wait_for_server(timeout_sec=10.0):
+            raise RuntimeError("ExecuteTrajectory action server not available")
         if not self.attach_object_client.wait_for_service(timeout_sec=10.0):
             raise RuntimeError("AttachObject service not available")
         if not self.detach_object_client.wait_for_service(timeout_sec=10.0):
@@ -166,7 +168,7 @@ class MotionClient(Node):
                      cartesian_motion: bool = False, relative_motion: bool = False,
                      velocity_scaling: float = 1.0, acceleration_scaling: float = 1.0) \
             -> Tuple[MoveItErrorCodes, JointTrajectory]:
-        """Move the robot to a target pose.
+        """Plan a trajectory to the target pose.
 
         Args:
             pose (PoseStamped): Target pose for the robot.
@@ -181,7 +183,7 @@ class MotionClient(Node):
         Raises:
             RuntimeError: If the action server is not available or the goal was rejected.
         """
-        if not self.move_to_pose_client.wait_for_server(timeout_sec=5.0):
+        if not self.plan_to_pose_client.wait_for_server(timeout_sec=5.0):
             raise RuntimeError("MoveToPose action server not available")
 
         goal_msg = PlanToPose.Goal()
@@ -265,36 +267,41 @@ class MotionClient(Node):
             raise RuntimeError("No existing trajectory available.")
         return self.execute_trajectory(self.last_planned_trj)
 
-
-    def execute_trajectory(self, trajectory: JointTrajectory):
+    def execute_trajectory(self, trajectory: JointTrajectory, controller_names: list[str] | None = None) -> MoveItErrorCodes:
         """Execute a given JointTrajectory
 
         Args:
             trajectory (JointTrajectory): the trj to be executed
 
         Returns:
-            bool: True if the operation succeeded, False otherwise.
+            MoveItErrorCodes: Result code returned by the trajectory executor
 
         Raises:
             RuntimeError: If the service is not available.
         """
-        if not self.execute_planned_trajectory_client.wait_for_server(timeout_sec=5.0):
-            raise RuntimeError("ExecutePlannedTrajectory action server not available")
+        if not self.execute_trajectory_client.wait_for_server(timeout_sec=5.0):
+            raise RuntimeError("ExecuteTrajectory action server not available")
 
-        goal_msg = ExecutePlannedTrajectory.Goal()
-        goal_msg.trajectory = trajectory
+        goal_msg = ExecuteTrajectory.Goal()
+        goal_msg.trajectory.joint_trajectory = trajectory
+        if hasattr(goal_msg, "controller_names"):
+            goal_msg.controller_names = controller_names or []
+        else:
+            if controller_names:
+                self.get_logger().warn("Controller names provided but ExecuteTrajectory action does not support them.")
 
-        future = self.execute_planned_trajectory_client.send_goal_async(goal_msg)
+
+        future = self.execute_trajectory_client.send_goal_async(goal_msg)
         rclpy.spin_until_future_complete(self, future)
 
         goal_handle = future.result()
         if not goal_handle.accepted:
-            raise RuntimeError("Goal to execute_planned_trajectory was rejected")
+            raise RuntimeError("Goal to execute_trajectory was rejected")
 
         result_future = goal_handle.get_result_async()
         rclpy.spin_until_future_complete(self, result_future)
 
-        return result_future.result().result.result
+        return result_future.result().result.error_code
 
     def attach_object(self, object_id: str, target_frame_id: str) -> bool:
         """Attach an object to the robot (e.g., to the gripper).
