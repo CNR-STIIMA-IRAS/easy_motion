@@ -12,8 +12,7 @@ from geometry_msgs.msg import PoseStamped, TransformStamped
 from tf2_ros import Buffer, TransformListener, TransformException, TransformBroadcaster
 from trajectory_msgs.msg import JointTrajectory
 
-from pymoveit2 import MoveIt2
-from pymoveit2.moveit2 import init_joint_state
+from pymoveit2.moveit2 import MoveIt2, init_joint_state
 from moveit_msgs.msg import MoveItErrorCodes
 from moveit_msgs.srv import GetPositionIK, GetPositionFK
 from easy_motion.easy_motion_utils import transform_to_affine, pose_stamped_to_affine, affine_to_transform, transform_to_pose_stamped, build_affine
@@ -245,7 +244,12 @@ class MotionServer(Node):
             target_frame=self.base_link_name,
             source_frame=goal_pose.header.frame_id
         )
-        
+        if T_base_link_reference is None:
+            self.get_logger().error(
+                f"Cannot transform goal pose from '{goal_pose.header.frame_id}' "
+                f"to '{self.base_link_name}'. Aborting virtual offset computation."
+            )
+            return None
         M_base_link_reference = transform_to_affine(T_base_link_reference)
         M_reference_goal = pose_stamped_to_affine(goal_pose)
         M_ee_from_virtual = transform_to_affine(self.T_ee_from_virtual)
@@ -261,57 +265,68 @@ class MotionServer(Node):
         return transformed_pose
 
     def _apply_relative_offset(self, relative_pose: PoseStamped) -> PoseStamped:
+        ref_frame = relative_pose.header.frame_id
 
-        if self.end_effector_name == relative_pose.header.frame_id:
-            return relative_pose
-
-        # == Frame F = relative_pose.header.frame_id ==
-        if self.base_link_name == relative_pose.header.frame_id:
-            M_base_frame = np.eye(4)
+        # Transform base <- ref
+        if self.base_link_name == ref_frame:
+            M_base_ref = np.eye(4)
         else:
-            T_base_frame = self._lookup_transform(
+            T_base_ref = self._lookup_transform(
                 target_frame=self.base_link_name,
-                source_frame=relative_pose.header.frame_id
+                source_frame=ref_frame
             )
-            M_base_frame = transform_to_affine(T_base_frame)
+            if T_base_ref is None:
+                self.get_logger().error(
+                    f"Cannot transform relative offset from '{ref_frame}' "
+                    f"to '{self.base_link_name}'. Aborting relative offset computation."
+                )
+                return None
+            M_base_ref = transform_to_affine(T_base_ref)
 
-        # == Current EE in base ==
+        # Current EE in base
         T_base_ee = self._lookup_transform(
             target_frame=self.base_link_name,
             source_frame=self.end_effector_name
         )
+        if T_base_ee is None:
+            self.get_logger().error(
+                f"Cannot get current end-effector transform from '{self.end_effector_name}' "
+                f"to '{self.base_link_name}'. Aborting relative offset computation."
+            )
+            return None
         M_base_ee = transform_to_affine(T_base_ee)
-        R_ee = M_base_ee[:3, :3]
-        p_ee = M_base_ee[:3, 3]
 
-        # == Relative motion expressed in frame F ==
-        M_frame_delta = pose_stamped_to_affine(relative_pose)
+        # Current controlled frame in base: If virtual == ee, this is identity.
+        if self.T_ee_from_virtual is None:
+            M_ee_virtual = np.eye(4)
+        else:
+            M_ee_virtual = transform_to_affine(self.T_ee_from_virtual)
 
-        # Convert delta to BASE frame
-        # M_base_delta = M_base_frame @ M_frame_delta
-        # R_delta = M_base_delta[:3, :3]
-        # p_delta = M_base_delta[:3, 3]
-        R_base_frame = M_base_frame[:3, :3]
+        M_base_virtual = M_base_ee @ M_ee_virtual
 
-        R_frame_delta = M_frame_delta[:3, :3]
-        p_frame_delta = M_frame_delta[:3, 3]
+        # Relative motion expressed in ref
+        M_ref_delta = pose_stamped_to_affine(relative_pose)
 
-        p_delta = R_base_frame @ p_frame_delta
-        R_delta = R_base_frame @ R_frame_delta @ R_base_frame.T
+        R_base_ref = M_base_ref[:3, :3]
+        R_ref_delta = M_ref_delta[:3, :3]
+        p_ref_delta = M_ref_delta[:3, 3]
 
-        # --- Apply translation in base frame ---
-        p_goal = p_ee + p_delta
+        # Convert delta to base frame
+        p_base_delta = R_base_ref @ p_ref_delta
+        R_base_delta = R_base_ref @ R_ref_delta @ R_base_ref.T
 
-        # --- Apply rotation about TCP using base-frame axes ---
-        R_goal = R_delta @ R_ee
+        # Apply delta to current virtual/tip pose
+        M_base_virtual_goal = np.eye(4)
+        M_base_virtual_goal[:3, 3] = M_base_virtual[:3, 3] + p_base_delta
+        M_base_virtual_goal[:3, :3] = R_base_delta @ M_base_virtual[:3, :3]
 
-        # Compose goal in BASE frame
-        M_base_goal = np.eye(4)
-        M_base_goal[:3, :3] = R_goal
-        M_base_goal[:3, 3] = p_goal
+        # Convert desired virtual/tip goal into real EE goal for MoveIt
+        M_base_ee_goal = M_base_virtual_goal @ np.linalg.inv(M_ee_virtual)
 
         T_base_goal = affine_to_transform(
-            M_base_goal, self.base_link_name, "pose_goal_frame"
+            M_base_ee_goal,
+            self.base_link_name,
+            "pose_goal_frame"
         )
 
         return transform_to_pose_stamped(T_base_goal)
@@ -322,14 +337,22 @@ class MotionServer(Node):
         velocity_scaling = goal_handle.request.max_velocity_scaling
         acceleration_scaling = goal_handle.request.max_acceleration_scaling
 
-        goal_pose = self._apply_virtual_offset(goal_pose)
         if goal_handle.request.relative_motion:
             goal_pose = self._apply_relative_offset(goal_pose)
-
-        self.broadcast_pose_goal_tf(goal_pose)  # For debugging purposes show the goal pose
+        else:
+            goal_pose = self._apply_virtual_offset(goal_pose)
 
         # Preparing action result
         action_result = MoveToPose.Result()
+
+        if goal_pose is None:
+            self.get_logger().error("Failed to apply virtual or relative offset to the goal pose. Aborting motion.")
+            action_result.result.val = MoveItErrorCodes.FAILURE
+            goal_handle.abort()
+            return action_result
+
+        self.broadcast_pose_goal_tf(goal_pose)  # For debugging purposes show the goal pose
+
 
         max_motion_retries = self.get_parameter('max_motion_retries').get_parameter_value().integer_value
         if cartesian_motion:
@@ -738,11 +761,11 @@ class MotionServer(Node):
         else:
             self.get_logger().info(f"Planning from current config to goal pose.")
 
-        goal_pose = self._apply_virtual_offset(goal_pose)
-
         # TODO: when a start state is specified, should the relative displacement be computed from the start state instead of the current state?
         if goal_handle.request.relative_motion:
             goal_pose = self._apply_relative_offset(goal_pose)
+        else:
+            goal_pose = self._apply_virtual_offset(goal_pose)
 
         self.broadcast_pose_goal_tf(goal_pose)  # For debugging purposes show the goal pose
 
