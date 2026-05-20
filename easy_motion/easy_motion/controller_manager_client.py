@@ -313,7 +313,7 @@ class ControllerManagerClient(Node):
         
         return True
     
-    def _interface_to_joint_name(interface_name: str) -> str:
+    def _interface_to_joint_name(self, interface_name: str) -> str:
         return interface_name.split("/")[0]
 
     def get_controller_command_joints(self, controller_name: str) -> list[str]:
