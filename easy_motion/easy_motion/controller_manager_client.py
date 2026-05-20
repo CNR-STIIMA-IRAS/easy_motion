@@ -340,7 +340,7 @@ class ControllerManagerClient(Node):
         joints: list[str],
         active_only: bool = False,
         exact_match: bool = False,
-    ) -> list[ListControllers.Response.ControllerState]:
+    ) -> list[ControllerState]:
         requested_joints = set(joints)
         matching_controllers = []
 
