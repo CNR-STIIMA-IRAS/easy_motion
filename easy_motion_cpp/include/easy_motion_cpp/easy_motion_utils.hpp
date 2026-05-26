@@ -1,0 +1,164 @@
+#pragma once
+
+#include <chrono>
+#include <memory>
+#include <optional>
+#include <stdexcept>
+#include <string>
+#include <utility>
+#include <vector>
+
+#include <control_msgs/action/gripper_command.hpp>
+#include <easy_motion_msgs/action/move_to_joint.hpp>
+#include <easy_motion_msgs/action/move_to_pose.hpp>
+#include <easy_motion_msgs/action/plan_to_joint.hpp>
+#include <easy_motion_msgs/action/plan_to_pose.hpp>
+#include <easy_motion_msgs/srv/attach_object.hpp>
+#include <easy_motion_msgs/srv/detach_object.hpp>
+#include <easy_motion_msgs/srv/get_fk.hpp>
+#include <easy_motion_msgs/srv/get_ik.hpp>
+#include <geometry_msgs/msg/pose_stamped.hpp>
+#include <moveit_msgs/action/execute_trajectory.hpp>
+#include <moveit_msgs/msg/move_it_error_codes.hpp>
+#include <rclcpp/rclcpp.hpp>
+#include <rclcpp_action/rclcpp_action.hpp>
+#include <trajectory_msgs/msg/joint_trajectory.hpp>
+
+namespace easy_motion
+{
+
+class MotionClient : public rclcpp::Node
+{
+public:
+  using MoveToPose = easy_motion_msgs::action::MoveToPose;
+  using MoveToJoint = easy_motion_msgs::action::MoveToJoint;
+  using PlanToPose = easy_motion_msgs::action::PlanToPose;
+  using PlanToJoint = easy_motion_msgs::action::PlanToJoint;
+  using ExecuteTrajectory = moveit_msgs::action::ExecuteTrajectory;
+  using GripperCommand = control_msgs::action::GripperCommand;
+
+  explicit MotionClient(
+    const std::string & move_to_pose_action_name = "move_to_pose",
+    const std::string & move_to_joint_action_name = "move_to_joint",
+    const std::string & plan_to_pose_action_name = "plan_to_pose",
+    const std::string & plan_to_joint_action_name = "plan_to_joint",
+    const std::string & execute_trajectory_action_name = "execute_trajectory",
+    const std::string & gripper_action_name = "/gripper_action_controller/gripper_cmd",
+    rclcpp::NodeOptions options = rclcpp::NodeOptions());
+
+  moveit_msgs::msg::MoveItErrorCodes move_to_pose(
+    const geometry_msgs::msg::PoseStamped & pose,
+    bool cartesian_motion = false,
+    bool relative_motion = false,
+    double velocity_scaling = 1.0,
+    double acceleration_scaling = 1.0);
+
+  moveit_msgs::msg::MoveItErrorCodes move_to_joint(
+    const std::vector<double> & joint_positions,
+    double velocity_scaling = 1.0,
+    double acceleration_scaling = 1.0);
+
+  std::pair<moveit_msgs::msg::MoveItErrorCodes, trajectory_msgs::msg::JointTrajectory>
+  plan_to_pose(
+    const geometry_msgs::msg::PoseStamped & pose,
+    const std::optional<std::vector<double>> & joint_start = std::nullopt,
+    bool cartesian_motion = false,
+    bool relative_motion = false,
+    double velocity_scaling = 1.0,
+    double acceleration_scaling = 1.0);
+
+  std::pair<moveit_msgs::msg::MoveItErrorCodes, trajectory_msgs::msg::JointTrajectory>
+  plan_to_joint(
+    const std::vector<double> & joint_target,
+    const std::optional<std::vector<double>> & joint_start = std::nullopt,
+    double velocity_scaling = 1.0,
+    double acceleration_scaling = 1.0);
+
+  moveit_msgs::msg::MoveItErrorCodes execute_last_planned_trajectory();
+
+  moveit_msgs::msg::MoveItErrorCodes execute_trajectory(
+    const trajectory_msgs::msg::JointTrajectory & trajectory,
+    const std::vector<std::string> & controller_names = {});
+
+  bool attach_object(
+    const std::string & object_id,
+    const std::string & target_frame_id);
+
+  bool detach_object(const std::string & object_id);
+
+  std::pair<moveit_msgs::msg::MoveItErrorCodes, std::vector<double>>
+  get_ik(
+    const geometry_msgs::msg::PoseStamped & pose,
+    const std::optional<std::vector<double>> & seed = std::nullopt);
+
+  std::pair<moveit_msgs::msg::MoveItErrorCodes, geometry_msgs::msg::PoseStamped>
+  get_fk(const std::vector<double> & joint_state);
+
+  std::pair<bool, bool> gripper_command(
+    double position,
+    double max_effort = 0.0);
+
+  bool has_last_planned_trajectory() const;
+
+  const trajectory_msgs::msg::JointTrajectory & last_planned_trajectory() const;
+
+private:
+  static constexpr int kConstructorWaitSec = 10;
+  static constexpr int kCallWaitSec = 5;
+
+  template<typename FutureT>
+  void spin_until_complete(FutureT & future, const std::string & operation)
+  {
+    rclcpp::executors::SingleThreadedExecutor executor;
+    executor.add_node(this->get_node_base_interface());
+
+    const auto code = executor.spin_until_future_complete(future);
+
+    executor.remove_node(this->get_node_base_interface());
+
+    if (code != rclcpp::FutureReturnCode::SUCCESS) {
+      throw std::runtime_error(operation + " did not complete");
+    }
+  }
+
+  template<typename ActionT>
+  typename rclcpp_action::ClientGoalHandle<ActionT>::WrappedResult send_action_goal(
+    const typename rclcpp_action::Client<ActionT>::SharedPtr & client,
+    const typename ActionT::Goal & goal,
+    const std::string & action_name)
+  {
+    if (!client->wait_for_action_server(std::chrono::seconds(kCallWaitSec))) {
+      throw std::runtime_error(action_name + " action server not available");
+    }
+
+    auto goal_handle_future = client->async_send_goal(goal);
+    spin_until_complete(goal_handle_future, "Sending goal to " + action_name);
+
+    auto goal_handle = goal_handle_future.get();
+
+    if (!goal_handle) {
+      throw std::runtime_error("Goal to " + action_name + " was rejected");
+    }
+
+    auto result_future = client->async_get_result(goal_handle);
+    spin_until_complete(result_future, "Waiting result from " + action_name);
+
+    return result_future.get();
+  }
+
+  rclcpp_action::Client<MoveToPose>::SharedPtr move_to_pose_client_;
+  rclcpp_action::Client<MoveToJoint>::SharedPtr move_to_joint_client_;
+  rclcpp_action::Client<PlanToPose>::SharedPtr plan_to_pose_client_;
+  rclcpp_action::Client<PlanToJoint>::SharedPtr plan_to_joint_client_;
+  rclcpp_action::Client<ExecuteTrajectory>::SharedPtr execute_trajectory_client_;
+  rclcpp_action::Client<GripperCommand>::SharedPtr gripper_client_;
+
+  rclcpp::Client<easy_motion_msgs::srv::AttachObject>::SharedPtr attach_object_client_;
+  rclcpp::Client<easy_motion_msgs::srv::DetachObject>::SharedPtr detach_object_client_;
+  rclcpp::Client<easy_motion_msgs::srv::GetIK>::SharedPtr get_ik_client_;
+  rclcpp::Client<easy_motion_msgs::srv::GetFK>::SharedPtr get_fk_client_;
+
+  std::optional<trajectory_msgs::msg::JointTrajectory> last_planned_trj_;
+};
+
+}  // namespace easy_motion
