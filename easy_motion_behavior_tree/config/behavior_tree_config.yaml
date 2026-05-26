@@ -1,6 +1,6 @@
 bt_executer_node:
   ros__parameters:
-    bt_xml_file: application.xml
+    bt_xml_file: example.xml
     plugins:
       - check_dice_face
     ros_plugins:
