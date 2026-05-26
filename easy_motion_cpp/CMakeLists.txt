@@ -19,7 +19,7 @@ find_package(control_msgs REQUIRED)
 
 add_library(${PROJECT_NAME}
   src/motion_client.cpp
-  src/easy_motion_utils.cpp
+  # src/easy_motion_utils.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PUBLIC
