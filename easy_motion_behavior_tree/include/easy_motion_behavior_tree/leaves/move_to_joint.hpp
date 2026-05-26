@@ -1,6 +1,8 @@
 #include "behaviortree_ros2/bt_action_node.hpp"
 #include "behaviortree_ros2/plugins.hpp"
 
+#include <easy_motion_behavior_tree/bt_conversions.hpp>
+
 #include <easy_motion_msgs/action/move_to_joint.hpp>
 
 

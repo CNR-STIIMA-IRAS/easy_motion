@@ -1,24 +1,10 @@
 #include "behaviortree_ros2/bt_action_node.hpp"
 #include "behaviortree_ros2/plugins.hpp"
 
+#include <easy_motion_behavior_tree/bt_conversions.hpp>
+
 #include <easy_motion_msgs/action/move_to_pose.hpp>
 #include <geometry_msgs/msg/pose_stamped.hpp>
-
-namespace BT
-{
-
-template<>
-inline std::vector<double> convertFromString(StringView str)
-{
-  std::vector<double> vec;
-  auto parts = splitString(str, ';');
-  for (auto & element: parts) {
-    vec.push_back(convertFromString<double>(element));
-  }
-  return vec;
-}
-
-}  // namespace BT
 
 class MoveToPose : public BT::RosActionNode<easy_motion_msgs::action::MoveToPose>
 {
