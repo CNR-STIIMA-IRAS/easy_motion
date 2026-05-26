@@ -13,16 +13,43 @@ bool MoveToPose::setGoal(RosActionNode::Goal & goal)
 {
   RCLCPP_INFO(node_.lock()->get_logger(), "MoveToPose ticked.");
 
-  auto pose_target = getInput<geometry_msgs::msg::PoseStamped>("pose_target");
-  if (pose_target) {
-    goal.pose_target = pose_target.value();
-    return true;
-  }
   bool cartesian_motion = false;
   if (!getInput("cartesian_motion", cartesian_motion)) {
     RCLCPP_INFO(
       node_.lock()->get_logger(),
       "Missing parameter [cartesian_motion], set it as false by default");
+  }
+
+  bool relative_motion = false;
+  if (!getInput("relative_motion", relative_motion)) {
+    RCLCPP_INFO(
+      node_.lock()->get_logger(),
+      "Missing parameter [relative_motion], set it as false by default");
+  }
+
+  double max_velocity_scaling = 1.0;
+  if (!getInput("max_velocity_scaling", max_velocity_scaling)) {
+    RCLCPP_INFO(
+      node_.lock()->get_logger(),
+      "Missing parameter [max_velocity_scaling], set it as 1.0 by default");
+  }
+
+  double max_acceleration_scaling = 1.0;
+  if (!getInput("max_acceleration_scaling", max_acceleration_scaling)) {
+    RCLCPP_INFO(
+      node_.lock()->get_logger(),
+      "Missing parameter [max_acceleration_scaling], set it as 1.0 by default");
+  }
+
+  goal.cartesian_motion = cartesian_motion;
+  goal.relative_motion = relative_motion;
+  goal.max_velocity_scaling = max_velocity_scaling;
+  goal.max_acceleration_scaling = max_acceleration_scaling;
+
+  auto pose_target = getInput<geometry_msgs::msg::PoseStamped>("pose_target");
+  if (pose_target) {
+    goal.pose_target = pose_target.value();
+    return true;
   }
 
   // If pose_target is not set, build it from components
@@ -53,7 +80,6 @@ bool MoveToPose::setGoal(RosActionNode::Goal & goal)
   pose.pose.orientation.w = orientation[3];
 
   goal.pose_target = pose;
-  goal.cartesian_motion = cartesian_motion;
 
   return true;
 }

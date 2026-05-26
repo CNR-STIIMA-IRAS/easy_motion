@@ -16,8 +16,24 @@ bool MoveToJoint::setGoal(RosActionNode::Goal & goal)
 
   auto joint_target = getInput<std::vector<double>>("joint_target");
 
+  double max_velocity_scaling = 1.0;
+  if (!getInput("max_velocity_scaling", max_velocity_scaling)) {
+    RCLCPP_INFO(
+      node_.lock()->get_logger(),
+      "Missing parameter [max_velocity_scaling], set it as 1.0 by default");
+  }
+
+  double max_acceleration_scaling = 1.0;
+  if (!getInput("max_acceleration_scaling", max_acceleration_scaling)) {
+    RCLCPP_INFO(
+      node_.lock()->get_logger(),
+      "Missing parameter [max_acceleration_scaling], set it as 1.0 by default");
+  }
+
   if (joint_target) {
     goal.joint_target = joint_target.value();
+    goal.max_velocity_scaling = max_velocity_scaling;
+    goal.max_acceleration_scaling = max_acceleration_scaling;
     return true;
   }
   return false;
