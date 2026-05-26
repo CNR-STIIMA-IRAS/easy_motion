@@ -6,9 +6,14 @@ bt_executer_node:
     ros_plugins:
       - move_to_pose
       - move_to_joint
+      - plan_to_pose
+      - plan_to_joint
+      - get_ik
+      - get_fk
       - gripper_command
       - dice_identification
       - attach_object
       - detach_object
       - can_transform
+      - trigger_service
     bt_package: drims2_behavior_tree

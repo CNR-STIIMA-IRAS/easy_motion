@@ -21,6 +21,7 @@
   <depend>moveit_msgs</depend>
   <depend>moveit</depend>
   <depend>trajectory_msgs</depend>
+  <depend>std_srvs</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

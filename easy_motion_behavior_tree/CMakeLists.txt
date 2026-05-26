@@ -22,6 +22,7 @@ find_package(moveit_core REQUIRED)
 find_package(trajectory_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2 REQUIRED)
+find_package(std_srvs REQUIRED)
 
 set(dependencies
   rclcpp
@@ -35,6 +36,7 @@ set(dependencies
   trajectory_msgs
   tf2_ros
   tf2
+  std_srvs
 )
 
 add_executable(bt_executer_node
@@ -99,6 +101,11 @@ add_library(can_transform SHARED
     src/leaves/can_transform.cpp
 )
 list(APPEND plugin_libs can_transform)
+
+add_library(trigger_service SHARED
+    src/leaves/trigger_service.cpp
+)
+list(APPEND plugin_libs trigger_service)
 
 foreach(bt_plugin ${plugin_libs})
   # target_link_libraries(${bt_plugin} ${dependencies})
