@@ -17,8 +17,11 @@
   <depend>behaviortree_cpp</depend>
   <depend>easy_motion_msgs</depend>
   <depend>control_msgs</depend>
+  <depend>geometry_msgs</depend>
   <depend>moveit_msgs</depend>
   <depend>moveit</depend>
+  <depend>trajectory_msgs</depend>
+  <depend>std_srvs</depend>
 
   <export>
     <build_type>ament_cmake</build_type>

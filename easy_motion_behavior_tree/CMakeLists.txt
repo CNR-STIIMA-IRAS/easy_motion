@@ -16,10 +16,13 @@ find_package(behaviortree_cpp REQUIRED)
 find_package(behaviortree_ros2 REQUIRED)
 find_package(easy_motion_msgs REQUIRED)
 find_package(control_msgs REQUIRED)
+find_package(geometry_msgs REQUIRED)
 find_package(moveit_msgs REQUIRED)
 find_package(moveit_core REQUIRED)
+find_package(trajectory_msgs REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(tf2 REQUIRED)
+find_package(std_srvs REQUIRED)
 
 set(dependencies
   rclcpp
@@ -27,10 +30,13 @@ set(dependencies
   behaviortree_ros2
   easy_motion_msgs
   control_msgs
+  geometry_msgs
   moveit_msgs
   moveit_core
+  trajectory_msgs
   tf2_ros
   tf2
+  std_srvs
 )
 
 add_executable(bt_executer_node
@@ -66,6 +72,26 @@ add_library(detach_object SHARED
 )
 list(APPEND plugin_libs detach_object)
 
+add_library(plan_to_pose SHARED
+  src/leaves/plan_to_pose.cpp
+)
+list(APPEND plugin_libs plan_to_pose)
+
+add_library(plan_to_joint SHARED
+  src/leaves/plan_to_joint.cpp
+)
+list(APPEND plugin_libs plan_to_joint)
+
+add_library(get_ik SHARED
+  src/leaves/get_ik.cpp
+)
+list(APPEND plugin_libs get_ik)
+
+add_library(get_fk SHARED
+  src/leaves/get_fk.cpp
+)
+list(APPEND plugin_libs get_fk)
+
 add_library(check_dice_face SHARED
     src/leaves/check_dice_face.cpp
 )
@@ -75,6 +101,11 @@ add_library(can_transform SHARED
     src/leaves/can_transform.cpp
 )
 list(APPEND plugin_libs can_transform)
+
+add_library(trigger_service SHARED
+    src/leaves/trigger_service.cpp
+)
+list(APPEND plugin_libs trigger_service)
 
 foreach(bt_plugin ${plugin_libs})
   # target_link_libraries(${bt_plugin} ${dependencies})

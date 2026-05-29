@@ -1,0 +1,126 @@
+#include <easy_motion_behavior_tree/leaves/plan_to_pose.hpp>
+#include <easy_motion_behavior_tree/moveit_error_to_string.hpp>
+
+#include <moveit_msgs/msg/move_it_error_codes.hpp>
+
+PlanToPose::PlanToPose(
+  const std::string & name,
+  const BT::NodeConfig & conf,
+  const BT::RosNodeParams & params)
+: RosActionNode<easy_motion_msgs::action::PlanToPose>(name, conf, params)
+{
+}
+
+bool PlanToPose::setGoal(RosActionNode::Goal & goal)
+{
+  RCLCPP_INFO(node_.lock()->get_logger(), "PlanToPose ticked.");
+
+  bool cartesian_motion = false;
+  if (!getInput("cartesian_motion", cartesian_motion)) {
+    RCLCPP_INFO(
+      node_.lock()->get_logger(),
+      "Missing parameter [cartesian_motion], set it as false by default");
+  }
+
+  bool relative_motion = false;
+  if (!getInput("relative_motion", relative_motion)) {
+    RCLCPP_INFO(
+      node_.lock()->get_logger(),
+      "Missing parameter [relative_motion], set it as false by default");
+  }
+
+  double max_velocity_scaling = 1.0;
+  if (!getInput("max_velocity_scaling", max_velocity_scaling)) {
+    RCLCPP_INFO(
+      node_.lock()->get_logger(),
+      "Missing parameter [max_velocity_scaling], set it as 1.0 by default");
+  }
+
+  double max_acceleration_scaling = 1.0;
+  if (!getInput("max_acceleration_scaling", max_acceleration_scaling)) {
+    RCLCPP_INFO(
+      node_.lock()->get_logger(),
+      "Missing parameter [max_acceleration_scaling], set it as 1.0 by default");
+  }
+
+  std::vector<double> joint_start;
+  if (!getInput("joint_start", joint_start)) {
+    joint_start.clear();
+  }
+
+  goal.cartesian_motion = cartesian_motion;
+  goal.relative_motion = relative_motion;
+  goal.max_velocity_scaling = max_velocity_scaling;
+  goal.max_acceleration_scaling = max_acceleration_scaling;
+  goal.joint_start = joint_start;
+
+  auto pose_target = getInput<geometry_msgs::msg::PoseStamped>("pose_target");
+  if (pose_target) {
+    goal.pose_target = pose_target.value();
+    return true;
+  }
+
+  geometry_msgs::msg::PoseStamped pose;
+  if (!getInput("frame_id", pose.header.frame_id)) {
+    throw BT::RuntimeError("Missing parameter [frame_id]");
+  }
+
+  std::vector<double> position;
+  if (!getInput("position", position) || position.size() != 3) {
+    throw BT::RuntimeError("Invalid or missing parameter [position]. Expected 3 elements");
+  }
+
+  std::vector<double> orientation;
+  if (!getInput("orientation", orientation) || orientation.size() != 4) {
+    throw BT::RuntimeError("Invalid or missing parameter [orientation]. Expected 4 elements");
+  }
+
+  pose.header.stamp = node_.lock()->now();
+  pose.pose.position.x = position[0];
+  pose.pose.position.y = position[1];
+  pose.pose.position.z = position[2];
+  pose.pose.orientation.x = orientation[0];
+  pose.pose.orientation.y = orientation[1];
+  pose.pose.orientation.z = orientation[2];
+  pose.pose.orientation.w = orientation[3];
+
+  goal.pose_target = pose;
+  return true;
+}
+
+BT::NodeStatus PlanToPose::onResultReceived(const RosActionNode::WrappedResult & wr)
+{
+  RCLCPP_INFO(node_.lock()->get_logger(), "%s: onResultReceived", name().c_str());
+  const int code = (wr.result->result).val;
+  setOutput("result_code", code);
+
+  if (code != moveit_msgs::msg::MoveItErrorCodes::SUCCESS) {
+    moveit::core::MoveItErrorCode error(code);
+    RCLCPP_INFO(
+      node_.lock()->get_logger(), "%s failed with error code: %d (%s)",
+      name().c_str(), code, easy_motion::moveitErrorToString(error).c_str());
+    return BT::NodeStatus::FAILURE;
+  }
+
+  setOutput("trajectory", wr.result->trajectory);
+  return BT::NodeStatus::SUCCESS;
+}
+
+BT::NodeStatus PlanToPose::onFailure(BT::ActionNodeErrorCode error)
+{
+  RCLCPP_ERROR(
+    node_.lock()->get_logger(), "%s: onFailure with error: %s", name().c_str(),
+    toStr(error));
+  return BT::NodeStatus::FAILURE;
+}
+
+BT::NodeStatus PlanToPose::onFeedback(
+  const std::shared_ptr<const easy_motion_msgs::action::PlanToPose::Feedback> feedback)
+{
+  (void)feedback;
+  return BT::NodeStatus::RUNNING;
+}
+
+// Plugin registration.
+// The class PlanToPose will self register with name  "PlanToPose".
+CreateRosNodePlugin(PlanToPose, "PlanToPose");

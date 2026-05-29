@@ -1,14 +1,19 @@
 bt_executer_node:
   ros__parameters:
-    bt_xml_file: application.xml
+    bt_xml_file: example.xml
     plugins:
       - check_dice_face
     ros_plugins:
       - move_to_pose
       - move_to_joint
+      - plan_to_pose
+      - plan_to_joint
+      - get_ik
+      - get_fk
       - gripper_command
       - dice_identification
       - attach_object
       - detach_object
       - can_transform
-    bt_package: drims2_behavior_tree
+      - trigger_service
+    bt_package: easy_motion_behavior_tree
