@@ -28,10 +28,10 @@ int main(int argc, char ** argv)
 
     auto [plan_joint_result, trj1] =
       motion_client->plan_to_joint(
-        joint_goal,
-        std::nullopt,
-        0.5,
-        0.5);
+      joint_goal,
+      std::nullopt,
+      0.5,
+      0.5);
 
     std::cout << "Plan to joint result: "
               << plan_joint_result.val
@@ -66,12 +66,12 @@ int main(int argc, char ** argv)
 
     auto [plan_pose_result, trj2] =
       motion_client->plan_to_pose(
-        pose_msg,
-        std::optional<std::vector<double>>{joint_goal},
-        false,
-        false,
-        0.5,
-        0.5);
+      pose_msg,
+      std::optional<std::vector<double>>{joint_goal},
+      false,
+      false,
+      0.5,
+      0.5);
 
     std::cout << "Plan to pose result: "
               << plan_pose_result.val

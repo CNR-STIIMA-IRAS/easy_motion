@@ -23,11 +23,11 @@ public:
   static BT::PortsList providedPorts()
   {
     return providedBasicPorts(
-      {
-        BT::InputPort<std::vector<double>>("joint_state"),
-        BT::OutputPort<geometry_msgs::msg::PoseStamped>("pose"),
-        BT::OutputPort<int>("result_code"),
-      });
+    {
+      BT::InputPort<std::vector<double>>("joint_state"),
+      BT::OutputPort<geometry_msgs::msg::PoseStamped>("pose"),
+      BT::OutputPort<int>("result_code"),
+    });
   }
 
   bool setRequest(Request::SharedPtr & request) override;

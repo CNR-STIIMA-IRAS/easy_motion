@@ -25,14 +25,17 @@ MotionClient::MotionClient(
   this->declare_parameter<std::string>("move_to_joint_action_name", move_to_joint_action_name);
   this->declare_parameter<std::string>("plan_to_pose_action_name", plan_to_pose_action_name);
   this->declare_parameter<std::string>("plan_to_joint_action_name", plan_to_joint_action_name);
-  this->declare_parameter<std::string>("execute_trajectory_action_name", execute_trajectory_action_name);
+  this->declare_parameter<std::string>(
+    "execute_trajectory_action_name",
+    execute_trajectory_action_name);
   this->declare_parameter<std::string>("gripper_action_name", gripper_action_name);
 
   const auto move_to_pose_name = this->get_parameter("move_to_pose_action_name").as_string();
   const auto move_to_joint_name = this->get_parameter("move_to_joint_action_name").as_string();
   const auto plan_to_pose_name = this->get_parameter("plan_to_pose_action_name").as_string();
   const auto plan_to_joint_name = this->get_parameter("plan_to_joint_action_name").as_string();
-  const auto execute_trajectory_name = this->get_parameter("execute_trajectory_action_name").as_string();
+  const auto execute_trajectory_name =
+    this->get_parameter("execute_trajectory_action_name").as_string();
   const auto gripper_name = this->get_parameter("gripper_action_name").as_string();
 
   move_to_pose_client_ = rclcpp_action::create_client<MoveToPose>(this, move_to_pose_name);
@@ -215,9 +218,9 @@ moveit_msgs::msg::MoveItErrorCodes MotionClient::execute_trajectory(
 
   const auto wrapped_result =
     send_action_goal<ExecuteTrajectory>(
-      execute_trajectory_client_,
-      goal,
-      "execute_trajectory");
+    execute_trajectory_client_,
+    goal,
+    "execute_trajectory");
 
   return wrapped_result.result->error_code;
 }

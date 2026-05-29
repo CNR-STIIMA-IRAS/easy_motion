@@ -20,19 +20,19 @@ public:
   static BT::PortsList providedPorts()
   {
     return providedBasicPorts(
-      {
-        BT::InputPort<geometry_msgs::msg::PoseStamped>("pose_target"),
-        BT::InputPort<bool>("cartesian_motion"),
-        BT::InputPort<bool>("relative_motion"),
-        BT::InputPort<double>("max_velocity_scaling"),
-        BT::InputPort<double>("max_acceleration_scaling"),
-        BT::InputPort<std::vector<double>>("joint_start"),
-        BT::InputPort<std::string>("frame_id"),
-        BT::InputPort<std::vector<double>>("position"),
-        BT::InputPort<std::vector<double>>("orientation"),
-        BT::OutputPort<trajectory_msgs::msg::JointTrajectory>("trajectory"),
-        BT::OutputPort<int>("result_code"),
-      });
+    {
+      BT::InputPort<geometry_msgs::msg::PoseStamped>("pose_target"),
+      BT::InputPort<bool>("cartesian_motion"),
+      BT::InputPort<bool>("relative_motion"),
+      BT::InputPort<double>("max_velocity_scaling"),
+      BT::InputPort<double>("max_acceleration_scaling"),
+      BT::InputPort<std::vector<double>>("joint_start"),
+      BT::InputPort<std::string>("frame_id"),
+      BT::InputPort<std::vector<double>>("position"),
+      BT::InputPort<std::vector<double>>("orientation"),
+      BT::OutputPort<trajectory_msgs::msg::JointTrajectory>("trajectory"),
+      BT::OutputPort<int>("result_code"),
+    });
   }
 
   bool setGoal(Goal & goal) override;

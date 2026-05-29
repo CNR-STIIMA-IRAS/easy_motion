@@ -16,7 +16,8 @@ public:
 
   static BT::PortsList providedPorts()
   {
-    return providedBasicPorts({
+    return providedBasicPorts(
+    {
       BT::OutputPort<bool>("success"),
       BT::OutputPort<std::string>("message")
     });
