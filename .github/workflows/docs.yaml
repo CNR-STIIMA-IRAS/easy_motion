@@ -75,6 +75,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Documentation is already up to date."
           else
-            git commit -m "docs: update generated documentation [skip ci]"
+            git commit -m "docs: update generated documentation"
             git push
           fi
