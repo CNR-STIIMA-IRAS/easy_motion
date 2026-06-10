@@ -1,0 +1,80 @@
+name: docs
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "docs/**"
+
+  pull_request:
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-22.04
+
+    container:
+      image: rostooling/setup-ros-docker:ubuntu-jammy-ros-humble-desktop-latest
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Python dependencies
+        run: |
+          python3 -m pip install -r easy_motion/requirements.txt
+
+      - name: Build and test
+        id: action_ros_ci
+        uses: ros-tooling/action-ros-ci@v0.4
+        with:
+          package-name: easy_motion_msgs easy_motion easy_motion_behavior_tree easy_motion_cpp
+          target-ros2-distro: humble
+          colcon-defaults: |
+            {
+              "test": {
+                "parallel-workers" : 1
+              }
+            }
+          vcs-repo-file-url: https://raw.githubusercontent.com/CNR-STIIMA-IRAS/easy_motion/refs/heads/main/dependencies.repos
+
+      - name: Install documentation tools
+        run: |
+          apt-get update
+          apt-get install -y \
+            python3-rosdoc2 \
+            doxygen \
+            graphviz
+
+      - name: Build documentation
+        run: |
+          source /opt/ros/humble/setup.bash
+          source "${{ steps.action_ros_ci.outputs.ros-workspace-directory-name }}/install/setup.bash"
+          bash .github/scripts/build_docs.sh
+
+      - name: Commit generated documentation
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add docs
+
+          if git diff --cached --quiet; then
+            echo "Documentation is already up to date."
+          else
+            git commit -m "docs: update generated documentation [skip ci]"
+            git push
+          fi
