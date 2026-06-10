@@ -1,0 +1,14 @@
+.. _exhale_function_moveit__error__to__string_8hpp_1afbb7db2843705c5d628bf8ed02b9ee88:
+
+Function easy_motion::moveitErrorToString(const moveit_msgs::msg::MoveItErrorCodes&)
+====================================================================================
+
+- Defined in :ref:`file_include_easy_motion_behavior_tree_moveit_error_to_string.hpp`
+
+
+Function Documentation
+----------------------
+
+
+.. doxygenfunction:: easy_motion::moveitErrorToString(const moveit_msgs::msg::MoveItErrorCodes&)
+   :project: easy_motion_behavior_tree Doxygen Project

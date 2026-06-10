@@ -1,0 +1,26 @@
+.. _exhale_class_classDetachObject:
+
+Class DetachObject
+==================
+
+- Defined in :ref:`file_include_easy_motion_behavior_tree_leaves_detach_object.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public BT::RosServiceNode< DetachObjectSrv >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: DetachObject
+   :project: easy_motion_behavior_tree Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

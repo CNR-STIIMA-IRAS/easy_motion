@@ -1,0 +1,21 @@
+easy\_motion package
+====================
+
+Submodules
+----------
+
+.. toctree::
+   :maxdepth: 4
+
+   easy_motion.controller_manager_client
+   easy_motion.easy_motion_utils
+   easy_motion.motion_client
+   easy_motion.motion_server
+
+Module contents
+---------------
+
+.. automodule:: easy_motion
+   :members:
+   :undoc-members:
+   :show-inheritance:

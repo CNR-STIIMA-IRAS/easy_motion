@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="gripper__command_8hpp" kind="file" language="C++">
+    <compoundname>gripper_command.hpp</compoundname>
+    <includes local="yes">behaviortree_ros2/bt_action_node.hpp</includes>
+    <includes local="yes">behaviortree_ros2/plugins.hpp</includes>
+    <includes local="no">control_msgs/action/gripper_command.hpp</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>behaviortree_ros2/bt_action_node.hpp</label>
+      </node>
+      <node id="3">
+        <label>behaviortree_ros2/plugins.hpp</label>
+      </node>
+      <node id="1">
+        <label>include/easy_motion_behavior_tree/leaves/gripper_command.hpp</label>
+        <link refid="gripper__command_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>control_msgs/action/gripper_command.hpp</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classGripperCommand" prot="public">GripperCommand</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;behaviortree_ros2/bt_action_node.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;behaviortree_ros2/plugins.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;control_msgs/action/gripper_command.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="classGripperCommand" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classGripperCommand" kindref="compound">GripperCommand</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>BT::RosActionNode&lt;control_msgs::action::GripperCommand&gt;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><ref refid="classGripperCommand" kindref="compound">GripperCommand</ref>(</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;<sp/>name,</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BT::NodeConfig<sp/>&amp;<sp/>conf,</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BT::RosNodeParams<sp/>&amp;<sp/>params);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>BT::PortsList<sp/>providedPorts()</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>providedBasicPorts(</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>BT::InputPort&lt;double&gt;(</highlight><highlight class="stringliteral">&quot;position&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>BT::InputPort&lt;double&gt;(</highlight><highlight class="stringliteral">&quot;max_effort&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>setGoal(Goal<sp/>&amp;<sp/>goal)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/>BT::NodeStatus<sp/>onResultReceived(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>WrappedResult<sp/>&amp;<sp/>wr)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/>BT::NodeStatus<sp/>onFailure(BT::ActionNodeErrorCode<sp/>error)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>BT::NodeStatus<sp/>onFeedback(</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::shared_ptr&lt;const<sp/>control_msgs::action::GripperCommand::Feedback&gt;<sp/>feedback)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="include/easy_motion_behavior_tree/leaves/gripper_command.hpp"/>
+  </compounddef>
+</doxygen>

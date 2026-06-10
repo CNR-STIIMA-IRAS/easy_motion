@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classTriggerService" kind="class" language="C++" prot="public">
+    <compoundname>TriggerService</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BT::RosServiceNode&lt; std_srvs::srv::Trigger &gt;</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classTriggerService_1a2f0aacd336e22a2e31b209124c38df3f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>TriggerService::TriggerService</definition>
+        <argsstring>(const std::string &amp;name, const BT::NodeConfig &amp;conf, const BT::RosNodeParams &amp;params)</argsstring>
+        <name>TriggerService</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const BT::NodeConfig &amp;</type>
+          <declname>conf</declname>
+        </param>
+        <param>
+          <type>const BT::RosNodeParams &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/trigger_service.hpp" line="9" column="3" bodyfile="include/easy_motion_behavior_tree/leaves/trigger_service.hpp" bodystart="9" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="classTriggerService_1aa72ebac037d56a4d798bd2288820b410" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool TriggerService::setRequest</definition>
+        <argsstring>(Request::SharedPtr &amp;request) override</argsstring>
+        <name>setRequest</name>
+        <param>
+          <type>Request::SharedPtr &amp;</type>
+          <declname>request</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/trigger_service.hpp" line="26" column="8" bodyfile="include/easy_motion_behavior_tree/leaves/trigger_service.hpp" bodystart="26" bodyend="30"/>
+      </memberdef>
+      <memberdef kind="function" id="classTriggerService_1a26c94ebd959b1578e5ead5ce147bc881" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus TriggerService::onResponseReceived</definition>
+        <argsstring>(const Response::SharedPtr &amp;response) override</argsstring>
+        <name>onResponseReceived</name>
+        <param>
+          <type>const Response::SharedPtr &amp;</type>
+          <declname>response</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/trigger_service.hpp" line="32" column="18" bodyfile="include/easy_motion_behavior_tree/leaves/trigger_service.hpp" bodystart="32" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classTriggerService_1a872a58398a0a462bb4a515246206f2e7" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus TriggerService::onFailure</definition>
+        <argsstring>(BT::ServiceNodeErrorCode error) override</argsstring>
+        <name>onFailure</name>
+        <param>
+          <type>BT::ServiceNodeErrorCode</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/trigger_service.hpp" line="46" column="18" bodyfile="include/easy_motion_behavior_tree/leaves/trigger_service.hpp" bodystart="46" bodyend="50"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classTriggerService_1a82a3ce2147602c5ba20f0128810947cf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::PortsList</type>
+        <definition>static BT::PortsList TriggerService::providedPorts</definition>
+        <argsstring>()</argsstring>
+        <name>providedPorts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/trigger_service.hpp" line="17" column="24" bodyfile="include/easy_motion_behavior_tree/leaves/trigger_service.hpp" bodystart="17" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BT::RosServiceNode&lt; std_srvs::srv::Trigger &gt;</label>
+      </node>
+      <node id="1">
+        <label>TriggerService</label>
+        <link refid="classTriggerService"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>BT::RosServiceNode&lt; std_srvs::srv::Trigger &gt;</label>
+      </node>
+      <node id="1">
+        <label>TriggerService</label>
+        <link refid="classTriggerService"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/easy_motion_behavior_tree/leaves/trigger_service.hpp" line="6" column="1" bodyfile="include/easy_motion_behavior_tree/leaves/trigger_service.hpp" bodystart="7" bodyend="51"/>
+    <listofallmembers>
+      <member refid="classTriggerService_1a872a58398a0a462bb4a515246206f2e7" prot="public" virt="non-virtual"><scope>TriggerService</scope><name>onFailure</name></member>
+      <member refid="classTriggerService_1a26c94ebd959b1578e5ead5ce147bc881" prot="public" virt="non-virtual"><scope>TriggerService</scope><name>onResponseReceived</name></member>
+      <member refid="classTriggerService_1a82a3ce2147602c5ba20f0128810947cf" prot="public" virt="non-virtual"><scope>TriggerService</scope><name>providedPorts</name></member>
+      <member refid="classTriggerService_1aa72ebac037d56a4d798bd2288820b410" prot="public" virt="non-virtual"><scope>TriggerService</scope><name>setRequest</name></member>
+      <member refid="classTriggerService_1a2f0aacd336e22a2e31b209124c38df3f" prot="public" virt="non-virtual"><scope>TriggerService</scope><name>TriggerService</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="attach__object_8hpp" kind="file" language="C++">
+    <compoundname>attach_object.hpp</compoundname>
+    <includes local="yes">behaviortree_ros2/bt_service_node.hpp</includes>
+    <includes local="yes">behaviortree_ros2/plugins.hpp</includes>
+    <includes local="no">easy_motion_msgs/srv/attach_object.hpp</includes>
+    <includes local="no">geometry_msgs/msg/pose_stamped.hpp</includes>
+    <incdepgraph>
+      <node id="5">
+        <label>geometry_msgs/msg/pose_stamped.hpp</label>
+      </node>
+      <node id="3">
+        <label>behaviortree_ros2/plugins.hpp</label>
+      </node>
+      <node id="4">
+        <label>easy_motion_msgs/srv/attach_object.hpp</label>
+      </node>
+      <node id="1">
+        <label>include/easy_motion_behavior_tree/leaves/attach_object.hpp</label>
+        <link refid="attach__object_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>behaviortree_ros2/bt_service_node.hpp</label>
+      </node>
+    </incdepgraph>
+    <innerclass refid="classAttachObject" prot="public">AttachObject</innerclass>
+      <sectiondef kind="typedef">
+      <memberdef kind="typedef" id="attach__object_8hpp_1aa773bea5956dbad5cc792d7874bdfd56" prot="public" static="no">
+        <type>easy_motion_msgs::srv::AttachObject</type>
+        <definition>using AttachObjectSrv =  easy_motion_msgs::srv::AttachObject</definition>
+        <argsstring></argsstring>
+        <name>AttachObjectSrv</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/attach_object.hpp" line="7" column="1" bodyfile="include/easy_motion_behavior_tree/leaves/attach_object.hpp" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;behaviortree_ros2/bt_service_node.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;behaviortree_ros2/plugins.hpp&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;easy_motion_msgs/srv/attach_object.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;geometry_msgs/msg/pose_stamped.hpp&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>AttachObjectSrv<sp/>=<sp/>easy_motion_msgs::srv::AttachObject;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="classAttachObject" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="classAttachObject" kindref="compound">AttachObject</ref><sp/>:<sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>BT::RosServiceNode&lt;AttachObjectSrv&gt;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">explicit</highlight><highlight class="normal"><sp/><ref refid="classAttachObject" kindref="compound">AttachObject</ref>(</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>std::string<sp/>&amp;<sp/>name,</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BT::NodeConfig<sp/>&amp;<sp/>conf,</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>BT::RosNodeParams<sp/>&amp;<sp/>params)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/>:<sp/>BT::RosServiceNode&lt;AttachObjectSrv&gt;(name,<sp/>conf,<sp/>params)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/>{}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>BT::PortsList<sp/>providedPorts()</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>providedBasicPorts(</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>BT::InputPort&lt;std::string&gt;(</highlight><highlight class="stringliteral">&quot;object_id&quot;</highlight><highlight class="normal">),</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>BT::InputPort&lt;std::string&gt;(</highlight><highlight class="stringliteral">&quot;target_frame_id&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>setRequest(Request::SharedPtr<sp/>&amp;<sp/>request)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/>BT::NodeStatus<sp/>onResponseReceived(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/>Response::SharedPtr<sp/>&amp;<sp/>response)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/>BT::NodeStatus<sp/>onFailure(BT::ServiceNodeErrorCode<sp/>error)<sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal">};</highlight></codeline>
+    </programlisting>
+    <location file="include/easy_motion_behavior_tree/leaves/attach_object.hpp"/>
+  </compounddef>
+</doxygen>

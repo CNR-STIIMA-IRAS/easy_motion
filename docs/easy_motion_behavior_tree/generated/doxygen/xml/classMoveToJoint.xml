@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classMoveToJoint" kind="class" language="C++" prot="public">
+    <compoundname>MoveToJoint</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BT::RosActionNode&lt; easy_motion_msgs::action::MoveToJoint &gt;</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classMoveToJoint_1af950218522d847ecbf2fdd5507104dab" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>MoveToJoint::MoveToJoint</definition>
+        <argsstring>(const std::string &amp;name, const BT::NodeConfig &amp;conf, const BT::RosNodeParams &amp;params)</argsstring>
+        <name>MoveToJoint</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const BT::NodeConfig &amp;</type>
+          <declname>conf</declname>
+        </param>
+        <param>
+          <type>const BT::RosNodeParams &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/move_to_joint.hpp" line="12" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoveToJoint_1a23f1b4a3fc324f53a995ca1c4451f032" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MoveToJoint::setGoal</definition>
+        <argsstring>(Goal &amp;goal) override</argsstring>
+        <name>setGoal</name>
+        <param>
+          <type>Goal &amp;</type>
+          <declname>goal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/move_to_joint.hpp" line="28" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoveToJoint_1a03e5aa6fd97d90a28fd4627fc7ad7157" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus MoveToJoint::onResultReceived</definition>
+        <argsstring>(const WrappedResult &amp;wr) override</argsstring>
+        <name>onResultReceived</name>
+        <param>
+          <type>const WrappedResult &amp;</type>
+          <declname>wr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/move_to_joint.hpp" line="29" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoveToJoint_1aa442f9970bb159c1a78938a6a6c43414" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus MoveToJoint::onFailure</definition>
+        <argsstring>(BT::ActionNodeErrorCode error) override</argsstring>
+        <name>onFailure</name>
+        <param>
+          <type>BT::ActionNodeErrorCode</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/move_to_joint.hpp" line="30" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoveToJoint_1a058629c3b0197844bddacbecdc76717b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus MoveToJoint::onFeedback</definition>
+        <argsstring>(const std::shared_ptr&lt; const easy_motion_msgs::action::MoveToJoint::Feedback &gt; feedback) override</argsstring>
+        <name>onFeedback</name>
+        <param>
+          <type>const std::shared_ptr&lt; const easy_motion_msgs::action::MoveToJoint::Feedback &gt;</type>
+          <declname>feedback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/move_to_joint.hpp" line="31" column="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classMoveToJoint_1a63ee39e49e321e8018abb8bb67b60768" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::PortsList</type>
+        <definition>static BT::PortsList MoveToJoint::providedPorts</definition>
+        <argsstring>()</argsstring>
+        <name>providedPorts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/move_to_joint.hpp" line="17" column="24" bodyfile="include/easy_motion_behavior_tree/leaves/move_to_joint.hpp" bodystart="17" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>MoveToJoint</label>
+        <link refid="classMoveToJoint"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BT::RosActionNode&lt; easy_motion_msgs::action::MoveToJoint &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>MoveToJoint</label>
+        <link refid="classMoveToJoint"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BT::RosActionNode&lt; easy_motion_msgs::action::MoveToJoint &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/easy_motion_behavior_tree/leaves/move_to_joint.hpp" line="9" column="1" bodyfile="include/easy_motion_behavior_tree/leaves/move_to_joint.hpp" bodystart="10" bodyend="34"/>
+    <listofallmembers>
+      <member refid="classMoveToJoint_1af950218522d847ecbf2fdd5507104dab" prot="public" virt="non-virtual"><scope>MoveToJoint</scope><name>MoveToJoint</name></member>
+      <member refid="classMoveToJoint_1aa442f9970bb159c1a78938a6a6c43414" prot="public" virt="non-virtual"><scope>MoveToJoint</scope><name>onFailure</name></member>
+      <member refid="classMoveToJoint_1a058629c3b0197844bddacbecdc76717b" prot="public" virt="non-virtual"><scope>MoveToJoint</scope><name>onFeedback</name></member>
+      <member refid="classMoveToJoint_1a03e5aa6fd97d90a28fd4627fc7ad7157" prot="public" virt="non-virtual"><scope>MoveToJoint</scope><name>onResultReceived</name></member>
+      <member refid="classMoveToJoint_1a63ee39e49e321e8018abb8bb67b60768" prot="public" virt="non-virtual"><scope>MoveToJoint</scope><name>providedPorts</name></member>
+      <member refid="classMoveToJoint_1a23f1b4a3fc324f53a995ca1c4451f032" prot="public" virt="non-virtual"><scope>MoveToJoint</scope><name>setGoal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

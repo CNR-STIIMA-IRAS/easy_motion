@@ -1,0 +1,46 @@
+
+.. _program_listing_file_include_easy_motion_behavior_tree_leaves_move_to_joint.hpp:
+
+Program Listing for File move_to_joint.hpp
+==========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_easy_motion_behavior_tree_leaves_move_to_joint.hpp>` (``include/easy_motion_behavior_tree/leaves/move_to_joint.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #include "behaviortree_ros2/bt_action_node.hpp"
+   #include "behaviortree_ros2/plugins.hpp"
+   
+   #include <easy_motion_behavior_tree/bt_conversions.hpp>
+   
+   #include <easy_motion_msgs/action/move_to_joint.hpp>
+   
+   
+   class MoveToJoint : public BT::RosActionNode<easy_motion_msgs::action::MoveToJoint>
+   {
+   public:
+     MoveToJoint(
+       const std::string & name,
+       const BT::NodeConfig & conf,
+       const BT::RosNodeParams & params);
+   
+     static BT::PortsList providedPorts()
+     {
+       return providedBasicPorts(
+       {
+         BT::InputPort<std::vector<double>>("joint_target"),
+         BT::InputPort<double>("max_velocity_scaling"),
+         BT::InputPort<double>("max_acceleration_scaling"),
+       }
+       );
+     }
+   
+     bool setGoal(Goal & goal) override;
+     BT::NodeStatus onResultReceived(const WrappedResult & wr) override;
+     BT::NodeStatus onFailure(BT::ActionNodeErrorCode error) override;
+     BT::NodeStatus onFeedback(
+       const std::shared_ptr<const easy_motion_msgs::action::MoveToJoint::Feedback> feedback) override;
+   
+   };

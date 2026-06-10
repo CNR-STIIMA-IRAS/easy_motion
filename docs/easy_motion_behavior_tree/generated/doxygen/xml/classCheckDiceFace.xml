@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classCheckDiceFace" kind="class" language="C++" prot="public">
+    <compoundname>CheckDiceFace</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BT::ConditionNode</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCheckDiceFace_1a501d0c4d1c64b8eb2c06d96b41a520d4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CheckDiceFace::CheckDiceFace</definition>
+        <argsstring>(const std::string &amp;name, const BT::NodeConfiguration &amp;config)</argsstring>
+        <name>CheckDiceFace</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const BT::NodeConfiguration &amp;</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/check_dice_face.hpp" line="7" column="3" bodyfile="include/easy_motion_behavior_tree/leaves/check_dice_face.hpp" bodystart="7" bodyend="9"/>
+      </memberdef>
+      <memberdef kind="function" id="classCheckDiceFace_1a4932813af4667d34ee5a7768c456377f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus CheckDiceFace::tick</definition>
+        <argsstring>() override</argsstring>
+        <name>tick</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/check_dice_face.hpp" line="19" column="18" bodyfile="include/easy_motion_behavior_tree/leaves/check_dice_face.hpp" bodystart="19" bodyend="36"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classCheckDiceFace_1afb4725a1966a5b4b41114c6feee58b59" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::PortsList</type>
+        <definition>static BT::PortsList CheckDiceFace::providedPorts</definition>
+        <argsstring>()</argsstring>
+        <name>providedPorts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/check_dice_face.hpp" line="11" column="24" bodyfile="include/easy_motion_behavior_tree/leaves/check_dice_face.hpp" bodystart="11" bodyend="17"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BT::ConditionNode</label>
+      </node>
+      <node id="1">
+        <label>CheckDiceFace</label>
+        <link refid="classCheckDiceFace"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>BT::ConditionNode</label>
+      </node>
+      <node id="1">
+        <label>CheckDiceFace</label>
+        <link refid="classCheckDiceFace"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/easy_motion_behavior_tree/leaves/check_dice_face.hpp" line="4" column="1" bodyfile="include/easy_motion_behavior_tree/leaves/check_dice_face.hpp" bodystart="5" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classCheckDiceFace_1a501d0c4d1c64b8eb2c06d96b41a520d4" prot="public" virt="non-virtual"><scope>CheckDiceFace</scope><name>CheckDiceFace</name></member>
+      <member refid="classCheckDiceFace_1afb4725a1966a5b4b41114c6feee58b59" prot="public" virt="non-virtual"><scope>CheckDiceFace</scope><name>providedPorts</name></member>
+      <member refid="classCheckDiceFace_1a4932813af4667d34ee5a7768c456377f" prot="public" virt="non-virtual"><scope>CheckDiceFace</scope><name>tick</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

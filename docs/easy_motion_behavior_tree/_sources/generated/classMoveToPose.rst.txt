@@ -1,0 +1,26 @@
+.. _exhale_class_classMoveToPose:
+
+Class MoveToPose
+================
+
+- Defined in :ref:`file_include_easy_motion_behavior_tree_leaves_move_to_pose.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public BT::RosActionNode< easy_motion_msgs::action::MoveToPose >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: MoveToPose
+   :project: easy_motion_behavior_tree Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

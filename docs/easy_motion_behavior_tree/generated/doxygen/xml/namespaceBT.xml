@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespaceBT" kind="namespace" language="C++">
+    <compoundname>BT</compoundname>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="bt__conversions_8hpp_1ac0ae0509ca401832e6569247f4b88f07" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+        </templateparamlist>
+        <type>std::vector&lt; double &gt;</type>
+        <definition>std::vector&lt;double&gt; BT::convertFromString</definition>
+        <argsstring>(StringView str)</argsstring>
+        <name>convertFromString</name>
+        <param>
+          <type>StringView</type>
+          <declname>str</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/bt_conversions.hpp" line="11" column="20" bodyfile="include/easy_motion_behavior_tree/bt_conversions.hpp" bodystart="11" bodyend="20"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/easy_motion_behavior_tree/bt_conversions.hpp" line="7" column="1"/>
+  </compounddef>
+</doxygen>

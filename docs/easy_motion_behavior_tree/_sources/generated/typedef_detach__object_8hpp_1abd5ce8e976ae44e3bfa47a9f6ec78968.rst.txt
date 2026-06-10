@@ -1,0 +1,14 @@
+.. _exhale_typedef_detach__object_8hpp_1abd5ce8e976ae44e3bfa47a9f6ec78968:
+
+Typedef DetachObjectSrv
+=======================
+
+- Defined in :ref:`file_include_easy_motion_behavior_tree_leaves_detach_object.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: DetachObjectSrv
+   :project: easy_motion_behavior_tree Doxygen Project

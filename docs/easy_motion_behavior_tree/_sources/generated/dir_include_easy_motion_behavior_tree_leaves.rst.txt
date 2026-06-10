@@ -1,0 +1,32 @@
+.. _dir_include_easy_motion_behavior_tree_leaves:
+
+
+Directory leaves
+================
+
+
+|exhale_lsh| :ref:`Parent directory <dir_include_easy_motion_behavior_tree>` (``include/easy_motion_behavior_tree``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+*Directory path:* ``include/easy_motion_behavior_tree/leaves``
+
+
+Files
+-----
+
+- :ref:`file_include_easy_motion_behavior_tree_leaves_attach_object.hpp`
+- :ref:`file_include_easy_motion_behavior_tree_leaves_can_transform.hpp`
+- :ref:`file_include_easy_motion_behavior_tree_leaves_check_dice_face.hpp`
+- :ref:`file_include_easy_motion_behavior_tree_leaves_detach_object.hpp`
+- :ref:`file_include_easy_motion_behavior_tree_leaves_dice_identification.hpp`
+- :ref:`file_include_easy_motion_behavior_tree_leaves_get_fk.hpp`
+- :ref:`file_include_easy_motion_behavior_tree_leaves_get_ik.hpp`
+- :ref:`file_include_easy_motion_behavior_tree_leaves_gripper_command.hpp`
+- :ref:`file_include_easy_motion_behavior_tree_leaves_move_to_joint.hpp`
+- :ref:`file_include_easy_motion_behavior_tree_leaves_move_to_pose.hpp`
+- :ref:`file_include_easy_motion_behavior_tree_leaves_plan_to_joint.hpp`
+- :ref:`file_include_easy_motion_behavior_tree_leaves_plan_to_pose.hpp`
+- :ref:`file_include_easy_motion_behavior_tree_leaves_trigger_service.hpp`
+
+

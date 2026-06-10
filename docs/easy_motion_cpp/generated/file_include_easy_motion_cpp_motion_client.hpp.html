@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File motion_client.hpp &mdash; easy_motion_cpp 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Program Listing for File motion_client.hpp" href="program_listing_file_include_easy_motion_cpp_motion_client.hpp.html" />
+    <link rel="prev" title="Directory easy_motion_cpp" href="dir_include_easy_motion_cpp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> easy_motion_cpp
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-c-api">Full C++ API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_easy_motion.html">Namespace easy_motion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_rclcpp.html">Namespace rclcpp</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classeasy__motion_1_1MotionClient.html">Class MotionClient</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_easy_motion_cpp.html">Directory easy_motion_cpp</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#files">Files</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">File motion_client.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#easy-motion-cpp">easy_motion_cpp</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#layout">Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#build">Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#important-note-about-easy-motion-msgs">Important note about <code class="docutils literal notranslate"><span class="pre">easy_motion_msgs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#example">Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#api-shape">API shape</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">easy_motion_cpp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">C++ API</a> &raquo;</li>
+      <li>File motion_client.hpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/file_include_easy_motion_cpp_motion_client.hpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-motion-client-hpp">
+<span id="file-include-easy-motion-cpp-motion-client-hpp"></span><h1>File motion_client.hpp<a class="headerlink" href="#file-motion-client-hpp" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="dir_include_easy_motion_cpp.html#dir-include-easy-motion-cpp"><span class="std std-ref">Parent directory</span></a> (<code class="docutils literal notranslate"><span class="pre">include/easy_motion_cpp</span></code>)</p>
+<div class="contents local topic" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#definition-include-easy-motion-cpp-motion-client-hpp" id="id1">Definition (<code class="docutils literal notranslate"><span class="pre">include/easy_motion_cpp/motion_client.hpp</span></code>)</a></p></li>
+<li><p><a class="reference internal" href="#includes" id="id2">Includes</a></p></li>
+<li><p><a class="reference internal" href="#namespaces" id="id3">Namespaces</a></p></li>
+<li><p><a class="reference internal" href="#classes" id="id4">Classes</a></p></li>
+</ul>
+</div>
+<section id="definition-include-easy-motion-cpp-motion-client-hpp">
+<h2>Definition (<code class="docutils literal notranslate"><span class="pre">include/easy_motion_cpp/motion_client.hpp</span></code>)<a class="headerlink" href="#definition-include-easy-motion-cpp-motion-client-hpp" title="Permalink to this headline"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="program_listing_file_include_easy_motion_cpp_motion_client.hpp.html">Program Listing for File motion_client.hpp</a></li>
+</ul>
+</div>
+</section>
+<section id="includes">
+<h2>Includes<a class="headerlink" href="#includes" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">chrono</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">control_msgs/action/gripper_command.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">easy_motion_msgs/action/move_to_joint.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">easy_motion_msgs/action/move_to_pose.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">easy_motion_msgs/action/plan_to_joint.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">easy_motion_msgs/action/plan_to_pose.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">easy_motion_msgs/srv/attach_object.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">easy_motion_msgs/srv/detach_object.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">easy_motion_msgs/srv/get_fk.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">easy_motion_msgs/srv/get_ik.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">geometry_msgs/msg/pose_stamped.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">memory</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">moveit_msgs/action/execute_trajectory.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">moveit_msgs/msg/move_it_error_codes.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">optional</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rclcpp/rclcpp.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">rclcpp_action/rclcpp_action.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stdexcept</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">string</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">trajectory_msgs/msg/joint_trajectory.hpp</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">utility</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">vector</span></code></p></li>
+</ul>
+</section>
+<section id="namespaces">
+<h2>Namespaces<a class="headerlink" href="#namespaces" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="namespace_easy_motion.html#namespace-easy-motion"><span class="std std-ref">Namespace easy_motion</span></a></p></li>
+</ul>
+</section>
+<section id="classes">
+<h2>Classes<a class="headerlink" href="#classes" title="Permalink to this headline"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="classeasy__motion_1_1MotionClient.html#exhale-class-classeasy-motion-1-1motionclient"><span class="std std-ref">Class MotionClient</span></a></p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="dir_include_easy_motion_cpp.html" class="btn btn-neutral float-left" title="Directory easy_motion_cpp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="program_listing_file_include_easy_motion_cpp_motion_client.hpp.html" class="btn btn-neutral float-right" title="Program Listing for File motion_client.hpp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;easy_motion_cpp&gt; Contributors. License: Apache-2.0.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+easy\_motion.controller\_manager\_client module
+===============================================
+
+.. automodule:: easy_motion.controller_manager_client
+   :members:
+   :undoc-members:
+   :show-inheritance:

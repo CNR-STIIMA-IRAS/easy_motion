@@ -1,0 +1,26 @@
+.. _exhale_class_classAttachObject:
+
+Class AttachObject
+==================
+
+- Defined in :ref:`file_include_easy_motion_behavior_tree_leaves_attach_object.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public BT::RosServiceNode< AttachObjectSrv >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: AttachObject
+   :project: easy_motion_behavior_tree Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

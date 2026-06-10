@@ -1,0 +1,49 @@
+
+.. _program_listing_file_include_easy_motion_behavior_tree_leaves_check_dice_face.hpp:
+
+Program Listing for File check_dice_face.hpp
+============================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_easy_motion_behavior_tree_leaves_check_dice_face.hpp>` (``include/easy_motion_behavior_tree/leaves/check_dice_face.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #include "behaviortree_cpp/condition_node.h"
+   #include "behaviortree_cpp/bt_factory.h"
+   
+   class CheckDiceFace : public BT::ConditionNode
+   {
+   public:
+     CheckDiceFace(const std::string & name, const BT::NodeConfiguration & config)
+     : BT::ConditionNode(name, config)
+     {}
+   
+     static BT::PortsList providedPorts()
+     {
+       return {
+         BT::InputPort<int>("target_face"),
+         BT::InputPort<int>("face")
+       };
+     }
+   
+     BT::NodeStatus tick() override
+     {
+       int target_face, face;
+   
+       if (!getInput("target_face", target_face)) {
+         throw BT::RuntimeError("Missing parameter [target_face]");
+       }
+   
+       if (!getInput("face", face)) {
+         throw BT::RuntimeError("Missing parameter [face]");
+       }
+   
+       if (target_face == face) {
+         return BT::NodeStatus::SUCCESS;
+       } else {
+         return BT::NodeStatus::FAILURE;
+       }
+     }
+   };

@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,132,157,159"/>
+<area shape="rect" id="node2" href="$classAttachObject.html" title=" " alt="" coords="220,5,327,32"/>
+<area shape="rect" id="node3" href="$classDetachObject.html" title=" " alt="" coords="218,56,329,83"/>
+<area shape="rect" id="node4" href="$classDiceIdentification.html" title=" " alt="" coords="205,107,341,133"/>
+<area shape="rect" id="node5" href="$classGetFK.html" title=" " alt="" coords="242,157,305,184"/>
+<area shape="rect" id="node6" href="$classGetIK.html" title=" " alt="" coords="244,208,303,235"/>
+<area shape="rect" id="node7" href="$classTriggerService.html" title=" " alt="" coords="216,259,331,285"/>
+</map>

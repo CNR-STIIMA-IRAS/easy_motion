@@ -1,0 +1,8 @@
+PlanToPose
+==========
+This is a ROS action definition.
+
+**Source**
+
+.. literalinclude:: ../../../../../../easy_motion_msgs/action/PlanToPose.action
+

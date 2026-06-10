@@ -1,0 +1,34 @@
+
+.. _program_listing_file_include_easy_motion_behavior_tree_bt_conversions.hpp:
+
+Program Listing for File bt_conversions.hpp
+===========================================
+
+|exhale_lsh| :ref:`Return to documentation for file <file_include_easy_motion_behavior_tree_bt_conversions.hpp>` (``include/easy_motion_behavior_tree/bt_conversions.hpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. code-block:: cpp
+
+   #pragma once
+   
+   #include <behaviortree_cpp/basic_types.h>
+   
+   #include <vector>
+   
+   namespace BT
+   {
+   
+   template<>
+   inline std::vector<double> convertFromString(StringView str)
+   {
+     std::vector<double> vec;
+     auto parts = splitString(str, ';');
+     vec.reserve(parts.size());
+     for (auto & element : parts) {
+       vec.push_back(convertFromString<double>(element));
+     }
+     return vec;
+   }
+   
+   }  // namespace BT

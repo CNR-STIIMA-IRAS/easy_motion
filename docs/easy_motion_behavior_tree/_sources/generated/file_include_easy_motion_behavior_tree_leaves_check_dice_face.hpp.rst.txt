@@ -1,0 +1,46 @@
+
+.. _file_include_easy_motion_behavior_tree_leaves_check_dice_face.hpp:
+
+File check_dice_face.hpp
+========================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_easy_motion_behavior_tree_leaves>` (``include/easy_motion_behavior_tree/leaves``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/easy_motion_behavior_tree/leaves/check_dice_face.hpp``)
+-----------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_easy_motion_behavior_tree_leaves_check_dice_face.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``behaviortree_cpp/bt_factory.h``
+
+- ``behaviortree_cpp/condition_node.h``
+
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classCheckDiceFace`
+

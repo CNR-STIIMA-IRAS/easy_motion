@@ -1,0 +1,14 @@
+.. _exhale_typedef_dice__identification_8hpp_1a30777275c99498d89168f025c3c985d1:
+
+Typedef DiceIdentificationSrv
+=============================
+
+- Defined in :ref:`file_include_easy_motion_behavior_tree_leaves_dice_identification.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: DiceIdentificationSrv
+   :project: easy_motion_behavior_tree Doxygen Project

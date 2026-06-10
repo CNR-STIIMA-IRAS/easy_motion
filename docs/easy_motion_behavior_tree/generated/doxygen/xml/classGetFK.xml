@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classGetFK" kind="class" language="C++" prot="public">
+    <compoundname>GetFK</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BT::RosServiceNode&lt; GetFKSrv &gt;</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classGetFK_1a2933df4a9c2f6bc20a90c04edf73ae69" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GetFK::GetFK</definition>
+        <argsstring>(const std::string &amp;name, const BT::NodeConfig &amp;conf, const BT::RosNodeParams &amp;params)</argsstring>
+        <name>GetFK</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const BT::NodeConfig &amp;</type>
+          <declname>conf</declname>
+        </param>
+        <param>
+          <type>const BT::RosNodeParams &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/get_fk.hpp" line="16" column="12" bodyfile="include/easy_motion_behavior_tree/leaves/get_fk.hpp" bodystart="16" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classGetFK_1abd662201a5aba408193046217a42caa9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GetFK::setRequest</definition>
+        <argsstring>(Request::SharedPtr &amp;request) override</argsstring>
+        <name>setRequest</name>
+        <param>
+          <type>Request::SharedPtr &amp;</type>
+          <declname>request</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/get_fk.hpp" line="33" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classGetFK_1af8e1bb2b8950d8a2349cbf94d8514469" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus GetFK::onResponseReceived</definition>
+        <argsstring>(const Response::SharedPtr &amp;response) override</argsstring>
+        <name>onResponseReceived</name>
+        <param>
+          <type>const Response::SharedPtr &amp;</type>
+          <declname>response</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/get_fk.hpp" line="34" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classGetFK_1a7cca6dc755afc22874be8648db547ff6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus GetFK::onFailure</definition>
+        <argsstring>(BT::ServiceNodeErrorCode error) override</argsstring>
+        <name>onFailure</name>
+        <param>
+          <type>BT::ServiceNodeErrorCode</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/get_fk.hpp" line="35" column="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classGetFK_1a487ab438dc867f41149c24f1fcde5158" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::PortsList</type>
+        <definition>static BT::PortsList GetFK::providedPorts</definition>
+        <argsstring>()</argsstring>
+        <name>providedPorts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/get_fk.hpp" line="23" column="24" bodyfile="include/easy_motion_behavior_tree/leaves/get_fk.hpp" bodystart="23" bodyend="31"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GetFK</label>
+        <link refid="classGetFK"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BT::RosServiceNode&lt; GetFKSrv &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GetFK</label>
+        <link refid="classGetFK"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BT::RosServiceNode&lt; GetFKSrv &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/easy_motion_behavior_tree/leaves/get_fk.hpp" line="13" column="1" bodyfile="include/easy_motion_behavior_tree/leaves/get_fk.hpp" bodystart="14" bodyend="36"/>
+    <listofallmembers>
+      <member refid="classGetFK_1a2933df4a9c2f6bc20a90c04edf73ae69" prot="public" virt="non-virtual"><scope>GetFK</scope><name>GetFK</name></member>
+      <member refid="classGetFK_1a7cca6dc755afc22874be8648db547ff6" prot="public" virt="non-virtual"><scope>GetFK</scope><name>onFailure</name></member>
+      <member refid="classGetFK_1af8e1bb2b8950d8a2349cbf94d8514469" prot="public" virt="non-virtual"><scope>GetFK</scope><name>onResponseReceived</name></member>
+      <member refid="classGetFK_1a487ab438dc867f41149c24f1fcde5158" prot="public" virt="non-virtual"><scope>GetFK</scope><name>providedPorts</name></member>
+      <member refid="classGetFK_1abd662201a5aba408193046217a42caa9" prot="public" virt="non-virtual"><scope>GetFK</scope><name>setRequest</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

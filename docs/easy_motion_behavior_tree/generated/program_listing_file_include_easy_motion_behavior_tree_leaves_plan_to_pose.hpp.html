@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Program Listing for File plan_to_pose.hpp &mdash; easy_motion_behavior_tree 0.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="File trigger_service.hpp" href="file_include_easy_motion_behavior_tree_leaves_trigger_service.hpp.html" />
+    <link rel="prev" title="File plan_to_pose.hpp" href="file_include_easy_motion_behavior_tree_leaves_plan_to_pose.hpp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> easy_motion_behavior_tree
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-c-api">Full C++ API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_BT.html">Namespace BT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_easy_motion.html">Namespace easy_motion</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="classAttachObject.html">Class AttachObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classCanTransform.html">Class CanTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classCheckDiceFace.html">Class CheckDiceFace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDetachObject.html">Class DetachObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDiceIdentification.html">Class DiceIdentification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGetFK.html">Class GetFK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGetIK.html">Class GetIK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGripperCommand.html">Class GripperCommand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMoveToJoint.html">Class MoveToJoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMoveToPose.html">Class MoveToPose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPlanToJoint.html">Class PlanToJoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPlanToPose.html">Class PlanToPose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTriggerService.html">Class TriggerService</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_bt__conversions_8hpp_1ac0ae0509ca401832e6569247f4b88f07.html">Specialized Template Function BT::convertFromString</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_moveit__error__to__string_8hpp_1afbb7db2843705c5d628bf8ed02b9ee88.html">Function easy_motion::moveitErrorToString(const moveit_msgs::msg::MoveItErrorCodes&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_moveit__error__to__string_8hpp_1a5e24482a48698631faa66b831cc61492.html">Function easy_motion::moveitErrorToString(const moveit::core::MoveItErrorCode&amp;)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#defines">Defines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="define_moveit__error__to__string_8hpp_1a182130bb47f490aebc34f8232d0eceaa.html">Define EASY_MOTION_MOVEIT_HAS_ERROR_HPP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#typedefs">Typedefs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="typedef_attach__object_8hpp_1aa773bea5956dbad5cc792d7874bdfd56.html">Typedef AttachObjectSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_detach__object_8hpp_1abd5ce8e976ae44e3bfa47a9f6ec78968.html">Typedef DetachObjectSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_dice__identification_8hpp_1a30777275c99498d89168f025c3c985d1.html">Typedef DiceIdentificationSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_get__fk_8hpp_1a5265fc484e553158459a35e595ee4455.html">Typedef GetFKSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_get__ik_8hpp_1a2552e349b9cfb77a62cc34660670fac1.html">Typedef GetIKSrv</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_easy_motion_behavior_tree.html">Directory easy_motion_behavior_tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_easy_motion_behavior_tree_leaves.html">Directory leaves</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#files">Files</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_attach_object.hpp.html">File attach_object.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_bt_conversions.hpp.html">File bt_conversions.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_can_transform.hpp.html">File can_transform.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_check_dice_face.hpp.html">File check_dice_face.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_detach_object.hpp.html">File detach_object.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_dice_identification.hpp.html">File dice_identification.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_get_fk.hpp.html">File get_fk.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_get_ik.hpp.html">File get_ik.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_gripper_command.hpp.html">File gripper_command.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_move_to_joint.hpp.html">File move_to_joint.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_move_to_pose.hpp.html">File move_to_pose.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_moveit_error_to_string.hpp.html">File moveit_error_to_string.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_plan_to_joint.hpp.html">File plan_to_joint.hpp</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_plan_to_pose.hpp.html">File plan_to_pose.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_trigger_service.hpp.html">File trigger_service.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#easymotion-behavior-tree">EasyMotion Behavior Tree</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#available-behavior-tree-nodes">Available Behavior Tree Nodes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">easy_motion_behavior_tree</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">C++ API</a> &raquo;</li>
+          <li><a href="file_include_easy_motion_behavior_tree_leaves_plan_to_pose.hpp.html">File plan_to_pose.hpp</a> &raquo;</li>
+      <li>Program Listing for File plan_to_pose.hpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/program_listing_file_include_easy_motion_behavior_tree_leaves_plan_to_pose.hpp.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="program-listing-for-file-plan-to-pose-hpp">
+<span id="program-listing-file-include-easy-motion-behavior-tree-leaves-plan-to-pose-hpp"></span><h1>Program Listing for File plan_to_pose.hpp<a class="headerlink" href="#program-listing-for-file-plan-to-pose-hpp" title="Permalink to this headline"></a></h1>
+<p>↰ <a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_plan_to_pose.hpp.html#file-include-easy-motion-behavior-tree-leaves-plan-to-pose-hpp"><span class="std std-ref">Return to documentation for file</span></a> (<code class="docutils literal notranslate"><span class="pre">include/easy_motion_behavior_tree/leaves/plan_to_pose.hpp</span></code>)</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#pragma once</span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;behaviortree_ros2/bt_action_node.hpp&quot;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;behaviortree_ros2/plugins.hpp&quot;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;easy_motion_behavior_tree/bt_conversions.hpp&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;easy_motion_msgs/action/plan_to_pose.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;geometry_msgs/msg/pose_stamped.hpp&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;trajectory_msgs/msg/joint_trajectory.hpp&gt;</span><span class="cp"></span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PlanToPose</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="n">BT</span><span class="o">::</span><span class="n">RosActionNode</span><span class="o">&lt;</span><span class="n">easy_motion_msgs</span><span class="o">::</span><span class="n">action</span><span class="o">::</span><span class="n">PlanToPose</span><span class="o">&gt;</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="k">public</span><span class="o">:</span><span class="w"></span>
+<span class="w">  </span><span class="n">PlanToPose</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">BT</span><span class="o">::</span><span class="n">NodeConfig</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">conf</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">BT</span><span class="o">::</span><span class="n">RosNodeParams</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">params</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="n">BT</span><span class="o">::</span><span class="n">PortsList</span><span class="w"> </span><span class="nf">providedPorts</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">providedBasicPorts</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">BT</span><span class="o">::</span><span class="n">InputPort</span><span class="o">&lt;</span><span class="n">geometry_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">PoseStamped</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;pose_target&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">BT</span><span class="o">::</span><span class="n">InputPort</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;cartesian_motion&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">BT</span><span class="o">::</span><span class="n">InputPort</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;relative_motion&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">BT</span><span class="o">::</span><span class="n">InputPort</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;max_velocity_scaling&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">BT</span><span class="o">::</span><span class="n">InputPort</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;max_acceleration_scaling&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">BT</span><span class="o">::</span><span class="n">InputPort</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;joint_start&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">BT</span><span class="o">::</span><span class="n">InputPort</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;frame_id&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">BT</span><span class="o">::</span><span class="n">InputPort</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;position&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">BT</span><span class="o">::</span><span class="n">InputPort</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span><span class="p">(</span><span class="s">&quot;orientation&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">BT</span><span class="o">::</span><span class="n">OutputPort</span><span class="o">&lt;</span><span class="n">trajectory_msgs</span><span class="o">::</span><span class="n">msg</span><span class="o">::</span><span class="n">JointTrajectory</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;trajectory&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">BT</span><span class="o">::</span><span class="n">OutputPort</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">&quot;result_code&quot;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="nf">setGoal</span><span class="p">(</span><span class="n">Goal</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">goal</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="w"> </span><span class="nf">onResultReceived</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">WrappedResult</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">wr</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="w"> </span><span class="nf">onFailure</span><span class="p">(</span><span class="n">BT</span><span class="o">::</span><span class="n">ActionNodeErrorCode</span><span class="w"> </span><span class="n">error</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">BT</span><span class="o">::</span><span class="n">NodeStatus</span><span class="w"> </span><span class="nf">onFeedback</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">shared_ptr</span><span class="o">&lt;</span><span class="k">const</span><span class="w"> </span><span class="n">easy_motion_msgs</span><span class="o">::</span><span class="n">action</span><span class="o">::</span><span class="n">PlanToPose</span><span class="o">::</span><span class="n">Feedback</span><span class="o">&gt;</span><span class="w"> </span><span class="n">feedback</span><span class="p">)</span><span class="w"> </span><span class="k">override</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="file_include_easy_motion_behavior_tree_leaves_plan_to_pose.hpp.html" class="btn btn-neutral float-left" title="File plan_to_pose.hpp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="file_include_easy_motion_behavior_tree_leaves_trigger_service.hpp.html" class="btn btn-neutral float-right" title="File trigger_service.hpp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;easy_motion_behavior_tree&gt; Contributors. License: TODO: License declaration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

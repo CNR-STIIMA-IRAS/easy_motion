@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class MoveToPose &mdash; easy_motion_behavior_tree 0.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class PlanToJoint" href="classPlanToJoint.html" />
+    <link rel="prev" title="Class MoveToJoint" href="classMoveToJoint.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> easy_motion_behavior_tree
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-c-api">Full C++ API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_BT.html">Namespace BT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_easy_motion.html">Namespace easy_motion</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="classAttachObject.html">Class AttachObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classCanTransform.html">Class CanTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classCheckDiceFace.html">Class CheckDiceFace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDetachObject.html">Class DetachObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDiceIdentification.html">Class DiceIdentification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGetFK.html">Class GetFK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGetIK.html">Class GetIK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGripperCommand.html">Class GripperCommand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMoveToJoint.html">Class MoveToJoint</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class MoveToPose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPlanToJoint.html">Class PlanToJoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPlanToPose.html">Class PlanToPose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTriggerService.html">Class TriggerService</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_bt__conversions_8hpp_1ac0ae0509ca401832e6569247f4b88f07.html">Specialized Template Function BT::convertFromString</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_moveit__error__to__string_8hpp_1afbb7db2843705c5d628bf8ed02b9ee88.html">Function easy_motion::moveitErrorToString(const moveit_msgs::msg::MoveItErrorCodes&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_moveit__error__to__string_8hpp_1a5e24482a48698631faa66b831cc61492.html">Function easy_motion::moveitErrorToString(const moveit::core::MoveItErrorCode&amp;)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#defines">Defines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="define_moveit__error__to__string_8hpp_1a182130bb47f490aebc34f8232d0eceaa.html">Define EASY_MOTION_MOVEIT_HAS_ERROR_HPP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#typedefs">Typedefs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="typedef_attach__object_8hpp_1aa773bea5956dbad5cc792d7874bdfd56.html">Typedef AttachObjectSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_detach__object_8hpp_1abd5ce8e976ae44e3bfa47a9f6ec78968.html">Typedef DetachObjectSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_dice__identification_8hpp_1a30777275c99498d89168f025c3c985d1.html">Typedef DiceIdentificationSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_get__fk_8hpp_1a5265fc484e553158459a35e595ee4455.html">Typedef GetFKSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_get__ik_8hpp_1a2552e349b9cfb77a62cc34660670fac1.html">Typedef GetIKSrv</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_easy_motion_behavior_tree.html">Directory easy_motion_behavior_tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_easy_motion_behavior_tree_leaves.html">Directory leaves</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_attach_object.hpp.html">File attach_object.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_bt_conversions.hpp.html">File bt_conversions.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_can_transform.hpp.html">File can_transform.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_check_dice_face.hpp.html">File check_dice_face.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_detach_object.hpp.html">File detach_object.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_dice_identification.hpp.html">File dice_identification.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_get_fk.hpp.html">File get_fk.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_get_ik.hpp.html">File get_ik.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_gripper_command.hpp.html">File gripper_command.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_move_to_joint.hpp.html">File move_to_joint.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_move_to_pose.hpp.html">File move_to_pose.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_moveit_error_to_string.hpp.html">File moveit_error_to_string.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_plan_to_joint.hpp.html">File plan_to_joint.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_plan_to_pose.hpp.html">File plan_to_pose.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_trigger_service.hpp.html">File trigger_service.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#easymotion-behavior-tree">EasyMotion Behavior Tree</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#available-behavior-tree-nodes">Available Behavior Tree Nodes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">easy_motion_behavior_tree</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">C++ API</a> &raquo;</li>
+      <li>Class MoveToPose</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/classMoveToPose.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-movetopose">
+<span id="exhale-class-classmovetopose"></span><h1>Class MoveToPose<a class="headerlink" href="#class-movetopose" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_move_to_pose.hpp.html#file-include-easy-motion-behavior-tree-leaves-move-to-pose-hpp"><span class="std std-ref">File move_to_pose.hpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">BT::RosActionNode&lt;</span> <span class="pre">easy_motion_msgs::action::MoveToPose</span> <span class="pre">&gt;</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv410MoveToPose">
+<span id="_CPPv310MoveToPose"></span><span id="_CPPv210MoveToPose"></span><span id="MoveToPose"></span><span class="target" id="classMoveToPose"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MoveToPose</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">RosActionNode</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">easy_motion_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MoveToPose</span></span><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv410MoveToPose" title="Permalink to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10MoveToPose10MoveToPoseERKNSt6stringERKN2BT10NodeConfigERKN2BT13RosNodeParamsE">
+<span id="_CPPv3N10MoveToPose10MoveToPoseERKNSt6stringERKN2BT10NodeConfigERKN2BT13RosNodeParamsE"></span><span id="_CPPv2N10MoveToPose10MoveToPoseERKNSt6stringERKN2BT10NodeConfigERKN2BT13RosNodeParamsE"></span><span id="MoveToPose::MoveToPose__ssCR.BT::NodeConfigCR.BT::RosNodeParamsCR"></span><span class="target" id="classMoveToPose_1afca23cd7233a82146007421ceabdad6c"></span><span class="sig-name descname"><span class="n"><span class="pre">MoveToPose</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeConfig</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">conf</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">RosNodeParams</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10MoveToPose10MoveToPoseERKNSt6stringERKN2BT10NodeConfigERKN2BT13RosNodeParamsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10MoveToPose7setGoalER4Goal">
+<span id="_CPPv3N10MoveToPose7setGoalER4Goal"></span><span id="_CPPv2N10MoveToPose7setGoalER4Goal"></span><span id="MoveToPose::setGoal__GoalR"></span><span class="target" id="classMoveToPose_1afa34be146ca4b08570493b0e1a0997e0"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setGoal</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Goal</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">goal</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N10MoveToPose7setGoalER4Goal" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10MoveToPose16onResultReceivedERK13WrappedResult">
+<span id="_CPPv3N10MoveToPose16onResultReceivedERK13WrappedResult"></span><span id="_CPPv2N10MoveToPose16onResultReceivedERK13WrappedResult"></span><span id="MoveToPose::onResultReceived__WrappedResultCR"></span><span class="target" id="classMoveToPose_1af0f8382c87b84883c852122802f5a515"></span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeStatus</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onResultReceived</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">WrappedResult</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">wr</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N10MoveToPose16onResultReceivedERK13WrappedResult" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10MoveToPose9onFailureEN2BT19ActionNodeErrorCodeE">
+<span id="_CPPv3N10MoveToPose9onFailureEN2BT19ActionNodeErrorCodeE"></span><span id="_CPPv2N10MoveToPose9onFailureEN2BT19ActionNodeErrorCodeE"></span><span id="MoveToPose::onFailure__BT::ActionNodeErrorCode"></span><span class="target" id="classMoveToPose_1a30906380f89bfa8570a14a8d2db67a29"></span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeStatus</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onFailure</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ActionNodeErrorCode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">error</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N10MoveToPose9onFailureEN2BT19ActionNodeErrorCodeE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10MoveToPose10onFeedbackEKNSt10shared_ptrIKN16easy_motion_msgs6action10MoveToPose8FeedbackEEE">
+<span id="_CPPv3N10MoveToPose10onFeedbackEKNSt10shared_ptrIKN16easy_motion_msgs6action10MoveToPose8FeedbackEEE"></span><span id="_CPPv2N10MoveToPose10onFeedbackEKNSt10shared_ptrIKN16easy_motion_msgs6action10MoveToPose8FeedbackEEE"></span><span id="MoveToPose::onFeedback__std::shared_ptr:easy_motion_msgs::action::MoveToPose::FeedbackC:C"></span><span class="target" id="classMoveToPose_1a8ea6ecac743280cf372727e5e01c934b"></span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeStatus</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onFeedback</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">shared_ptr</span></span><span class="p"><span class="pre">&lt;</span></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">easy_motion_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MoveToPose</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Feedback</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">feedback</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N10MoveToPose10onFeedbackEKNSt10shared_ptrIKN16easy_motion_msgs6action10MoveToPose8FeedbackEEE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N10MoveToPose13providedPortsEv">
+<span id="_CPPv3N10MoveToPose13providedPortsEv"></span><span id="_CPPv2N10MoveToPose13providedPortsEv"></span><span id="MoveToPose::providedPorts"></span><span class="target" id="classMoveToPose_1a4ff33edf77e7da81f9afafcc58327668"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PortsList</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">providedPorts</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N10MoveToPose13providedPortsEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classMoveToJoint.html" class="btn btn-neutral float-left" title="Class MoveToJoint" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classPlanToJoint.html" class="btn btn-neutral float-right" title="Class PlanToJoint" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;easy_motion_behavior_tree&gt; Contributors. License: TODO: License declaration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

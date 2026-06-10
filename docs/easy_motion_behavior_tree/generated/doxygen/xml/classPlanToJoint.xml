@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classPlanToJoint" kind="class" language="C++" prot="public">
+    <compoundname>PlanToJoint</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BT::RosActionNode&lt; easy_motion_msgs::action::PlanToJoint &gt;</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classPlanToJoint_1a307de8cb28de0ba091e6aa02d642a783" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>PlanToJoint::PlanToJoint</definition>
+        <argsstring>(const std::string &amp;name, const BT::NodeConfig &amp;conf, const BT::RosNodeParams &amp;params)</argsstring>
+        <name>PlanToJoint</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const BT::NodeConfig &amp;</type>
+          <declname>conf</declname>
+        </param>
+        <param>
+          <type>const BT::RosNodeParams &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/plan_to_joint.hpp" line="14" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classPlanToJoint_1aa106b8adb6d287d05ad6aec314736ea2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool PlanToJoint::setGoal</definition>
+        <argsstring>(Goal &amp;goal) override</argsstring>
+        <name>setGoal</name>
+        <param>
+          <type>Goal &amp;</type>
+          <declname>goal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/plan_to_joint.hpp" line="32" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classPlanToJoint_1a6b8e31d1705e9df27c65a5efe7ee5af9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus PlanToJoint::onResultReceived</definition>
+        <argsstring>(const WrappedResult &amp;wr) override</argsstring>
+        <name>onResultReceived</name>
+        <param>
+          <type>const WrappedResult &amp;</type>
+          <declname>wr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/plan_to_joint.hpp" line="33" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classPlanToJoint_1ac5989289546b83f7ab98148e039e8fa4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus PlanToJoint::onFailure</definition>
+        <argsstring>(BT::ActionNodeErrorCode error) override</argsstring>
+        <name>onFailure</name>
+        <param>
+          <type>BT::ActionNodeErrorCode</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/plan_to_joint.hpp" line="34" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classPlanToJoint_1a3b231334f81c7a5d6d2d9fc33ec2579e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus PlanToJoint::onFeedback</definition>
+        <argsstring>(const std::shared_ptr&lt; const easy_motion_msgs::action::PlanToJoint::Feedback &gt; feedback) override</argsstring>
+        <name>onFeedback</name>
+        <param>
+          <type>const std::shared_ptr&lt; const easy_motion_msgs::action::PlanToJoint::Feedback &gt;</type>
+          <declname>feedback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/plan_to_joint.hpp" line="35" column="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classPlanToJoint_1a3509d516c9bc809633c2d3084a06e1d5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::PortsList</type>
+        <definition>static BT::PortsList PlanToJoint::providedPorts</definition>
+        <argsstring>()</argsstring>
+        <name>providedPorts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/plan_to_joint.hpp" line="19" column="24" bodyfile="include/easy_motion_behavior_tree/leaves/plan_to_joint.hpp" bodystart="19" bodyend="30"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BT::RosActionNode&lt; easy_motion_msgs::action::PlanToJoint &gt;</label>
+      </node>
+      <node id="1">
+        <label>PlanToJoint</label>
+        <link refid="classPlanToJoint"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>BT::RosActionNode&lt; easy_motion_msgs::action::PlanToJoint &gt;</label>
+      </node>
+      <node id="1">
+        <label>PlanToJoint</label>
+        <link refid="classPlanToJoint"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/easy_motion_behavior_tree/leaves/plan_to_joint.hpp" line="11" column="1" bodyfile="include/easy_motion_behavior_tree/leaves/plan_to_joint.hpp" bodystart="12" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classPlanToJoint_1ac5989289546b83f7ab98148e039e8fa4" prot="public" virt="non-virtual"><scope>PlanToJoint</scope><name>onFailure</name></member>
+      <member refid="classPlanToJoint_1a3b231334f81c7a5d6d2d9fc33ec2579e" prot="public" virt="non-virtual"><scope>PlanToJoint</scope><name>onFeedback</name></member>
+      <member refid="classPlanToJoint_1a6b8e31d1705e9df27c65a5efe7ee5af9" prot="public" virt="non-virtual"><scope>PlanToJoint</scope><name>onResultReceived</name></member>
+      <member refid="classPlanToJoint_1a307de8cb28de0ba091e6aa02d642a783" prot="public" virt="non-virtual"><scope>PlanToJoint</scope><name>PlanToJoint</name></member>
+      <member refid="classPlanToJoint_1a3509d516c9bc809633c2d3084a06e1d5" prot="public" virt="non-virtual"><scope>PlanToJoint</scope><name>providedPorts</name></member>
+      <member refid="classPlanToJoint_1aa106b8adb6d287d05ad6aec314736ea2" prot="public" virt="non-virtual"><scope>PlanToJoint</scope><name>setGoal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

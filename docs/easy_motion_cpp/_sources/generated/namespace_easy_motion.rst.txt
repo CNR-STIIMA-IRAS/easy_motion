@@ -1,0 +1,20 @@
+
+.. _namespace_easy_motion:
+
+Namespace easy_motion
+=====================
+
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classeasy__motion_1_1MotionClient`

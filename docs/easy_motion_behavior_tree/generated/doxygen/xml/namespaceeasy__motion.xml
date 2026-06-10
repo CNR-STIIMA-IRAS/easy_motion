@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="namespaceeasy__motion" kind="namespace" language="C++">
+    <compoundname>easy_motion</compoundname>
+    <innerclass refid="classeasy__motion_1_1MotionClient" prot="public">easy_motion::MotionClient</innerclass>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="moveit__error__to__string_8hpp_1afbb7db2843705c5d628bf8ed02b9ee88" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string easy_motion::moveitErrorToString</definition>
+        <argsstring>(const moveit_msgs::msg::MoveItErrorCodes &amp;msg)</argsstring>
+        <name>moveitErrorToString</name>
+        <param>
+          <type>const moveit_msgs::msg::MoveItErrorCodes &amp;</type>
+          <declname>msg</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/moveit_error_to_string.hpp" line="26" column="20" bodyfile="include/easy_motion_behavior_tree/moveit_error_to_string.hpp" bodystart="26" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="moveit__error__to__string_8hpp_1a5e24482a48698631faa66b831cc61492" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>std::string</type>
+        <definition>std::string easy_motion::moveitErrorToString</definition>
+        <argsstring>(const moveit::core::MoveItErrorCode &amp;ec)</argsstring>
+        <name>moveitErrorToString</name>
+        <param>
+          <type>const moveit::core::MoveItErrorCode &amp;</type>
+          <declname>ec</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/moveit_error_to_string.hpp" line="37" column="20" bodyfile="include/easy_motion_behavior_tree/moveit_error_to_string.hpp" bodystart="37" bodyend="44"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/easy_motion_behavior_tree/moveit_error_to_string.hpp" line="23" column="1"/>
+  </compounddef>
+</doxygen>

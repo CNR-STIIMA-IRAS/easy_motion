@@ -1,0 +1,14 @@
+.. _exhale_define_moveit__error__to__string_8hpp_1a182130bb47f490aebc34f8232d0eceaa:
+
+Define EASY_MOTION_MOVEIT_HAS_ERROR_HPP
+=======================================
+
+- Defined in :ref:`file_include_easy_motion_behavior_tree_moveit_error_to_string.hpp`
+
+
+Define Documentation
+--------------------
+
+
+.. doxygendefine:: EASY_MOTION_MOVEIT_HAS_ERROR_HPP
+   :project: easy_motion_behavior_tree Doxygen Project

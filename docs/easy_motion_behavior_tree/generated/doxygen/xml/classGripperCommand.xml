@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classGripperCommand" kind="class" language="C++" prot="public">
+    <compoundname>GripperCommand</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BT::RosActionNode&lt; control_msgs::action::GripperCommand &gt;</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classGripperCommand_1a9faac74cbbe36526105df0fc99aaac63" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>GripperCommand::GripperCommand</definition>
+        <argsstring>(const std::string &amp;name, const BT::NodeConfig &amp;conf, const BT::RosNodeParams &amp;params)</argsstring>
+        <name>GripperCommand</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const BT::NodeConfig &amp;</type>
+          <declname>conf</declname>
+        </param>
+        <param>
+          <type>const BT::RosNodeParams &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/gripper_command.hpp" line="10" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classGripperCommand_1a49c37f4ebcc94258278319d9e18a5fb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GripperCommand::setGoal</definition>
+        <argsstring>(Goal &amp;goal) override</argsstring>
+        <name>setGoal</name>
+        <param>
+          <type>Goal &amp;</type>
+          <declname>goal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/gripper_command.hpp" line="25" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classGripperCommand_1ac0b5e34a6e557c274bb44c2693b8fb95" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus GripperCommand::onResultReceived</definition>
+        <argsstring>(const WrappedResult &amp;wr) override</argsstring>
+        <name>onResultReceived</name>
+        <param>
+          <type>const WrappedResult &amp;</type>
+          <declname>wr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/gripper_command.hpp" line="26" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classGripperCommand_1a6e39eb48b7f8333b985cf1f7a5ea1ed8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus GripperCommand::onFailure</definition>
+        <argsstring>(BT::ActionNodeErrorCode error) override</argsstring>
+        <name>onFailure</name>
+        <param>
+          <type>BT::ActionNodeErrorCode</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/gripper_command.hpp" line="27" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classGripperCommand_1a2d23bafc709104da4230964ef7064a24" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus GripperCommand::onFeedback</definition>
+        <argsstring>(const std::shared_ptr&lt; const control_msgs::action::GripperCommand::Feedback &gt; feedback) override</argsstring>
+        <name>onFeedback</name>
+        <param>
+          <type>const std::shared_ptr&lt; const control_msgs::action::GripperCommand::Feedback &gt;</type>
+          <declname>feedback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/gripper_command.hpp" line="28" column="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classGripperCommand_1a0a296163d115dcfadb024d46497ca977" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::PortsList</type>
+        <definition>static BT::PortsList GripperCommand::providedPorts</definition>
+        <argsstring>()</argsstring>
+        <name>providedPorts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/gripper_command.hpp" line="15" column="24" bodyfile="include/easy_motion_behavior_tree/leaves/gripper_command.hpp" bodystart="15" bodyend="23"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GripperCommand</label>
+        <link refid="classGripperCommand"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BT::RosActionNode&lt; control_msgs::action::GripperCommand &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GripperCommand</label>
+        <link refid="classGripperCommand"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BT::RosActionNode&lt; control_msgs::action::GripperCommand &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/easy_motion_behavior_tree/leaves/gripper_command.hpp" line="7" column="1" bodyfile="include/easy_motion_behavior_tree/leaves/gripper_command.hpp" bodystart="8" bodyend="31"/>
+    <listofallmembers>
+      <member refid="classGripperCommand_1a9faac74cbbe36526105df0fc99aaac63" prot="public" virt="non-virtual"><scope>GripperCommand</scope><name>GripperCommand</name></member>
+      <member refid="classGripperCommand_1a6e39eb48b7f8333b985cf1f7a5ea1ed8" prot="public" virt="non-virtual"><scope>GripperCommand</scope><name>onFailure</name></member>
+      <member refid="classGripperCommand_1a2d23bafc709104da4230964ef7064a24" prot="public" virt="non-virtual"><scope>GripperCommand</scope><name>onFeedback</name></member>
+      <member refid="classGripperCommand_1ac0b5e34a6e557c274bb44c2693b8fb95" prot="public" virt="non-virtual"><scope>GripperCommand</scope><name>onResultReceived</name></member>
+      <member refid="classGripperCommand_1a0a296163d115dcfadb024d46497ca977" prot="public" virt="non-virtual"><scope>GripperCommand</scope><name>providedPorts</name></member>
+      <member refid="classGripperCommand_1a49c37f4ebcc94258278319d9e18a5fb4" prot="public" virt="non-virtual"><scope>GripperCommand</scope><name>setGoal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

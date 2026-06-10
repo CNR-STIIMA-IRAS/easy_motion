@@ -1,0 +1,57 @@
+
+.. _file_include_easy_motion_behavior_tree_leaves_dice_identification.hpp:
+
+File dice_identification.hpp
+============================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_easy_motion_behavior_tree_leaves>` (``include/easy_motion_behavior_tree/leaves``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/easy_motion_behavior_tree/leaves/dice_identification.hpp``)
+---------------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_easy_motion_behavior_tree_leaves_dice_identification.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``behaviortree_ros2/bt_service_node.hpp``
+
+- ``behaviortree_ros2/plugins.hpp``
+
+- ``easy_motion_msgs/srv/dice_identification.hpp``
+
+- ``geometry_msgs/msg/pose_stamped.hpp``
+
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classDiceIdentification`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_dice__identification_8hpp_1a30777275c99498d89168f025c3c985d1`
+

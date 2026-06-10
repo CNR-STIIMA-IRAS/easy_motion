@@ -1,0 +1,26 @@
+.. _exhale_class_classGripperCommand:
+
+Class GripperCommand
+====================
+
+- Defined in :ref:`file_include_easy_motion_behavior_tree_leaves_gripper_command.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public BT::RosActionNode< control_msgs::action::GripperCommand >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: GripperCommand
+   :project: easy_motion_behavior_tree Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

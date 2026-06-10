@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class GetIK &mdash; easy_motion_behavior_tree 0.0.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Class GripperCommand" href="classGripperCommand.html" />
+    <link rel="prev" title="Class GetFK" href="classGetFK.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> easy_motion_behavior_tree
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-c-api">Full C++ API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_BT.html">Namespace BT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_easy_motion.html">Namespace easy_motion</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="classAttachObject.html">Class AttachObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classCanTransform.html">Class CanTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classCheckDiceFace.html">Class CheckDiceFace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDetachObject.html">Class DetachObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classDiceIdentification.html">Class DiceIdentification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGetFK.html">Class GetFK</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class GetIK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classGripperCommand.html">Class GripperCommand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMoveToJoint.html">Class MoveToJoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classMoveToPose.html">Class MoveToPose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPlanToJoint.html">Class PlanToJoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classPlanToPose.html">Class PlanToPose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="classTriggerService.html">Class TriggerService</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="function_bt__conversions_8hpp_1ac0ae0509ca401832e6569247f4b88f07.html">Specialized Template Function BT::convertFromString</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_moveit__error__to__string_8hpp_1afbb7db2843705c5d628bf8ed02b9ee88.html">Function easy_motion::moveitErrorToString(const moveit_msgs::msg::MoveItErrorCodes&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_moveit__error__to__string_8hpp_1a5e24482a48698631faa66b831cc61492.html">Function easy_motion::moveitErrorToString(const moveit::core::MoveItErrorCode&amp;)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#defines">Defines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="define_moveit__error__to__string_8hpp_1a182130bb47f490aebc34f8232d0eceaa.html">Define EASY_MOTION_MOVEIT_HAS_ERROR_HPP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#typedefs">Typedefs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="typedef_attach__object_8hpp_1aa773bea5956dbad5cc792d7874bdfd56.html">Typedef AttachObjectSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_detach__object_8hpp_1abd5ce8e976ae44e3bfa47a9f6ec78968.html">Typedef DetachObjectSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_dice__identification_8hpp_1a30777275c99498d89168f025c3c985d1.html">Typedef DiceIdentificationSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_get__fk_8hpp_1a5265fc484e553158459a35e595ee4455.html">Typedef GetFKSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="typedef_get__ik_8hpp_1a2552e349b9cfb77a62cc34660670fac1.html">Typedef GetIKSrv</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_easy_motion_behavior_tree.html">Directory easy_motion_behavior_tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_easy_motion_behavior_tree_leaves.html">Directory leaves</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_attach_object.hpp.html">File attach_object.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_bt_conversions.hpp.html">File bt_conversions.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_can_transform.hpp.html">File can_transform.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_check_dice_face.hpp.html">File check_dice_face.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_detach_object.hpp.html">File detach_object.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_dice_identification.hpp.html">File dice_identification.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_get_fk.hpp.html">File get_fk.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_get_ik.hpp.html">File get_ik.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_gripper_command.hpp.html">File gripper_command.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_move_to_joint.hpp.html">File move_to_joint.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_move_to_pose.hpp.html">File move_to_pose.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_moveit_error_to_string.hpp.html">File moveit_error_to_string.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_plan_to_joint.hpp.html">File plan_to_joint.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_plan_to_pose.hpp.html">File plan_to_pose.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_trigger_service.hpp.html">File trigger_service.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#easymotion-behavior-tree">EasyMotion Behavior Tree</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#available-behavior-tree-nodes">Available Behavior Tree Nodes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">easy_motion_behavior_tree</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">C++ API</a> &raquo;</li>
+      <li>Class GetIK</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/classGetIK.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-getik">
+<span id="exhale-class-classgetik"></span><h1>Class GetIK<a class="headerlink" href="#class-getik" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_easy_motion_behavior_tree_leaves_get_ik.hpp.html#file-include-easy-motion-behavior-tree-leaves-get-ik-hpp"><span class="std std-ref">File get_ik.hpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">BT::RosServiceNode&lt;</span> <span class="pre">GetIKSrv</span> <span class="pre">&gt;</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv45GetIK">
+<span id="_CPPv35GetIK"></span><span id="_CPPv25GetIK"></span><span id="GetIK"></span><span class="target" id="classGetIK"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetIK</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">RosServiceNode</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="typedef_get__ik_8hpp_1a2552e349b9cfb77a62cc34660670fac1.html#_CPPv48GetIKSrv" title="GetIKSrv"><span class="n"><span class="pre">GetIKSrv</span></span></a><span class="p"><span class="pre">&gt;</span></span><a class="headerlink" href="#_CPPv45GetIK" title="Permalink to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5GetIK5GetIKERKNSt6stringERKN2BT10NodeConfigERKN2BT13RosNodeParamsE">
+<span id="_CPPv3N5GetIK5GetIKERKNSt6stringERKN2BT10NodeConfigERKN2BT13RosNodeParamsE"></span><span id="_CPPv2N5GetIK5GetIKERKNSt6stringERKN2BT10NodeConfigERKN2BT13RosNodeParamsE"></span><span id="GetIK::GetIK__ssCR.BT::NodeConfigCR.BT::RosNodeParamsCR"></span><span class="target" id="classGetIK_1a2cfc7d10ae7b7405f6fc6a81fa2aea79"></span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GetIK</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">name</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeConfig</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">conf</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">RosNodeParams</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">params</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5GetIK5GetIKERKNSt6stringERKN2BT10NodeConfigERKN2BT13RosNodeParamsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5GetIK10setRequestERN7Request9SharedPtrE">
+<span id="_CPPv3N5GetIK10setRequestERN7Request9SharedPtrE"></span><span id="_CPPv2N5GetIK10setRequestERN7Request9SharedPtrE"></span><span id="GetIK::setRequest__Request::SharedPtrR"></span><span class="target" id="classGetIK_1adec14132f86e3e65d0eaa0a62c080b02"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">setRequest</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">Request</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">request</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5GetIK10setRequestERN7Request9SharedPtrE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5GetIK18onResponseReceivedERKN8Response9SharedPtrE">
+<span id="_CPPv3N5GetIK18onResponseReceivedERKN8Response9SharedPtrE"></span><span id="_CPPv2N5GetIK18onResponseReceivedERKN8Response9SharedPtrE"></span><span id="GetIK::onResponseReceived__Response::SharedPtrCR"></span><span class="target" id="classGetIK_1a5d05d268fb85584b8873567938ee8a0b"></span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeStatus</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onResponseReceived</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">Response</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">SharedPtr</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">response</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5GetIK18onResponseReceivedERKN8Response9SharedPtrE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5GetIK9onFailureEN2BT20ServiceNodeErrorCodeE">
+<span id="_CPPv3N5GetIK9onFailureEN2BT20ServiceNodeErrorCodeE"></span><span id="_CPPv2N5GetIK9onFailureEN2BT20ServiceNodeErrorCodeE"></span><span id="GetIK::onFailure__BT::ServiceNodeErrorCode"></span><span class="target" id="classGetIK_1ae8607d60e182774762fcef423ad80e3c"></span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeStatus</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">onFailure</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ServiceNodeErrorCode</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">error</span></span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">override</span></span><a class="headerlink" href="#_CPPv4N5GetIK9onFailureEN2BT20ServiceNodeErrorCodeE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-functions">Public Static Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N5GetIK13providedPortsEv">
+<span id="_CPPv3N5GetIK13providedPortsEv"></span><span id="_CPPv2N5GetIK13providedPortsEv"></span><span id="GetIK::providedPorts"></span><span class="target" id="classGetIK_1abbdb35b98e07a8109f3dd98513401259"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="k"><span class="pre">inline</span></span><span class="w"> </span><span class="n"><span class="pre">BT</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PortsList</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">providedPorts</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N5GetIK13providedPortsEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="classGetFK.html" class="btn btn-neutral float-left" title="Class GetFK" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="classGripperCommand.html" class="btn btn-neutral float-right" title="Class GripperCommand" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;easy_motion_behavior_tree&gt; Contributors. License: TODO: License declaration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

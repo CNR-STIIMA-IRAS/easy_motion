@@ -1,0 +1,732 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classeasy__motion_1_1MotionClient" kind="class" language="C++" prot="public">
+    <compoundname>easy_motion::MotionClient</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">rclcpp::Node</basecompoundref>
+      <sectiondef kind="public-type">
+      <memberdef kind="typedef" id="classeasy__motion_1_1MotionClient_1a19d229f0d04704c071368d3419cd65c1" prot="public" static="no">
+        <type>easy_motion_msgs::action::MoveToPose</type>
+        <definition>using easy_motion::MotionClient::MoveToPose =  easy_motion_msgs::action::MoveToPose</definition>
+        <argsstring></argsstring>
+        <name>MoveToPose</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="33" column="3" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classeasy__motion_1_1MotionClient_1aa7ac53232c30e333e6ce09408a634c47" prot="public" static="no">
+        <type>easy_motion_msgs::action::MoveToJoint</type>
+        <definition>using easy_motion::MotionClient::MoveToJoint =  easy_motion_msgs::action::MoveToJoint</definition>
+        <argsstring></argsstring>
+        <name>MoveToJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="34" column="3" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classeasy__motion_1_1MotionClient_1a1134231a702220aa91ad39ac48ec8e98" prot="public" static="no">
+        <type>easy_motion_msgs::action::PlanToPose</type>
+        <definition>using easy_motion::MotionClient::PlanToPose =  easy_motion_msgs::action::PlanToPose</definition>
+        <argsstring></argsstring>
+        <name>PlanToPose</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="35" column="3" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classeasy__motion_1_1MotionClient_1a95c780adb2a93eb7c1c148038f8fb7fa" prot="public" static="no">
+        <type>easy_motion_msgs::action::PlanToJoint</type>
+        <definition>using easy_motion::MotionClient::PlanToJoint =  easy_motion_msgs::action::PlanToJoint</definition>
+        <argsstring></argsstring>
+        <name>PlanToJoint</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="36" column="3" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classeasy__motion_1_1MotionClient_1a870bbd956e4de82d8d31d6a9d9fd3a7d" prot="public" static="no">
+        <type>moveit_msgs::action::ExecuteTrajectory</type>
+        <definition>using easy_motion::MotionClient::ExecuteTrajectory =  moveit_msgs::action::ExecuteTrajectory</definition>
+        <argsstring></argsstring>
+        <name>ExecuteTrajectory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="37" column="3" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="typedef" id="classeasy__motion_1_1MotionClient_1a423590fc75b7b5019b746bc2bd0db6b1" prot="public" static="no">
+        <type>control_msgs::action::GripperCommand</type>
+        <definition>using easy_motion::MotionClient::GripperCommand =  control_msgs::action::GripperCommand</definition>
+        <argsstring></argsstring>
+        <name>GripperCommand</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="38" column="3" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1a6143c78c238894956b5e276adc7475f5" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int easy_motion::MotionClient::kConstructorWaitSec</definition>
+        <argsstring></argsstring>
+        <name>kConstructorWaitSec</name>
+        <initializer>= 10</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="106" column="24" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1a242e6a241281b190b390f7832cd0ab8a" prot="private" static="yes" constexpr="yes" mutable="no">
+        <type>constexpr int</type>
+        <definition>constexpr int easy_motion::MotionClient::kCallWaitSec</definition>
+        <argsstring></argsstring>
+        <name>kCallWaitSec</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="107" column="24" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1a00600d73c409504c49ae73beade20392" prot="private" static="no" mutable="no">
+        <type>rclcpp_action::Client&lt; MoveToPose &gt;::SharedPtr</type>
+        <definition>rclcpp_action::Client&lt;MoveToPose&gt;::SharedPtr easy_motion::MotionClient::move_to_pose_client_</definition>
+        <argsstring></argsstring>
+        <name>move_to_pose_client_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="149" column="37" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1ac5fae78e33f6d9b4055bab6965300873" prot="private" static="no" mutable="no">
+        <type>rclcpp_action::Client&lt; MoveToJoint &gt;::SharedPtr</type>
+        <definition>rclcpp_action::Client&lt;MoveToJoint&gt;::SharedPtr easy_motion::MotionClient::move_to_joint_client_</definition>
+        <argsstring></argsstring>
+        <name>move_to_joint_client_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="150" column="37" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1afe081b61b8f232e69e4920a3c11b4448" prot="private" static="no" mutable="no">
+        <type>rclcpp_action::Client&lt; PlanToPose &gt;::SharedPtr</type>
+        <definition>rclcpp_action::Client&lt;PlanToPose&gt;::SharedPtr easy_motion::MotionClient::plan_to_pose_client_</definition>
+        <argsstring></argsstring>
+        <name>plan_to_pose_client_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="151" column="37" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1a12cebee542582cac92a8bb3a54a1fb37" prot="private" static="no" mutable="no">
+        <type>rclcpp_action::Client&lt; PlanToJoint &gt;::SharedPtr</type>
+        <definition>rclcpp_action::Client&lt;PlanToJoint&gt;::SharedPtr easy_motion::MotionClient::plan_to_joint_client_</definition>
+        <argsstring></argsstring>
+        <name>plan_to_joint_client_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="152" column="37" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1aab06580f816650e5cdb3258900ab2a1d" prot="private" static="no" mutable="no">
+        <type>rclcpp_action::Client&lt; ExecuteTrajectory &gt;::SharedPtr</type>
+        <definition>rclcpp_action::Client&lt;ExecuteTrajectory&gt;::SharedPtr easy_motion::MotionClient::execute_trajectory_client_</definition>
+        <argsstring></argsstring>
+        <name>execute_trajectory_client_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="153" column="37" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1aada1ef6073bcc444a8c7fd08a62cc5a0" prot="private" static="no" mutable="no">
+        <type>rclcpp_action::Client&lt; GripperCommand &gt;::SharedPtr</type>
+        <definition>rclcpp_action::Client&lt;GripperCommand&gt;::SharedPtr easy_motion::MotionClient::gripper_client_</definition>
+        <argsstring></argsstring>
+        <name>gripper_client_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="154" column="37" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1a45bbe986120bb3bd9110d744197bc531" prot="private" static="no" mutable="no">
+        <type>rclcpp::Client&lt; easy_motion_msgs::srv::AttachObject &gt;::SharedPtr</type>
+        <definition>rclcpp::Client&lt;easy_motion_msgs::srv::AttachObject&gt;::SharedPtr easy_motion::MotionClient::attach_object_client_</definition>
+        <argsstring></argsstring>
+        <name>attach_object_client_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="156" column="30" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1a21d02998ce3c4efaec179ac21b26c80e" prot="private" static="no" mutable="no">
+        <type>rclcpp::Client&lt; easy_motion_msgs::srv::DetachObject &gt;::SharedPtr</type>
+        <definition>rclcpp::Client&lt;easy_motion_msgs::srv::DetachObject&gt;::SharedPtr easy_motion::MotionClient::detach_object_client_</definition>
+        <argsstring></argsstring>
+        <name>detach_object_client_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="157" column="30" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1a32e878cdaefc95210d32e5cddef88c70" prot="private" static="no" mutable="no">
+        <type>rclcpp::Client&lt; easy_motion_msgs::srv::GetIK &gt;::SharedPtr</type>
+        <definition>rclcpp::Client&lt;easy_motion_msgs::srv::GetIK&gt;::SharedPtr easy_motion::MotionClient::get_ik_client_</definition>
+        <argsstring></argsstring>
+        <name>get_ik_client_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="158" column="30" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1aa7850f2c081ce608d4f90e6da4d045fc" prot="private" static="no" mutable="no">
+        <type>rclcpp::Client&lt; easy_motion_msgs::srv::GetFK &gt;::SharedPtr</type>
+        <definition>rclcpp::Client&lt;easy_motion_msgs::srv::GetFK&gt;::SharedPtr easy_motion::MotionClient::get_fk_client_</definition>
+        <argsstring></argsstring>
+        <name>get_fk_client_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="159" column="30" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classeasy__motion_1_1MotionClient_1a43ec06646142725fbf8070eaaae607c3" prot="private" static="no" mutable="no">
+        <type>std::optional&lt; trajectory_msgs::msg::JointTrajectory &gt;</type>
+        <definition>std::optional&lt;trajectory_msgs::msg::JointTrajectory&gt; easy_motion::MotionClient::last_planned_trj_</definition>
+        <argsstring></argsstring>
+        <name>last_planned_trj_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="161" column="17" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1a8aee7d6dc946fa1bdc447b5fd377c4a3" prot="public" static="no" const="no" explicit="yes" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>easy_motion::MotionClient::MotionClient</definition>
+        <argsstring>(const std::string &amp;move_to_pose_action_name=&quot;move_to_pose&quot;, const std::string &amp;move_to_joint_action_name=&quot;move_to_joint&quot;, const std::string &amp;plan_to_pose_action_name=&quot;plan_to_pose&quot;, const std::string &amp;plan_to_joint_action_name=&quot;plan_to_joint&quot;, const std::string &amp;execute_trajectory_action_name=&quot;execute_trajectory&quot;, const std::string &amp;gripper_action_name=&quot;/gripper_action_controller/gripper_cmd&quot;, rclcpp::NodeOptions options=rclcpp::NodeOptions())</argsstring>
+        <name>MotionClient</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>move_to_pose_action_name</declname>
+          <defval>&quot;move_to_pose&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>move_to_joint_action_name</declname>
+          <defval>&quot;move_to_joint&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>plan_to_pose_action_name</declname>
+          <defval>&quot;plan_to_pose&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>plan_to_joint_action_name</declname>
+          <defval>&quot;plan_to_joint&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>execute_trajectory_action_name</declname>
+          <defval>&quot;execute_trajectory&quot;</defval>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>gripper_action_name</declname>
+          <defval>&quot;/gripper_action_controller/gripper_cmd&quot;</defval>
+        </param>
+        <param>
+          <type>rclcpp::NodeOptions</type>
+          <declname>options</declname>
+          <defval>rclcpp::NodeOptions()</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="40" column="12"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1aa45774e4452671d9a24aceb54f79cafd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>moveit_msgs::msg::MoveItErrorCodes</type>
+        <definition>moveit_msgs::msg::MoveItErrorCodes easy_motion::MotionClient::move_to_pose</definition>
+        <argsstring>(const geometry_msgs::msg::PoseStamped &amp;pose, bool cartesian_motion=false, bool relative_motion=false, double velocity_scaling=1.0, double acceleration_scaling=1.0)</argsstring>
+        <name>move_to_pose</name>
+        <param>
+          <type>const geometry_msgs::msg::PoseStamped &amp;</type>
+          <declname>pose</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>cartesian_motion</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>relative_motion</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>velocity_scaling</declname>
+          <defval>1.0</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>acceleration_scaling</declname>
+          <defval>1.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="49" column="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1a53c12c9aeb94a9c98062f2e6e14cf542" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>moveit_msgs::msg::MoveItErrorCodes</type>
+        <definition>moveit_msgs::msg::MoveItErrorCodes easy_motion::MotionClient::move_to_joint</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;joint_positions, double velocity_scaling=1.0, double acceleration_scaling=1.0)</argsstring>
+        <name>move_to_joint</name>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>joint_positions</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>velocity_scaling</declname>
+          <defval>1.0</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>acceleration_scaling</declname>
+          <defval>1.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="56" column="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1a53501f5bff0bac87beace59c0f041941" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; moveit_msgs::msg::MoveItErrorCodes, trajectory_msgs::msg::JointTrajectory &gt;</type>
+        <definition>std::pair&lt;moveit_msgs::msg::MoveItErrorCodes, trajectory_msgs::msg::JointTrajectory&gt; easy_motion::MotionClient::plan_to_pose</definition>
+        <argsstring>(const geometry_msgs::msg::PoseStamped &amp;pose, const std::optional&lt; std::vector&lt; double &gt;&gt; &amp;joint_start=std::nullopt, bool cartesian_motion=false, bool relative_motion=false, double velocity_scaling=1.0, double acceleration_scaling=1.0)</argsstring>
+        <name>plan_to_pose</name>
+        <param>
+          <type>const geometry_msgs::msg::PoseStamped &amp;</type>
+          <declname>pose</declname>
+        </param>
+        <param>
+          <type>const std::optional&lt; std::vector&lt; double &gt;&gt; &amp;</type>
+          <declname>joint_start</declname>
+          <defval>std::nullopt</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>cartesian_motion</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>relative_motion</declname>
+          <defval>false</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>velocity_scaling</declname>
+          <defval>1.0</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>acceleration_scaling</declname>
+          <defval>1.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="62" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1a164417fef7d222f5cbf98b1d672481d9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; moveit_msgs::msg::MoveItErrorCodes, trajectory_msgs::msg::JointTrajectory &gt;</type>
+        <definition>std::pair&lt;moveit_msgs::msg::MoveItErrorCodes, trajectory_msgs::msg::JointTrajectory&gt; easy_motion::MotionClient::plan_to_joint</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;joint_target, const std::optional&lt; std::vector&lt; double &gt;&gt; &amp;joint_start=std::nullopt, double velocity_scaling=1.0, double acceleration_scaling=1.0)</argsstring>
+        <name>plan_to_joint</name>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>joint_target</declname>
+        </param>
+        <param>
+          <type>const std::optional&lt; std::vector&lt; double &gt;&gt; &amp;</type>
+          <declname>joint_start</declname>
+          <defval>std::nullopt</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>velocity_scaling</declname>
+          <defval>1.0</defval>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>acceleration_scaling</declname>
+          <defval>1.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="71" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1a48e0c5e0a58cf9bc4cf223d13a77a350" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>moveit_msgs::msg::MoveItErrorCodes</type>
+        <definition>moveit_msgs::msg::MoveItErrorCodes easy_motion::MotionClient::execute_last_planned_trajectory</definition>
+        <argsstring>()</argsstring>
+        <name>execute_last_planned_trajectory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="77" column="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1a244ed6e683545f1009aafca8f218a214" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>moveit_msgs::msg::MoveItErrorCodes</type>
+        <definition>moveit_msgs::msg::MoveItErrorCodes easy_motion::MotionClient::execute_trajectory</definition>
+        <argsstring>(const trajectory_msgs::msg::JointTrajectory &amp;trajectory, const std::vector&lt; std::string &gt; &amp;controller_names={})</argsstring>
+        <name>execute_trajectory</name>
+        <param>
+          <type>const trajectory_msgs::msg::JointTrajectory &amp;</type>
+          <declname>trajectory</declname>
+        </param>
+        <param>
+          <type>const std::vector&lt; std::string &gt; &amp;</type>
+          <declname>controller_names</declname>
+          <defval>{}</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="79" column="38"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1a70fc994c2c41340c505494e476aee221" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool easy_motion::MotionClient::attach_object</definition>
+        <argsstring>(const std::string &amp;object_id, const std::string &amp;target_frame_id)</argsstring>
+        <name>attach_object</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>object_id</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>target_frame_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="83" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1a70b85a305f50005941598a86b09b1d1f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool easy_motion::MotionClient::detach_object</definition>
+        <argsstring>(const std::string &amp;object_id)</argsstring>
+        <name>detach_object</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>object_id</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="87" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1ad1192862485ea25cff38518b6d79aee3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; moveit_msgs::msg::MoveItErrorCodes, std::vector&lt; double &gt; &gt;</type>
+        <definition>std::pair&lt;moveit_msgs::msg::MoveItErrorCodes, std::vector&lt;double&gt; &gt; easy_motion::MotionClient::get_ik</definition>
+        <argsstring>(const geometry_msgs::msg::PoseStamped &amp;pose, const std::optional&lt; std::vector&lt; double &gt;&gt; &amp;seed=std::nullopt)</argsstring>
+        <name>get_ik</name>
+        <param>
+          <type>const geometry_msgs::msg::PoseStamped &amp;</type>
+          <declname>pose</declname>
+        </param>
+        <param>
+          <type>const std::optional&lt; std::vector&lt; double &gt;&gt; &amp;</type>
+          <declname>seed</declname>
+          <defval>std::nullopt</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="90" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1ab38d595da983a9263a5c3860bd077fb0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; moveit_msgs::msg::MoveItErrorCodes, geometry_msgs::msg::PoseStamped &gt;</type>
+        <definition>std::pair&lt;moveit_msgs::msg::MoveItErrorCodes, geometry_msgs::msg::PoseStamped&gt; easy_motion::MotionClient::get_fk</definition>
+        <argsstring>(const std::vector&lt; double &gt; &amp;joint_state)</argsstring>
+        <name>get_fk</name>
+        <param>
+          <type>const std::vector&lt; double &gt; &amp;</type>
+          <declname>joint_state</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="95" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1a418983500d558fa9ff26ffb87a7b4b6b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>std::pair&lt; bool, bool &gt;</type>
+        <definition>std::pair&lt;bool, bool&gt; easy_motion::MotionClient::gripper_command</definition>
+        <argsstring>(double position, double max_effort=0.0)</argsstring>
+        <name>gripper_command</name>
+        <param>
+          <type>double</type>
+          <declname>position</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>max_effort</declname>
+          <defval>0.0</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="97" column="13"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1aa5432ab4b9c2c060a309ba1e699c45b9" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool easy_motion::MotionClient::has_last_planned_trajectory</definition>
+        <argsstring>() const</argsstring>
+        <name>has_last_planned_trajectory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="101" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1a217152ea7ca207ad9e6bc866ccec0e55" prot="public" static="no" const="yes" explicit="no" inline="no" virt="non-virtual">
+        <type>const trajectory_msgs::msg::JointTrajectory &amp;</type>
+        <definition>const trajectory_msgs::msg::JointTrajectory&amp; easy_motion::MotionClient::last_planned_trajectory</definition>
+        <argsstring>() const</argsstring>
+        <name>last_planned_trajectory</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="103" column="48"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1a2e8389ee8325ecc5151c5540e771a1ef" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename FutureT</type>
+          </param>
+        </templateparamlist>
+        <type>void</type>
+        <definition>void easy_motion::MotionClient::spin_until_complete</definition>
+        <argsstring>(FutureT &amp;future, const std::string &amp;operation)</argsstring>
+        <name>spin_until_complete</name>
+        <param>
+          <type>FutureT &amp;</type>
+          <declname>future</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>operation</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="110" column="8" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="110" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="classeasy__motion_1_1MotionClient_1a8faf157cbd6127f54c0d7fc821db895a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <templateparamlist>
+          <param>
+            <type>typename ActionT</type>
+          </param>
+        </templateparamlist>
+        <type>rclcpp_action::ClientGoalHandle&lt; ActionT &gt;::WrappedResult</type>
+        <definition>rclcpp_action::ClientGoalHandle&lt;ActionT&gt;::WrappedResult easy_motion::MotionClient::send_action_goal</definition>
+        <argsstring>(const typename rclcpp_action::Client&lt; ActionT &gt;::SharedPtr &amp;client, const typename ActionT::Goal &amp;goal, const std::string &amp;action_name)</argsstring>
+        <name>send_action_goal</name>
+        <param>
+          <type>const typename rclcpp_action::Client&lt; ActionT &gt;::SharedPtr &amp;</type>
+          <declname>client</declname>
+        </param>
+        <param>
+          <type>const typename ActionT::Goal &amp;</type>
+          <declname>goal</declname>
+        </param>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>action_name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_cpp/motion_client.hpp" line="125" column="60" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="125" bodyend="147"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>rclcpp::Node</label>
+      </node>
+      <node id="1">
+        <label>easy_motion::MotionClient</label>
+        <link refid="classeasy__motion_1_1MotionClient"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>rclcpp::Node</label>
+      </node>
+      <node id="1">
+        <label>easy_motion::MotionClient</label>
+        <link refid="classeasy__motion_1_1MotionClient"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/easy_motion_cpp/motion_client.hpp" line="30" column="1" bodyfile="include/easy_motion_cpp/motion_client.hpp" bodystart="31" bodyend="162"/>
+    <listofallmembers>
+      <member refid="classeasy__motion_1_1MotionClient_1a70fc994c2c41340c505494e476aee221" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>attach_object</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a45bbe986120bb3bd9110d744197bc531" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>attach_object_client_</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a70b85a305f50005941598a86b09b1d1f" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>detach_object</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a21d02998ce3c4efaec179ac21b26c80e" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>detach_object_client_</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a48e0c5e0a58cf9bc4cf223d13a77a350" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>execute_last_planned_trajectory</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a244ed6e683545f1009aafca8f218a214" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>execute_trajectory</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1aab06580f816650e5cdb3258900ab2a1d" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>execute_trajectory_client_</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a870bbd956e4de82d8d31d6a9d9fd3a7d" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>ExecuteTrajectory</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1ab38d595da983a9263a5c3860bd077fb0" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>get_fk</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1aa7850f2c081ce608d4f90e6da4d045fc" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>get_fk_client_</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1ad1192862485ea25cff38518b6d79aee3" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>get_ik</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a32e878cdaefc95210d32e5cddef88c70" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>get_ik_client_</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1aada1ef6073bcc444a8c7fd08a62cc5a0" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>gripper_client_</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a418983500d558fa9ff26ffb87a7b4b6b" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>gripper_command</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a423590fc75b7b5019b746bc2bd0db6b1" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>GripperCommand</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1aa5432ab4b9c2c060a309ba1e699c45b9" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>has_last_planned_trajectory</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a242e6a241281b190b390f7832cd0ab8a" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>kCallWaitSec</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a6143c78c238894956b5e276adc7475f5" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>kConstructorWaitSec</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a217152ea7ca207ad9e6bc866ccec0e55" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>last_planned_trajectory</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a43ec06646142725fbf8070eaaae607c3" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>last_planned_trj_</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a8aee7d6dc946fa1bdc447b5fd377c4a3" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>MotionClient</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a53c12c9aeb94a9c98062f2e6e14cf542" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>move_to_joint</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1ac5fae78e33f6d9b4055bab6965300873" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>move_to_joint_client_</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1aa45774e4452671d9a24aceb54f79cafd" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>move_to_pose</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a00600d73c409504c49ae73beade20392" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>move_to_pose_client_</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1aa7ac53232c30e333e6ce09408a634c47" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>MoveToJoint</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a19d229f0d04704c071368d3419cd65c1" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>MoveToPose</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a164417fef7d222f5cbf98b1d672481d9" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>plan_to_joint</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a12cebee542582cac92a8bb3a54a1fb37" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>plan_to_joint_client_</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a53501f5bff0bac87beace59c0f041941" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>plan_to_pose</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1afe081b61b8f232e69e4920a3c11b4448" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>plan_to_pose_client_</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a95c780adb2a93eb7c1c148038f8fb7fa" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>PlanToJoint</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a1134231a702220aa91ad39ac48ec8e98" prot="public" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>PlanToPose</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a8faf157cbd6127f54c0d7fc821db895a" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>send_action_goal</name></member>
+      <member refid="classeasy__motion_1_1MotionClient_1a2e8389ee8325ecc5151c5540e771a1ef" prot="private" virt="non-virtual"><scope>easy_motion::MotionClient</scope><name>spin_until_complete</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

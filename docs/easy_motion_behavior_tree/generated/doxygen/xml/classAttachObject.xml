@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classAttachObject" kind="class" language="C++" prot="public">
+    <compoundname>AttachObject</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BT::RosServiceNode&lt; AttachObjectSrv &gt;</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classAttachObject_1a098143d7508cb22c78c4bb13e4a1611b" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>AttachObject::AttachObject</definition>
+        <argsstring>(const std::string &amp;name, const BT::NodeConfig &amp;conf, const BT::RosNodeParams &amp;params)</argsstring>
+        <name>AttachObject</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const BT::NodeConfig &amp;</type>
+          <declname>conf</declname>
+        </param>
+        <param>
+          <type>const BT::RosNodeParams &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/attach_object.hpp" line="13" column="12" bodyfile="include/easy_motion_behavior_tree/leaves/attach_object.hpp" bodystart="13" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classAttachObject_1ae4a2a32e21023c2f84cb4c747e9ff207" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool AttachObject::setRequest</definition>
+        <argsstring>(Request::SharedPtr &amp;request) override</argsstring>
+        <name>setRequest</name>
+        <param>
+          <type>Request::SharedPtr &amp;</type>
+          <declname>request</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/attach_object.hpp" line="30" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classAttachObject_1a45c91a0abebc3e471b228d25a3083c36" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus AttachObject::onResponseReceived</definition>
+        <argsstring>(const Response::SharedPtr &amp;response) override</argsstring>
+        <name>onResponseReceived</name>
+        <param>
+          <type>const Response::SharedPtr &amp;</type>
+          <declname>response</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/attach_object.hpp" line="32" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classAttachObject_1a98df10b4b0b100fbf5377033d51ac496" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>BT::NodeStatus</type>
+        <definition>virtual BT::NodeStatus AttachObject::onFailure</definition>
+        <argsstring>(BT::ServiceNodeErrorCode error) override</argsstring>
+        <name>onFailure</name>
+        <param>
+          <type>BT::ServiceNodeErrorCode</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/attach_object.hpp" line="34" column="26"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classAttachObject_1a6daf2a0ba16f81e59d8de1bb974a0426" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::PortsList</type>
+        <definition>static BT::PortsList AttachObject::providedPorts</definition>
+        <argsstring>()</argsstring>
+        <name>providedPorts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/attach_object.hpp" line="20" column="24" bodyfile="include/easy_motion_behavior_tree/leaves/attach_object.hpp" bodystart="20" bodyend="28"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>AttachObject</label>
+        <link refid="classAttachObject"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BT::RosServiceNode&lt; AttachObjectSrv &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>AttachObject</label>
+        <link refid="classAttachObject"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BT::RosServiceNode&lt; AttachObjectSrv &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/easy_motion_behavior_tree/leaves/attach_object.hpp" line="10" column="1" bodyfile="include/easy_motion_behavior_tree/leaves/attach_object.hpp" bodystart="11" bodyend="36"/>
+    <listofallmembers>
+      <member refid="classAttachObject_1a098143d7508cb22c78c4bb13e4a1611b" prot="public" virt="non-virtual"><scope>AttachObject</scope><name>AttachObject</name></member>
+      <member refid="classAttachObject_1a98df10b4b0b100fbf5377033d51ac496" prot="public" virt="virtual"><scope>AttachObject</scope><name>onFailure</name></member>
+      <member refid="classAttachObject_1a45c91a0abebc3e471b228d25a3083c36" prot="public" virt="non-virtual"><scope>AttachObject</scope><name>onResponseReceived</name></member>
+      <member refid="classAttachObject_1a6daf2a0ba16f81e59d8de1bb974a0426" prot="public" virt="non-virtual"><scope>AttachObject</scope><name>providedPorts</name></member>
+      <member refid="classAttachObject_1ae4a2a32e21023c2f84cb4c747e9ff207" prot="public" virt="non-virtual"><scope>AttachObject</scope><name>setRequest</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

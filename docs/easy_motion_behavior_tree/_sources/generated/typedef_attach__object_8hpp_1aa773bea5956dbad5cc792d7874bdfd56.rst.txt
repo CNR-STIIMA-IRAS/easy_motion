@@ -1,0 +1,14 @@
+.. _exhale_typedef_attach__object_8hpp_1aa773bea5956dbad5cc792d7874bdfd56:
+
+Typedef AttachObjectSrv
+=======================
+
+- Defined in :ref:`file_include_easy_motion_behavior_tree_leaves_attach_object.hpp`
+
+
+Typedef Documentation
+---------------------
+
+
+.. doxygentypedef:: AttachObjectSrv
+   :project: easy_motion_behavior_tree Doxygen Project

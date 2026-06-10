@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_5bc5a7fe30d80f2130f102dd5f4767f3" kind="dir">
+    <compoundname>include/easy_motion_behavior_tree/leaves</compoundname>
+    <innerfile refid="attach__object_8hpp">attach_object.hpp</innerfile>
+    <innerfile refid="can__transform_8hpp">can_transform.hpp</innerfile>
+    <innerfile refid="check__dice__face_8hpp">check_dice_face.hpp</innerfile>
+    <innerfile refid="detach__object_8hpp">detach_object.hpp</innerfile>
+    <innerfile refid="dice__identification_8hpp">dice_identification.hpp</innerfile>
+    <innerfile refid="get__fk_8hpp">get_fk.hpp</innerfile>
+    <innerfile refid="get__ik_8hpp">get_ik.hpp</innerfile>
+    <innerfile refid="gripper__command_8hpp">gripper_command.hpp</innerfile>
+    <innerfile refid="move__to__joint_8hpp">move_to_joint.hpp</innerfile>
+    <innerfile refid="move__to__pose_8hpp">move_to_pose.hpp</innerfile>
+    <innerfile refid="plan__to__joint_8hpp">plan_to_joint.hpp</innerfile>
+    <innerfile refid="plan__to__pose_8hpp">plan_to_pose.hpp</innerfile>
+    <innerfile refid="trigger__service_8hpp">trigger_service.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/easy_motion_behavior_tree/leaves/"/>
+  </compounddef>
+</doxygen>

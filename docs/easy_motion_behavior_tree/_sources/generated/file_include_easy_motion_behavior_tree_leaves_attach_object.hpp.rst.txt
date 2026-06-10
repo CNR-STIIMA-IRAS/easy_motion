@@ -1,0 +1,57 @@
+
+.. _file_include_easy_motion_behavior_tree_leaves_attach_object.hpp:
+
+File attach_object.hpp
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_easy_motion_behavior_tree_leaves>` (``include/easy_motion_behavior_tree/leaves``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/easy_motion_behavior_tree/leaves/attach_object.hpp``)
+---------------------------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_easy_motion_behavior_tree_leaves_attach_object.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``behaviortree_ros2/bt_service_node.hpp``
+
+- ``behaviortree_ros2/plugins.hpp``
+
+- ``easy_motion_msgs/srv/attach_object.hpp``
+
+- ``geometry_msgs/msg/pose_stamped.hpp``
+
+
+
+
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classAttachObject`
+
+
+Typedefs
+--------
+
+
+- :ref:`exhale_typedef_attach__object_8hpp_1aa773bea5956dbad5cc792d7874bdfd56`
+

@@ -1,0 +1,26 @@
+.. _exhale_class_classMoveToJoint:
+
+Class MoveToJoint
+=================
+
+- Defined in :ref:`file_include_easy_motion_behavior_tree_leaves_move_to_joint.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public BT::RosActionNode< easy_motion_msgs::action::MoveToJoint >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: MoveToJoint
+   :project: easy_motion_behavior_tree Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

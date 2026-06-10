@@ -1,0 +1,8 @@
+DetachObject
+============
+This is a ROS service definition.
+
+**Source**
+
+.. literalinclude:: ../../../../../../easy_motion_msgs/srv/DetachObject.srv
+

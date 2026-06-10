@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="dir_484aa0e10637b275868de69acc916d35" kind="dir">
+    <compoundname>include/easy_motion_cpp</compoundname>
+    <innerfile refid="motion__client_8hpp">motion_client.hpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="include/easy_motion_cpp/"/>
+  </compounddef>
+</doxygen>

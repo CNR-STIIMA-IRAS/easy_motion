@@ -1,0 +1,152 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classMoveToPose" kind="class" language="C++" prot="public">
+    <compoundname>MoveToPose</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BT::RosActionNode&lt; easy_motion_msgs::action::MoveToPose &gt;</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classMoveToPose_1afca23cd7233a82146007421ceabdad6c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type></type>
+        <definition>MoveToPose::MoveToPose</definition>
+        <argsstring>(const std::string &amp;name, const BT::NodeConfig &amp;conf, const BT::RosNodeParams &amp;params)</argsstring>
+        <name>MoveToPose</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const BT::NodeConfig &amp;</type>
+          <declname>conf</declname>
+        </param>
+        <param>
+          <type>const BT::RosNodeParams &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/move_to_pose.hpp" line="12" column="3"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoveToPose_1afa34be146ca4b08570493b0e1a0997e0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool MoveToPose::setGoal</definition>
+        <argsstring>(Goal &amp;goal) override</argsstring>
+        <name>setGoal</name>
+        <param>
+          <type>Goal &amp;</type>
+          <declname>goal</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/move_to_pose.hpp" line="34" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoveToPose_1af0f8382c87b84883c852122802f5a515" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus MoveToPose::onResultReceived</definition>
+        <argsstring>(const WrappedResult &amp;wr) override</argsstring>
+        <name>onResultReceived</name>
+        <param>
+          <type>const WrappedResult &amp;</type>
+          <declname>wr</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/move_to_pose.hpp" line="35" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoveToPose_1a30906380f89bfa8570a14a8d2db67a29" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus MoveToPose::onFailure</definition>
+        <argsstring>(BT::ActionNodeErrorCode error) override</argsstring>
+        <name>onFailure</name>
+        <param>
+          <type>BT::ActionNodeErrorCode</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/move_to_pose.hpp" line="36" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classMoveToPose_1a8ea6ecac743280cf372727e5e01c934b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus MoveToPose::onFeedback</definition>
+        <argsstring>(const std::shared_ptr&lt; const easy_motion_msgs::action::MoveToPose::Feedback &gt; feedback) override</argsstring>
+        <name>onFeedback</name>
+        <param>
+          <type>const std::shared_ptr&lt; const easy_motion_msgs::action::MoveToPose::Feedback &gt;</type>
+          <declname>feedback</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/move_to_pose.hpp" line="37" column="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classMoveToPose_1a4ff33edf77e7da81f9afafcc58327668" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::PortsList</type>
+        <definition>static BT::PortsList MoveToPose::providedPorts</definition>
+        <argsstring>()</argsstring>
+        <name>providedPorts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/move_to_pose.hpp" line="17" column="24" bodyfile="include/easy_motion_behavior_tree/leaves/move_to_pose.hpp" bodystart="17" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>MoveToPose</label>
+        <link refid="classMoveToPose"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BT::RosActionNode&lt; easy_motion_msgs::action::MoveToPose &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>MoveToPose</label>
+        <link refid="classMoveToPose"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BT::RosActionNode&lt; easy_motion_msgs::action::MoveToPose &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/easy_motion_behavior_tree/leaves/move_to_pose.hpp" line="9" column="1" bodyfile="include/easy_motion_behavior_tree/leaves/move_to_pose.hpp" bodystart="10" bodyend="40"/>
+    <listofallmembers>
+      <member refid="classMoveToPose_1afca23cd7233a82146007421ceabdad6c" prot="public" virt="non-virtual"><scope>MoveToPose</scope><name>MoveToPose</name></member>
+      <member refid="classMoveToPose_1a30906380f89bfa8570a14a8d2db67a29" prot="public" virt="non-virtual"><scope>MoveToPose</scope><name>onFailure</name></member>
+      <member refid="classMoveToPose_1a8ea6ecac743280cf372727e5e01c934b" prot="public" virt="non-virtual"><scope>MoveToPose</scope><name>onFeedback</name></member>
+      <member refid="classMoveToPose_1af0f8382c87b84883c852122802f5a515" prot="public" virt="non-virtual"><scope>MoveToPose</scope><name>onResultReceived</name></member>
+      <member refid="classMoveToPose_1a4ff33edf77e7da81f9afafcc58327668" prot="public" virt="non-virtual"><scope>MoveToPose</scope><name>providedPorts</name></member>
+      <member refid="classMoveToPose_1afa34be146ca4b08570493b0e1a0997e0" prot="public" virt="non-virtual"><scope>MoveToPose</scope><name>setGoal</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classGetIK" kind="class" language="C++" prot="public">
+    <compoundname>GetIK</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BT::RosServiceNode&lt; GetIKSrv &gt;</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classGetIK_1a2cfc7d10ae7b7405f6fc6a81fa2aea79" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>GetIK::GetIK</definition>
+        <argsstring>(const std::string &amp;name, const BT::NodeConfig &amp;conf, const BT::RosNodeParams &amp;params)</argsstring>
+        <name>GetIK</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const BT::NodeConfig &amp;</type>
+          <declname>conf</declname>
+        </param>
+        <param>
+          <type>const BT::RosNodeParams &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/get_ik.hpp" line="16" column="12" bodyfile="include/easy_motion_behavior_tree/leaves/get_ik.hpp" bodystart="16" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="classGetIK_1adec14132f86e3e65d0eaa0a62c080b02" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool GetIK::setRequest</definition>
+        <argsstring>(Request::SharedPtr &amp;request) override</argsstring>
+        <name>setRequest</name>
+        <param>
+          <type>Request::SharedPtr &amp;</type>
+          <declname>request</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/get_ik.hpp" line="34" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classGetIK_1a5d05d268fb85584b8873567938ee8a0b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus GetIK::onResponseReceived</definition>
+        <argsstring>(const Response::SharedPtr &amp;response) override</argsstring>
+        <name>onResponseReceived</name>
+        <param>
+          <type>const Response::SharedPtr &amp;</type>
+          <declname>response</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/get_ik.hpp" line="35" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classGetIK_1ae8607d60e182774762fcef423ad80e3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus GetIK::onFailure</definition>
+        <argsstring>(BT::ServiceNodeErrorCode error) override</argsstring>
+        <name>onFailure</name>
+        <param>
+          <type>BT::ServiceNodeErrorCode</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/get_ik.hpp" line="36" column="18"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classGetIK_1abbdb35b98e07a8109f3dd98513401259" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::PortsList</type>
+        <definition>static BT::PortsList GetIK::providedPorts</definition>
+        <argsstring>()</argsstring>
+        <name>providedPorts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/get_ik.hpp" line="23" column="24" bodyfile="include/easy_motion_behavior_tree/leaves/get_ik.hpp" bodystart="23" bodyend="32"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="1">
+        <label>GetIK</label>
+        <link refid="classGetIK"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BT::RosServiceNode&lt; GetIKSrv &gt;</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="1">
+        <label>GetIK</label>
+        <link refid="classGetIK"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>BT::RosServiceNode&lt; GetIKSrv &gt;</label>
+      </node>
+    </collaborationgraph>
+    <location file="include/easy_motion_behavior_tree/leaves/get_ik.hpp" line="13" column="1" bodyfile="include/easy_motion_behavior_tree/leaves/get_ik.hpp" bodystart="14" bodyend="37"/>
+    <listofallmembers>
+      <member refid="classGetIK_1a2cfc7d10ae7b7405f6fc6a81fa2aea79" prot="public" virt="non-virtual"><scope>GetIK</scope><name>GetIK</name></member>
+      <member refid="classGetIK_1ae8607d60e182774762fcef423ad80e3c" prot="public" virt="non-virtual"><scope>GetIK</scope><name>onFailure</name></member>
+      <member refid="classGetIK_1a5d05d268fb85584b8873567938ee8a0b" prot="public" virt="non-virtual"><scope>GetIK</scope><name>onResponseReceived</name></member>
+      <member refid="classGetIK_1abbdb35b98e07a8109f3dd98513401259" prot="public" virt="non-virtual"><scope>GetIK</scope><name>providedPorts</name></member>
+      <member refid="classGetIK_1adec14132f86e3e65d0eaa0a62c080b02" prot="public" virt="non-virtual"><scope>GetIK</scope><name>setRequest</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

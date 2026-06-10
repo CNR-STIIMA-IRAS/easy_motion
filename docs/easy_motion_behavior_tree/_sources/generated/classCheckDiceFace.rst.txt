@@ -1,0 +1,26 @@
+.. _exhale_class_classCheckDiceFace:
+
+Class CheckDiceFace
+===================
+
+- Defined in :ref:`file_include_easy_motion_behavior_tree_leaves_check_dice_face.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public BT::ConditionNode``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: CheckDiceFace
+   :project: easy_motion_behavior_tree Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

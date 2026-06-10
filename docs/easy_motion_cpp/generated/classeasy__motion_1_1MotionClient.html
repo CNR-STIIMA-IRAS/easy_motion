@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class MotionClient &mdash; easy_motion_cpp 0.1.0 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Directory include" href="dir_include.html" />
+    <link rel="prev" title="Namespace rclcpp" href="namespace_rclcpp.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> easy_motion_cpp
+          </a>
+              <div class="version">
+                0.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">C++ API</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#full-c-api">Full C++ API</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="namespace_easy_motion.html">Namespace easy_motion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="namespace_rclcpp.html">Namespace rclcpp</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html#classes-and-structs">Classes and Structs</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Class MotionClient</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="dir_include_easy_motion_cpp.html">Directory easy_motion_cpp</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="index.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="file_include_easy_motion_cpp_motion_client.hpp.html">File motion_client.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../standard_docs/README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../standard_docs/README.html#easy-motion-cpp">easy_motion_cpp</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#layout">Layout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#build">Build</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#important-note-about-easy-motion-msgs">Important note about <code class="docutils literal notranslate"><span class="pre">easy_motion_msgs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#example">Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../standard_docs/README.html#api-shape">API shape</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">easy_motion_cpp</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="index.html">C++ API</a> &raquo;</li>
+      <li>Class MotionClient</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/generated/classeasy__motion_1_1MotionClient.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="class-motionclient">
+<span id="exhale-class-classeasy-motion-1-1motionclient"></span><h1>Class MotionClient<a class="headerlink" href="#class-motionclient" title="Permalink to this headline"></a></h1>
+<ul class="simple">
+<li><p>Defined in <a class="reference internal" href="file_include_easy_motion_cpp_motion_client.hpp.html#file-include-easy-motion-cpp-motion-client-hpp"><span class="std std-ref">File motion_client.hpp</span></a></p></li>
+</ul>
+<section id="inheritance-relationships">
+<h2>Inheritance Relationships<a class="headerlink" href="#inheritance-relationships" title="Permalink to this headline"></a></h2>
+<section id="base-type">
+<h3>Base Type<a class="headerlink" href="#base-type" title="Permalink to this headline"></a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span> <span class="pre">rclcpp::Node</span></code></p></li>
+</ul>
+</section>
+</section>
+<section id="class-documentation">
+<h2>Class Documentation<a class="headerlink" href="#class-documentation" title="Permalink to this headline"></a></h2>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClientE">
+<span id="_CPPv3N11easy_motion12MotionClientE"></span><span id="_CPPv2N11easy_motion12MotionClientE"></span><span id="easy_motion::MotionClient"></span><span class="target" id="classeasy__motion_1_1MotionClient"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-prename descclassname"><span class="n"><span class="pre">easy_motion</span></span><span class="p"><span class="pre">::</span></span></span><span class="sig-name descname"><span class="n"><span class="pre">MotionClient</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">Node</span></span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClientE" title="Permalink to this definition"></a><br /></dt>
+<dd><div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-types">Public Types</p>
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient10MoveToPoseE">
+<span id="_CPPv3N11easy_motion12MotionClient10MoveToPoseE"></span><span id="_CPPv2N11easy_motion12MotionClient10MoveToPoseE"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a19d229f0d04704c071368d3419cd65c1"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MoveToPose</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">easy_motion_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MoveToPose</span></span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient10MoveToPoseE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient11MoveToJointE">
+<span id="_CPPv3N11easy_motion12MotionClient11MoveToJointE"></span><span id="_CPPv2N11easy_motion12MotionClient11MoveToJointE"></span><span class="target" id="classeasy__motion_1_1MotionClient_1aa7ac53232c30e333e6ce09408a634c47"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MoveToJoint</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">easy_motion_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MoveToJoint</span></span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient11MoveToJointE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient10PlanToPoseE">
+<span id="_CPPv3N11easy_motion12MotionClient10PlanToPoseE"></span><span id="_CPPv2N11easy_motion12MotionClient10PlanToPoseE"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a1134231a702220aa91ad39ac48ec8e98"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PlanToPose</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">easy_motion_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PlanToPose</span></span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient10PlanToPoseE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient11PlanToJointE">
+<span id="_CPPv3N11easy_motion12MotionClient11PlanToJointE"></span><span id="_CPPv2N11easy_motion12MotionClient11PlanToJointE"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a95c780adb2a93eb7c1c148038f8fb7fa"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PlanToJoint</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">easy_motion_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PlanToJoint</span></span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient11PlanToJointE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient17ExecuteTrajectoryE">
+<span id="_CPPv3N11easy_motion12MotionClient17ExecuteTrajectoryE"></span><span id="_CPPv2N11easy_motion12MotionClient17ExecuteTrajectoryE"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a870bbd956e4de82d8d31d6a9d9fd3a7d"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ExecuteTrajectory</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">moveit_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ExecuteTrajectory</span></span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient17ExecuteTrajectoryE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp type">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient14GripperCommandE">
+<span id="_CPPv3N11easy_motion12MotionClient14GripperCommandE"></span><span id="_CPPv2N11easy_motion12MotionClient14GripperCommandE"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a423590fc75b7b5019b746bc2bd0db6b1"></span><span class="k"><span class="pre">using</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">GripperCommand</span></span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">control_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">action</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">GripperCommand</span></span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient14GripperCommandE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient12MotionClientERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringEN6rclcpp11NodeOptionsE">
+<span id="_CPPv3N11easy_motion12MotionClient12MotionClientERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringEN6rclcpp11NodeOptionsE"></span><span id="_CPPv2N11easy_motion12MotionClient12MotionClientERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringEN6rclcpp11NodeOptionsE"></span><span id="easy_motion::MotionClient::MotionClient__ssCR.ssCR.ssCR.ssCR.ssCR.ssCR.rclcpp::NodeOptions"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a8aee7d6dc946fa1bdc447b5fd377c4a3"></span><span class="k"><span class="pre">explicit</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">MotionClient</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">move_to_pose_action_name</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;move_to_pose&quot;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">move_to_joint_action_name</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;move_to_joint&quot;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">plan_to_pose_action_name</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;plan_to_pose&quot;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">plan_to_joint_action_name</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;plan_to_joint&quot;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">execute_trajectory_action_name</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;execute_trajectory&quot;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">gripper_action_name</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;/gripper_action_controller/gripper_cmd&quot;</span></span>, <span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">options</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">rclcpp</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">NodeOptions</span></span><span class="p"><span class="pre">(</span></span><span class="p"><span class="pre">)</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient12MotionClientERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringEN6rclcpp11NodeOptionsE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient12move_to_poseERKN13geometry_msgs3msg11PoseStampedEbbdd">
+<span id="_CPPv3N11easy_motion12MotionClient12move_to_poseERKN13geometry_msgs3msg11PoseStampedEbbdd"></span><span id="_CPPv2N11easy_motion12MotionClient12move_to_poseERKN13geometry_msgs3msg11PoseStampedEbbdd"></span><span id="easy_motion::MotionClient::move_to_pose__geometry_msgs::msg::PoseStampedCR.b.b.double.double"></span><span class="target" id="classeasy__motion_1_1MotionClient_1aa45774e4452671d9a24aceb54f79cafd"></span><span class="n"><span class="pre">moveit_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MoveItErrorCodes</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">move_to_pose</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PoseStamped</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pose</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cartesian_motion</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">relative_motion</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">velocity_scaling</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">acceleration_scaling</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient12move_to_poseERKN13geometry_msgs3msg11PoseStampedEbbdd" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient13move_to_jointERKNSt6vectorIdEEdd">
+<span id="_CPPv3N11easy_motion12MotionClient13move_to_jointERKNSt6vectorIdEEdd"></span><span id="_CPPv2N11easy_motion12MotionClient13move_to_jointERKNSt6vectorIdEEdd"></span><span id="easy_motion::MotionClient::move_to_joint__std::vector:double:CR.double.double"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a53c12c9aeb94a9c98062f2e6e14cf542"></span><span class="n"><span class="pre">moveit_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MoveItErrorCodes</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">move_to_joint</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">joint_positions</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">velocity_scaling</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">acceleration_scaling</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient13move_to_jointERKNSt6vectorIdEEdd" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient12plan_to_poseERKN13geometry_msgs3msg11PoseStampedERKNSt8optionalINSt6vectorIdEEEEbbdd">
+<span id="_CPPv3N11easy_motion12MotionClient12plan_to_poseERKN13geometry_msgs3msg11PoseStampedERKNSt8optionalINSt6vectorIdEEEEbbdd"></span><span id="_CPPv2N11easy_motion12MotionClient12plan_to_poseERKN13geometry_msgs3msg11PoseStampedERKNSt8optionalINSt6vectorIdEEEEbbdd"></span><span id="easy_motion::MotionClient::plan_to_pose__geometry_msgs::msg::PoseStampedCR.std::optional:std::vector:double::CR.b.b.double.double"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a53501f5bff0bac87beace59c0f041941"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">moveit_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MoveItErrorCodes</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">trajectory_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">JointTrajectory</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">plan_to_pose</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PoseStamped</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pose</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">joint_start</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nullopt</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">cartesian_motion</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">relative_motion</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">velocity_scaling</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">acceleration_scaling</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient12plan_to_poseERKN13geometry_msgs3msg11PoseStampedERKNSt8optionalINSt6vectorIdEEEEbbdd" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient13plan_to_jointERKNSt6vectorIdEERKNSt8optionalINSt6vectorIdEEEEdd">
+<span id="_CPPv3N11easy_motion12MotionClient13plan_to_jointERKNSt6vectorIdEERKNSt8optionalINSt6vectorIdEEEEdd"></span><span id="_CPPv2N11easy_motion12MotionClient13plan_to_jointERKNSt6vectorIdEERKNSt8optionalINSt6vectorIdEEEEdd"></span><span id="easy_motion::MotionClient::plan_to_joint__std::vector:double:CR.std::optional:std::vector:double::CR.double.double"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a164417fef7d222f5cbf98b1d672481d9"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">moveit_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MoveItErrorCodes</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">trajectory_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">JointTrajectory</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">plan_to_joint</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">joint_target</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">joint_start</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nullopt</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">velocity_scaling</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">acceleration_scaling</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1.0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient13plan_to_jointERKNSt6vectorIdEERKNSt8optionalINSt6vectorIdEEEEdd" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient31execute_last_planned_trajectoryEv">
+<span id="_CPPv3N11easy_motion12MotionClient31execute_last_planned_trajectoryEv"></span><span id="_CPPv2N11easy_motion12MotionClient31execute_last_planned_trajectoryEv"></span><span id="easy_motion::MotionClient::execute_last_planned_trajectory"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a48e0c5e0a58cf9bc4cf223d13a77a350"></span><span class="n"><span class="pre">moveit_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MoveItErrorCodes</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">execute_last_planned_trajectory</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient31execute_last_planned_trajectoryEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient18execute_trajectoryERKN15trajectory_msgs3msg15JointTrajectoryERKNSt6vectorINSt6stringEEE">
+<span id="_CPPv3N11easy_motion12MotionClient18execute_trajectoryERKN15trajectory_msgs3msg15JointTrajectoryERKNSt6vectorINSt6stringEEE"></span><span id="_CPPv2N11easy_motion12MotionClient18execute_trajectoryERKN15trajectory_msgs3msg15JointTrajectoryERKNSt6vectorINSt6stringEEE"></span><span id="easy_motion::MotionClient::execute_trajectory__trajectory_msgs::msg::JointTrajectoryCR.std::vector:ss:CR"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a244ed6e683545f1009aafca8f218a214"></span><span class="n"><span class="pre">moveit_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MoveItErrorCodes</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">execute_trajectory</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">trajectory_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">JointTrajectory</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">trajectory</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">controller_names</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="p"><span class="pre">{</span></span><span class="p"><span class="pre">}</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient18execute_trajectoryERKN15trajectory_msgs3msg15JointTrajectoryERKNSt6vectorINSt6stringEEE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient13attach_objectERKNSt6stringERKNSt6stringE">
+<span id="_CPPv3N11easy_motion12MotionClient13attach_objectERKNSt6stringERKNSt6stringE"></span><span id="_CPPv2N11easy_motion12MotionClient13attach_objectERKNSt6stringERKNSt6stringE"></span><span id="easy_motion::MotionClient::attach_object__ssCR.ssCR"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a70fc994c2c41340c505494e476aee221"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">attach_object</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">object_id</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">target_frame_id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient13attach_objectERKNSt6stringERKNSt6stringE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient13detach_objectERKNSt6stringE">
+<span id="_CPPv3N11easy_motion12MotionClient13detach_objectERKNSt6stringE"></span><span id="_CPPv2N11easy_motion12MotionClient13detach_objectERKNSt6stringE"></span><span id="easy_motion::MotionClient::detach_object__ssCR"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a70b85a305f50005941598a86b09b1d1f"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">detach_object</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">object_id</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient13detach_objectERKNSt6stringE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient6get_ikERKN13geometry_msgs3msg11PoseStampedERKNSt8optionalINSt6vectorIdEEEE">
+<span id="_CPPv3N11easy_motion12MotionClient6get_ikERKN13geometry_msgs3msg11PoseStampedERKNSt8optionalINSt6vectorIdEEEE"></span><span id="_CPPv2N11easy_motion12MotionClient6get_ikERKN13geometry_msgs3msg11PoseStampedERKNSt8optionalINSt6vectorIdEEEE"></span><span id="easy_motion::MotionClient::get_ik__geometry_msgs::msg::PoseStampedCR.std::optional:std::vector:double::CR"></span><span class="target" id="classeasy__motion_1_1MotionClient_1ad1192862485ea25cff38518b6d79aee3"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">moveit_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MoveItErrorCodes</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_ik</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PoseStamped</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pose</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">optional</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">seed</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">nullopt</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient6get_ikERKN13geometry_msgs3msg11PoseStampedERKNSt8optionalINSt6vectorIdEEEE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient6get_fkERKNSt6vectorIdEE">
+<span id="_CPPv3N11easy_motion12MotionClient6get_fkERKNSt6vectorIdEE"></span><span id="_CPPv2N11easy_motion12MotionClient6get_fkERKNSt6vectorIdEE"></span><span id="easy_motion::MotionClient::get_fk__std::vector:double:CR"></span><span class="target" id="classeasy__motion_1_1MotionClient_1ab38d595da983a9263a5c3860bd077fb0"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><span class="n"><span class="pre">moveit_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">MoveItErrorCodes</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="n"><span class="pre">geometry_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">PoseStamped</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_fk</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">joint_state</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient6get_fkERKNSt6vectorIdEE" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N11easy_motion12MotionClient15gripper_commandEdd">
+<span id="_CPPv3N11easy_motion12MotionClient15gripper_commandEdd"></span><span id="_CPPv2N11easy_motion12MotionClient15gripper_commandEdd"></span><span id="easy_motion::MotionClient::gripper_command__double.double"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a418983500d558fa9ff26ffb87a7b4b6b"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pair</span></span><span class="p"><span class="pre">&lt;</span></span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">gripper_command</span></span></span><span class="sig-paren">(</span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">position</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="n sig-param"><span class="pre">max_effort</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.0</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N11easy_motion12MotionClient15gripper_commandEdd" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK11easy_motion12MotionClient27has_last_planned_trajectoryEv">
+<span id="_CPPv3NK11easy_motion12MotionClient27has_last_planned_trajectoryEv"></span><span id="_CPPv2NK11easy_motion12MotionClient27has_last_planned_trajectoryEv"></span><span id="easy_motion::MotionClient::has_last_planned_trajectoryC"></span><span class="target" id="classeasy__motion_1_1MotionClient_1aa5432ab4b9c2c060a309ba1e699c45b9"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">has_last_planned_trajectory</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11easy_motion12MotionClient27has_last_planned_trajectoryEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4NK11easy_motion12MotionClient23last_planned_trajectoryEv">
+<span id="_CPPv3NK11easy_motion12MotionClient23last_planned_trajectoryEv"></span><span id="_CPPv2NK11easy_motion12MotionClient23last_planned_trajectoryEv"></span><span id="easy_motion::MotionClient::last_planned_trajectoryC"></span><span class="target" id="classeasy__motion_1_1MotionClient_1a217152ea7ca207ad9e6bc866ccec0e55"></span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">trajectory_msgs</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">msg</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">JointTrajectory</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="n"><span class="pre">last_planned_trajectory</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><span class="w"> </span><span class="k"><span class="pre">const</span></span><a class="headerlink" href="#_CPPv4NK11easy_motion12MotionClient23last_planned_trajectoryEv" title="Permalink to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="namespace_rclcpp.html" class="btn btn-neutral float-left" title="Namespace rclcpp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="dir_include.html" class="btn btn-neutral float-right" title="Directory include" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;easy_motion_cpp&gt; Contributors. License: Apache-2.0.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

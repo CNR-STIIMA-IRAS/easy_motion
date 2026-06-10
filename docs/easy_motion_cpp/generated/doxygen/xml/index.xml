@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygenindex xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="index.xsd" version="1.9.1" xml:lang="en-US">
+  <compound refid="classeasy__motion_1_1MotionClient" kind="class"><name>easy_motion::MotionClient</name>
+    <member refid="classeasy__motion_1_1MotionClient_1a19d229f0d04704c071368d3419cd65c1" kind="typedef"><name>MoveToPose</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1aa7ac53232c30e333e6ce09408a634c47" kind="typedef"><name>MoveToJoint</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a1134231a702220aa91ad39ac48ec8e98" kind="typedef"><name>PlanToPose</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a95c780adb2a93eb7c1c148038f8fb7fa" kind="typedef"><name>PlanToJoint</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a870bbd956e4de82d8d31d6a9d9fd3a7d" kind="typedef"><name>ExecuteTrajectory</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a423590fc75b7b5019b746bc2bd0db6b1" kind="typedef"><name>GripperCommand</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a6143c78c238894956b5e276adc7475f5" kind="variable"><name>kConstructorWaitSec</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a242e6a241281b190b390f7832cd0ab8a" kind="variable"><name>kCallWaitSec</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a00600d73c409504c49ae73beade20392" kind="variable"><name>move_to_pose_client_</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1ac5fae78e33f6d9b4055bab6965300873" kind="variable"><name>move_to_joint_client_</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1afe081b61b8f232e69e4920a3c11b4448" kind="variable"><name>plan_to_pose_client_</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a12cebee542582cac92a8bb3a54a1fb37" kind="variable"><name>plan_to_joint_client_</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1aab06580f816650e5cdb3258900ab2a1d" kind="variable"><name>execute_trajectory_client_</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1aada1ef6073bcc444a8c7fd08a62cc5a0" kind="variable"><name>gripper_client_</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a45bbe986120bb3bd9110d744197bc531" kind="variable"><name>attach_object_client_</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a21d02998ce3c4efaec179ac21b26c80e" kind="variable"><name>detach_object_client_</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a32e878cdaefc95210d32e5cddef88c70" kind="variable"><name>get_ik_client_</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1aa7850f2c081ce608d4f90e6da4d045fc" kind="variable"><name>get_fk_client_</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a43ec06646142725fbf8070eaaae607c3" kind="variable"><name>last_planned_trj_</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a8aee7d6dc946fa1bdc447b5fd377c4a3" kind="function"><name>MotionClient</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1aa45774e4452671d9a24aceb54f79cafd" kind="function"><name>move_to_pose</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a53c12c9aeb94a9c98062f2e6e14cf542" kind="function"><name>move_to_joint</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a53501f5bff0bac87beace59c0f041941" kind="function"><name>plan_to_pose</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a164417fef7d222f5cbf98b1d672481d9" kind="function"><name>plan_to_joint</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a48e0c5e0a58cf9bc4cf223d13a77a350" kind="function"><name>execute_last_planned_trajectory</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a244ed6e683545f1009aafca8f218a214" kind="function"><name>execute_trajectory</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a70fc994c2c41340c505494e476aee221" kind="function"><name>attach_object</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a70b85a305f50005941598a86b09b1d1f" kind="function"><name>detach_object</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1ad1192862485ea25cff38518b6d79aee3" kind="function"><name>get_ik</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1ab38d595da983a9263a5c3860bd077fb0" kind="function"><name>get_fk</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a418983500d558fa9ff26ffb87a7b4b6b" kind="function"><name>gripper_command</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1aa5432ab4b9c2c060a309ba1e699c45b9" kind="function"><name>has_last_planned_trajectory</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a217152ea7ca207ad9e6bc866ccec0e55" kind="function"><name>last_planned_trajectory</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a2e8389ee8325ecc5151c5540e771a1ef" kind="function"><name>spin_until_complete</name></member>
+    <member refid="classeasy__motion_1_1MotionClient_1a8faf157cbd6127f54c0d7fc821db895a" kind="function"><name>send_action_goal</name></member>
+  </compound>
+  <compound refid="namespaceeasy__motion" kind="namespace"><name>easy_motion</name>
+  </compound>
+  <compound refid="namespacerclcpp" kind="namespace"><name>rclcpp</name>
+  </compound>
+  <compound refid="motion__client_8hpp" kind="file"><name>motion_client.hpp</name>
+  </compound>
+  <compound refid="dir_484aa0e10637b275868de69acc916d35" kind="dir"><name>include/easy_motion_cpp</name>
+  </compound>
+  <compound refid="dir_d44c64559bbebec7f509842c48db8b23" kind="dir"><name>include</name>
+  </compound>
+</doxygenindex>

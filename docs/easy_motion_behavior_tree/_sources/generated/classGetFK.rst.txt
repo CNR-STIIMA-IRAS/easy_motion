@@ -1,0 +1,26 @@
+.. _exhale_class_classGetFK:
+
+Class GetFK
+===========
+
+- Defined in :ref:`file_include_easy_motion_behavior_tree_leaves_get_fk.hpp`
+
+
+Inheritance Relationships
+-------------------------
+
+Base Type
+*********
+
+- ``public BT::RosServiceNode< GetFKSrv >``
+
+
+Class Documentation
+-------------------
+
+
+.. doxygenclass:: GetFK
+   :project: easy_motion_behavior_tree Doxygen Project
+   :members:
+   :protected-members:
+   :undoc-members:

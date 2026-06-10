@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EasyMotion Behavior Tree &mdash; easy_motion_behavior_tree 0.0.0 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/collapsible-lists/css/tree_view.css" type="text/css" />
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/collapsible-lists/js/CollapsibleLists.compressed.js"></script>
+        <script src="../../_static/collapsible-lists/js/apply-collapsible-lists.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../../index.html" class="icon icon-home"> easy_motion_behavior_tree
+          </a>
+              <div class="version">
+                0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../generated/index.html">C++ API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../generated/index.html#class-hierarchy">Class Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../generated/index.html#file-hierarchy">File Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../generated/index.html#full-c-api">Full C++ API</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/index.html#namespaces">Namespaces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/namespace_BT.html">Namespace BT</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/namespace_easy_motion.html">Namespace easy_motion</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/index.html#classes-and-structs">Classes and Structs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classAttachObject.html">Class AttachObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classCanTransform.html">Class CanTransform</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classCheckDiceFace.html">Class CheckDiceFace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classDetachObject.html">Class DetachObject</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classDiceIdentification.html">Class DiceIdentification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classGetFK.html">Class GetFK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classGetIK.html">Class GetIK</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classGripperCommand.html">Class GripperCommand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classMoveToJoint.html">Class MoveToJoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classMoveToPose.html">Class MoveToPose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classPlanToJoint.html">Class PlanToJoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classPlanToPose.html">Class PlanToPose</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/classTriggerService.html">Class TriggerService</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/index.html#functions">Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/function_bt__conversions_8hpp_1ac0ae0509ca401832e6569247f4b88f07.html">Specialized Template Function BT::convertFromString</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/function_moveit__error__to__string_8hpp_1afbb7db2843705c5d628bf8ed02b9ee88.html">Function easy_motion::moveitErrorToString(const moveit_msgs::msg::MoveItErrorCodes&amp;)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/function_moveit__error__to__string_8hpp_1a5e24482a48698631faa66b831cc61492.html">Function easy_motion::moveitErrorToString(const moveit::core::MoveItErrorCode&amp;)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/index.html#defines">Defines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/define_moveit__error__to__string_8hpp_1a182130bb47f490aebc34f8232d0eceaa.html">Define EASY_MOTION_MOVEIT_HAS_ERROR_HPP</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/index.html#typedefs">Typedefs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/typedef_attach__object_8hpp_1aa773bea5956dbad5cc792d7874bdfd56.html">Typedef AttachObjectSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/typedef_detach__object_8hpp_1abd5ce8e976ae44e3bfa47a9f6ec78968.html">Typedef DetachObjectSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/typedef_dice__identification_8hpp_1a30777275c99498d89168f025c3c985d1.html">Typedef DiceIdentificationSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/typedef_get__fk_8hpp_1a5265fc484e553158459a35e595ee4455.html">Typedef GetFKSrv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/typedef_get__ik_8hpp_1a2552e349b9cfb77a62cc34660670fac1.html">Typedef GetIKSrv</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/index.html#directories">Directories</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/dir_include.html">Directory include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/dir_include_easy_motion_behavior_tree.html">Directory easy_motion_behavior_tree</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/dir_include_easy_motion_behavior_tree_leaves.html">Directory leaves</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../generated/index.html#files">Files</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_attach_object.hpp.html">File attach_object.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_bt_conversions.hpp.html">File bt_conversions.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_can_transform.hpp.html">File can_transform.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_check_dice_face.hpp.html">File check_dice_face.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_detach_object.hpp.html">File detach_object.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_dice_identification.hpp.html">File dice_identification.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_get_fk.hpp.html">File get_fk.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_get_ik.hpp.html">File get_ik.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_gripper_command.hpp.html">File gripper_command.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_move_to_joint.hpp.html">File move_to_joint.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_move_to_pose.hpp.html">File move_to_pose.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_moveit_error_to_string.hpp.html">File moveit_error_to_string.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_plan_to_joint.hpp.html">File plan_to_joint.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_plan_to_pose.hpp.html">File plan_to_pose.hpp</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../generated/file_include_easy_motion_behavior_tree_leaves_trigger_service.hpp.html">File trigger_service.hpp</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../standards.html">Standard Documents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../PACKAGE.html">PACKAGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../README.html">README</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../README.html#easymotion-behavior-tree">EasyMotion Behavior Tree</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../README.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../README.html#available-behavior-tree-nodes">Available Behavior Tree Nodes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">easy_motion_behavior_tree</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>EasyMotion Behavior Tree</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/standard_docs/original/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="easymotion-behavior-tree">
+<h1>EasyMotion Behavior Tree<a class="headerlink" href="#easymotion-behavior-tree" title="Permalink to this headline"></a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">easy_motion_behavior_tree</span></code> package provides custom Behavior Tree (BT) nodes for controlling robot motions in the <strong>EasyMotion</strong> stack.<br />
+It builds upon the BehaviorTree.ROS2/.CPP library and ROS 2 action interfaces to enable modular and flexible behavior orchestration.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>This package integrates motion-related actions into behavior trees, offering ready-to-use leaf nodes that interact with ROS 2 action servers such as motion planners and gripper controllers.</p>
+<p>Each node can be loaded as a plugin and used in XML-based behavior tree definitions.</p>
+<!-- 
+## Available Behavior Tree Nodes
+
+The following custom BT **action nodes** are available:
+
+| Node Name         | Input Ports                                                                 | Description                                                |
+|-------------------|------------------------------------------------------------------------------|------------------------------------------------------------|
+| `GripperCommand`  | `position` (double), `max_effort` (double)                                  | Sends a gripper command with target position and max effort. |
+| `MoveToJoint`     | `joint_target` (vector\<double>)                                             | Moves the robot to a specified joint configuration.         |
+| MoveToPose   | `pose_target` (PoseStamped) **or**<br>`frame_id` (string), `position` (vector<double>, size=3), `orientation` (vector<double>, size=4),<br>`cartesian_motion` (bool, optional, default: false) | Moves the robot to a target pose. Accepts either a full `pose_target` or pose components. The optional `cartesian_motion` flag enables Cartesian path planning when set to true. |
+| DiceIdentification | –                                                                                                                   | `face_number` (int), `pose` (PoseStamped)                            | Calls a service to identify a die in the scene, returning the recognized face number and pose. |
+ -->
+</section>
+<section id="available-behavior-tree-nodes">
+<h2>Available Behavior Tree Nodes<a class="headerlink" href="#available-behavior-tree-nodes" title="Permalink to this headline"></a></h2>
+<!-- The following custom BT **action nodes** are available:
+
+| Node Name          | Input Ports                                                                                                         | Output Ports                                                  | Description                                                                                     |
+|--------------------|----------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| `GripperCommand`   | `position` (double), `max_effort` (double)                                                                          | –                                                             | Sends a gripper command with target position and max effort.                                   |
+| `MoveToJoint`      | `joint_target`             <GripperCommand action_name="/robotiq_action_controller/gripper_cmd" position="0.79" max_effort="1.0"/>
+(vector<double>)                                                                                     | –                                                             | Moves the robot to a specified joint configuration.                                             |
+| `MoveToPose`       | `pose_target` (PoseStamped) **or**<br>`frame_id` (string), `position` (vector<double>, size=3), `orientation` (vector<double>, size=4),<br>`cartesian_motion` (bool, optional, default: false) | –                                                             | Moves the robot to a target pose. Accepts either a full `pose_target` or pose components. The optional `cartesian_motion` flag enables Cartesian path planning when set to true. |
+| `DiceIdentification` | –                                                                                                                   | `face_number` (int), `pose` (PoseStamped)                    | Calls a service to identify a die in the scene, returning the recognized face number and pose.  | -->
+<p>The following custom BT <strong>action nodes</strong> are available:</p>
+<table class="colwidths-auto docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Node Name</p></th>
+<th class="head"><p>Input Ports</p></th>
+<th class="head"><p>Output Ports</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">GripperCommand</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">position</span></code> (double), <code class="docutils literal notranslate"><span class="pre">max_effort</span></code> (double)</p></td>
+<td><p>–</p></td>
+<td><p>Sends a gripper command with target position and max effort.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MoveToJoint</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">joint_target</span></code> (vector<double>)</p></td>
+<td><p>–</p></td>
+<td><p>Moves the robot to a specified joint configuration.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MoveToPose</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">pose_target</span></code> (PoseStamped) <strong>or</strong><br><code class="docutils literal notranslate"><span class="pre">frame_id</span></code> (string), <code class="docutils literal notranslate"><span class="pre">position</span></code> (vector<double>, size=3), <code class="docutils literal notranslate"><span class="pre">orientation</span></code> (vector<double>, size=4), <code class="docutils literal notranslate"><span class="pre">cartesian_motion</span></code> (bool, optional)</p></td>
+<td><p>–</p></td>
+<td><p>Moves the robot to a target pose. Accepts either a full <code class="docutils literal notranslate"><span class="pre">pose_target</span></code> or pose components. The optional <code class="docutils literal notranslate"><span class="pre">cartesian_motion</span></code> flag enables Cartesian path planning when set to true.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">AttachObject</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object_id</span></code> (string), <code class="docutils literal notranslate"><span class="pre">target_frame_id</span></code> (string)</p></td>
+<td><p>–</p></td>
+<td><p>Calls a service to attach a collision object to a link.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DetachObject</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">object_id</span></code> (string)</p></td>
+<td><p>–</p></td>
+<td><p>Calls a service to detach a collision object.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DiceIdentification</span></code></p></td>
+<td><p>–</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">face_number</span></code> (int), <code class="docutils literal notranslate"><span class="pre">pose</span></code> (PoseStamped)</p></td>
+<td><p>Calls a service to identify a die, returning the recognized face number and pose.</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p><strong>Note</strong>: Each node requires an <code class="docutils literal notranslate"><span class="pre">action_name</span></code> or <code class="docutils literal notranslate"><span class="pre">service_name</span></code> parameter to be specified in the XML tree definition. These are not listed among the input ports as they are typically constant for the node.</p>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The &lt;easy_motion_behavior_tree&gt; Contributors. License: TODO: License declaration.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

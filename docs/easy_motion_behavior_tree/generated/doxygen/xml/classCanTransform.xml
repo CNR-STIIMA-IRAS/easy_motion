@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classCanTransform" kind="class" language="C++" prot="public">
+    <compoundname>CanTransform</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BT::ConditionNode</basecompoundref>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classCanTransform_1ad463ac86517e5d8243a869c92088af49" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; rclcpp::Node &gt;</type>
+        <definition>std::shared_ptr&lt;rclcpp::Node&gt; CanTransform::node_</definition>
+        <argsstring></argsstring>
+        <name>node_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/can_transform.hpp" line="68" column="19" bodyfile="include/easy_motion_behavior_tree/leaves/can_transform.hpp" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCanTransform_1af4bd4bb4994ab5d6eff6d50355bb21c0" prot="private" static="no" mutable="no">
+        <type>std::shared_ptr&lt; tf2_ros::Buffer &gt;</type>
+        <definition>std::shared_ptr&lt;tf2_ros::Buffer&gt; CanTransform::tf_buffer_</definition>
+        <argsstring></argsstring>
+        <name>tf_buffer_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/can_transform.hpp" line="69" column="19" bodyfile="include/easy_motion_behavior_tree/leaves/can_transform.hpp" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classCanTransform_1a55c123e830d74c96df482817b8941320" prot="private" static="no" mutable="no">
+        <type>std::unique_ptr&lt; tf2_ros::TransformListener &gt;</type>
+        <definition>std::unique_ptr&lt;tf2_ros::TransformListener&gt; CanTransform::tf_listener_</definition>
+        <argsstring></argsstring>
+        <name>tf_listener_</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/can_transform.hpp" line="70" column="19" bodyfile="include/easy_motion_behavior_tree/leaves/can_transform.hpp" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classCanTransform_1ae6a9a5750d2b2bee3cbc74d93b3c62eb" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CanTransform::CanTransform</definition>
+        <argsstring>(const std::string &amp;name, const BT::NodeConfiguration &amp;config)</argsstring>
+        <name>CanTransform</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const BT::NodeConfiguration &amp;</type>
+          <declname>config</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/can_transform.hpp" line="18" column="3" bodyfile="include/easy_motion_behavior_tree/leaves/can_transform.hpp" bodystart="18" bodyend="24"/>
+      </memberdef>
+      <memberdef kind="function" id="classCanTransform_1ab91a8b17dc1045cd7d00a4ebb4f0ae13" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>CanTransform::CanTransform</definition>
+        <argsstring>(const std::string &amp;name, const BT::NodeConfiguration &amp;config, const BT::RosNodeParams &amp;params)</argsstring>
+        <name>CanTransform</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const BT::NodeConfiguration &amp;</type>
+          <declname>config</declname>
+        </param>
+        <param>
+          <type>const BT::RosNodeParams &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/can_transform.hpp" line="27" column="3" bodyfile="include/easy_motion_behavior_tree/leaves/can_transform.hpp" bodystart="27" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="classCanTransform_1aaaacdd89606e0a3db5201e1a4f1c7621" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus CanTransform::tick</definition>
+        <argsstring>() override</argsstring>
+        <name>tick</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/can_transform.hpp" line="45" column="18" bodyfile="include/easy_motion_behavior_tree/leaves/can_transform.hpp" bodystart="45" bodyend="65"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classCanTransform_1a7c2496e874d40afad6d911d8b5787ec4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::PortsList</type>
+        <definition>static BT::PortsList CanTransform::providedPorts</definition>
+        <argsstring>()</argsstring>
+        <name>providedPorts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/can_transform.hpp" line="36" column="24" bodyfile="include/easy_motion_behavior_tree/leaves/can_transform.hpp" bodystart="36" bodyend="43"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BT::ConditionNode</label>
+      </node>
+      <node id="1">
+        <label>CanTransform</label>
+        <link refid="classCanTransform"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>BT::ConditionNode</label>
+      </node>
+      <node id="1">
+        <label>CanTransform</label>
+        <link refid="classCanTransform"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/easy_motion_behavior_tree/leaves/can_transform.hpp" line="15" column="1" bodyfile="include/easy_motion_behavior_tree/leaves/can_transform.hpp" bodystart="16" bodyend="71"/>
+    <listofallmembers>
+      <member refid="classCanTransform_1ae6a9a5750d2b2bee3cbc74d93b3c62eb" prot="public" virt="non-virtual"><scope>CanTransform</scope><name>CanTransform</name></member>
+      <member refid="classCanTransform_1ab91a8b17dc1045cd7d00a4ebb4f0ae13" prot="public" virt="non-virtual"><scope>CanTransform</scope><name>CanTransform</name></member>
+      <member refid="classCanTransform_1ad463ac86517e5d8243a869c92088af49" prot="private" virt="non-virtual"><scope>CanTransform</scope><name>node_</name></member>
+      <member refid="classCanTransform_1a7c2496e874d40afad6d911d8b5787ec4" prot="public" virt="non-virtual"><scope>CanTransform</scope><name>providedPorts</name></member>
+      <member refid="classCanTransform_1af4bd4bb4994ab5d6eff6d50355bb21c0" prot="private" virt="non-virtual"><scope>CanTransform</scope><name>tf_buffer_</name></member>
+      <member refid="classCanTransform_1a55c123e830d74c96df482817b8941320" prot="private" virt="non-virtual"><scope>CanTransform</scope><name>tf_listener_</name></member>
+      <member refid="classCanTransform_1aaaacdd89606e0a3db5201e1a4f1c7621" prot="public" virt="non-virtual"><scope>CanTransform</scope><name>tick</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

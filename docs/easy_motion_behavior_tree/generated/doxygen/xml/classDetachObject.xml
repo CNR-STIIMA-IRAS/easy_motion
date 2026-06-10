@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.1" xml:lang="en-US">
+  <compounddef id="classDetachObject" kind="class" language="C++" prot="public">
+    <compoundname>DetachObject</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">BT::RosServiceNode&lt; DetachObjectSrv &gt;</basecompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="classDetachObject_1ab7693944ef0bc9147a143bd8e6e6ea0c" prot="public" static="no" const="no" explicit="yes" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>DetachObject::DetachObject</definition>
+        <argsstring>(const std::string &amp;name, const BT::NodeConfig &amp;conf, const BT::RosNodeParams &amp;params)</argsstring>
+        <name>DetachObject</name>
+        <param>
+          <type>const std::string &amp;</type>
+          <declname>name</declname>
+        </param>
+        <param>
+          <type>const BT::NodeConfig &amp;</type>
+          <declname>conf</declname>
+        </param>
+        <param>
+          <type>const BT::RosNodeParams &amp;</type>
+          <declname>params</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/detach_object.hpp" line="13" column="12" bodyfile="include/easy_motion_behavior_tree/leaves/detach_object.hpp" bodystart="13" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classDetachObject_1a2b8269a85dfe8908a5af53f5a83dc417" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool DetachObject::setRequest</definition>
+        <argsstring>(Request::SharedPtr &amp;request) override</argsstring>
+        <name>setRequest</name>
+        <param>
+          <type>Request::SharedPtr &amp;</type>
+          <declname>request</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/detach_object.hpp" line="29" column="8"/>
+      </memberdef>
+      <memberdef kind="function" id="classDetachObject_1aa7f7f1cd82a942c94cb2b168eeb8ab08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>BT::NodeStatus</type>
+        <definition>BT::NodeStatus DetachObject::onResponseReceived</definition>
+        <argsstring>(const Response::SharedPtr &amp;response) override</argsstring>
+        <name>onResponseReceived</name>
+        <param>
+          <type>const Response::SharedPtr &amp;</type>
+          <declname>response</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/detach_object.hpp" line="31" column="18"/>
+      </memberdef>
+      <memberdef kind="function" id="classDetachObject_1a582ee984780c4f4f1a961d71b1238176" prot="public" static="no" const="no" explicit="no" inline="no" virt="virtual">
+        <type>BT::NodeStatus</type>
+        <definition>virtual BT::NodeStatus DetachObject::onFailure</definition>
+        <argsstring>(BT::ServiceNodeErrorCode error) override</argsstring>
+        <name>onFailure</name>
+        <param>
+          <type>BT::ServiceNodeErrorCode</type>
+          <declname>error</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/detach_object.hpp" line="33" column="26"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="classDetachObject_1a086ffb58ced6f2432d5f49b1bbf5d47b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>BT::PortsList</type>
+        <definition>static BT::PortsList DetachObject::providedPorts</definition>
+        <argsstring>()</argsstring>
+        <name>providedPorts</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="include/easy_motion_behavior_tree/leaves/detach_object.hpp" line="20" column="24" bodyfile="include/easy_motion_behavior_tree/leaves/detach_object.hpp" bodystart="20" bodyend="27"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="2">
+        <label>BT::RosServiceNode&lt; DetachObjectSrv &gt;</label>
+      </node>
+      <node id="1">
+        <label>DetachObject</label>
+        <link refid="classDetachObject"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="2">
+        <label>BT::RosServiceNode&lt; DetachObjectSrv &gt;</label>
+      </node>
+      <node id="1">
+        <label>DetachObject</label>
+        <link refid="classDetachObject"/>
+        <childnode refid="2" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="include/easy_motion_behavior_tree/leaves/detach_object.hpp" line="10" column="1" bodyfile="include/easy_motion_behavior_tree/leaves/detach_object.hpp" bodystart="11" bodyend="35"/>
+    <listofallmembers>
+      <member refid="classDetachObject_1ab7693944ef0bc9147a143bd8e6e6ea0c" prot="public" virt="non-virtual"><scope>DetachObject</scope><name>DetachObject</name></member>
+      <member refid="classDetachObject_1a582ee984780c4f4f1a961d71b1238176" prot="public" virt="virtual"><scope>DetachObject</scope><name>onFailure</name></member>
+      <member refid="classDetachObject_1aa7f7f1cd82a942c94cb2b168eeb8ab08" prot="public" virt="non-virtual"><scope>DetachObject</scope><name>onResponseReceived</name></member>
+      <member refid="classDetachObject_1a086ffb58ced6f2432d5f49b1bbf5d47b" prot="public" virt="non-virtual"><scope>DetachObject</scope><name>providedPorts</name></member>
+      <member refid="classDetachObject_1a2b8269a85dfe8908a5af53f5a83dc417" prot="public" virt="non-virtual"><scope>DetachObject</scope><name>setRequest</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

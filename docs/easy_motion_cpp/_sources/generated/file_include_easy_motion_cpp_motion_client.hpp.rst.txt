@@ -1,0 +1,93 @@
+
+.. _file_include_easy_motion_cpp_motion_client.hpp:
+
+File motion_client.hpp
+======================
+
+|exhale_lsh| :ref:`Parent directory <dir_include_easy_motion_cpp>` (``include/easy_motion_cpp``)
+
+.. |exhale_lsh| unicode:: U+021B0 .. UPWARDS ARROW WITH TIP LEFTWARDS
+
+.. contents:: Contents
+   :local:
+   :backlinks: none
+
+Definition (``include/easy_motion_cpp/motion_client.hpp``)
+----------------------------------------------------------
+
+
+.. toctree::
+   :maxdepth: 1
+
+   program_listing_file_include_easy_motion_cpp_motion_client.hpp.rst
+
+
+
+
+
+Includes
+--------
+
+
+- ``chrono``
+
+- ``control_msgs/action/gripper_command.hpp``
+
+- ``easy_motion_msgs/action/move_to_joint.hpp``
+
+- ``easy_motion_msgs/action/move_to_pose.hpp``
+
+- ``easy_motion_msgs/action/plan_to_joint.hpp``
+
+- ``easy_motion_msgs/action/plan_to_pose.hpp``
+
+- ``easy_motion_msgs/srv/attach_object.hpp``
+
+- ``easy_motion_msgs/srv/detach_object.hpp``
+
+- ``easy_motion_msgs/srv/get_fk.hpp``
+
+- ``easy_motion_msgs/srv/get_ik.hpp``
+
+- ``geometry_msgs/msg/pose_stamped.hpp``
+
+- ``memory``
+
+- ``moveit_msgs/action/execute_trajectory.hpp``
+
+- ``moveit_msgs/msg/move_it_error_codes.hpp``
+
+- ``optional``
+
+- ``rclcpp/rclcpp.hpp``
+
+- ``rclcpp_action/rclcpp_action.hpp``
+
+- ``stdexcept``
+
+- ``string``
+
+- ``trajectory_msgs/msg/joint_trajectory.hpp``
+
+- ``utility``
+
+- ``vector``
+
+
+
+
+
+
+Namespaces
+----------
+
+
+- :ref:`namespace_easy_motion`
+
+
+Classes
+-------
+
+
+- :ref:`exhale_class_classeasy__motion_1_1MotionClient`
+
