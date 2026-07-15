@@ -11,10 +11,11 @@ from easy_motion_msgs.srv import AttachObject, DetachObject, GetIK, GetFK
 from geometry_msgs.msg import PoseStamped, TransformStamped
 from tf2_ros import Buffer, TransformListener, TransformException, TransformBroadcaster
 from trajectory_msgs.msg import JointTrajectory
+import builtin_interfaces
 
 from pymoveit2.moveit2 import MoveIt2, init_joint_state
 from moveit_msgs.msg import MoveItErrorCodes
-from moveit_msgs.srv import GetPositionIK, GetPositionFK
+from moveit_msgs.srv import GetPositionIK, GetPositionFK, GetCartesianPath
 from easy_motion.easy_motion_utils import transform_to_affine, pose_stamped_to_affine, affine_to_transform, transform_to_pose_stamped, build_affine
 import numpy as np
 
@@ -461,10 +462,36 @@ class MotionServer(Node):
         result_code.val = MoveItErrorCodes.FAILURE
         return result_code, None
 
+    def _apply_manual_scaling_to_cartesian_request(self, joint_trajectory: JointTrajectory, velocity_scaling: float):
+        """
+        Apply manual scaling to the joint trajectory.
+        """
+        def duration_to_sec(duration: builtin_interfaces.msg._duration.Duration) -> float:
+            return duration.sec + duration.nanosec / 1e9
+        def sec_to_duration(sec: float) -> builtin_interfaces.msg._duration.Duration:
+            return rclpy.duration.Duration(seconds=sec).to_msg()
+        
+        if velocity_scaling <= 0.0 or velocity_scaling > 1.0:
+            self.get_logger().warn(f"Velocity scaling factor {velocity_scaling} is out of bounds (0.0, 1.0]. Set to 0.5 for safety reasons.")
+            velocity_scaling = 0.5
+            
+        for p in joint_trajectory.points:
+            t = duration_to_sec(p.time_from_start)
+            p.time_from_start = sec_to_duration(t / velocity_scaling)
+            if p.velocities:
+                p.velocities = [v * velocity_scaling for v in p.velocities]
 
+            if p.accelerations:
+                p.accelerations = [a * velocity_scaling * velocity_scaling for a in p.accelerations]
+
+        return joint_trajectory
+
+            
     def _move_to_pose_with_retries(self, goal_pose: PoseStamped, cartesian: bool, max_attempts: int,
                                    velocity_scaling: float = 1.0, acceleration_scaling: float = 1.0) -> MoveItErrorCodes:
         result_code = MoveItErrorCodes()
+        motion_result = None
+
         if not goal_pose or not isinstance(goal_pose, PoseStamped):
             self.get_logger().error("Invalid goal pose provided for motion.")
             result_code.val = MoveItErrorCodes.INVALID_ROBOT_STATE
@@ -477,19 +504,36 @@ class MotionServer(Node):
 
         self.moveit2.max_velocity = self.global_velocity_scaling * velocity_scaling
         self.moveit2.max_acceleration = self.global_acceleration_scaling * acceleration_scaling
-
+        
         for attempt in range(1, max_attempts + 1):
-            self.get_logger().info(f"[Attempt {attempt}/{max_attempts}] Moving to configuration")
+            self.get_logger().info(f"[Attempt {attempt}/{max_attempts}] Moving to pose")
 
-
-            self.moveit2.move_to_pose(
-                pose=goal_pose,
-                cartesian=cartesian,
-                cartesian_max_step=cartesian_max_step,
-                cartesian_fraction_threshold=cartesian_fraction_threshold,
-                tolerance_position=tolerance_position,
-                tolerance_orientation=tolerance_orientation
-            )
+            # Manual scaling for ros2 versions that don't have max_velocity_scaling_factor and max_acceleration_scaling_factor in GetCartesianPath.Request, e.g., humble
+            if not hasattr(GetCartesianPath.Request, "max_velocity_scaling_factor") \
+                or not hasattr(GetCartesianPath.Request, "max_acceleration_scaling_factor"):
+                joint_trajectory = self.moveit2.plan(
+                    pose=goal_pose,
+                    cartesian=cartesian,
+                    max_step=cartesian_max_step,
+                    cartesian_fraction_threshold=cartesian_fraction_threshold,
+                    tolerance_position=tolerance_position,
+                    tolerance_orientation=tolerance_orientation
+                )
+                if joint_trajectory:
+                    scaled_joint_trajectory = self._apply_manual_scaling_to_cartesian_request(joint_trajectory, velocity_scaling)
+                    self.moveit2.execute(scaled_joint_trajectory)
+                else:
+                    self.get_logger().warn("Planning failed. Retrying...")
+                    continue
+            else:
+                self.moveit2.move_to_pose(
+                    pose=goal_pose,
+                    cartesian=cartesian,
+                    cartesian_max_step=cartesian_max_step,
+                    cartesian_fraction_threshold=cartesian_fraction_threshold,
+                    tolerance_position=tolerance_position,
+                    tolerance_orientation=tolerance_orientation
+                )
             partial_result = self.moveit2.wait_until_executed()
             motion_result = self.moveit2.get_last_execution_error_code()
             self.get_logger().info(f"Partial result: {partial_result}")
