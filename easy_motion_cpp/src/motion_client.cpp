@@ -102,15 +102,13 @@ moveit_msgs::msg::MoveItErrorCodes MotionClient::move_to_pose(
   const geometry_msgs::msg::PoseStamped & pose,
   bool cartesian_motion,
   bool relative_motion,
-  double velocity_scaling,
-  double acceleration_scaling)
+  double velocity_scaling)
 {
   MoveToPose::Goal goal;
   goal.pose_target = pose;
   goal.cartesian_motion = cartesian_motion;
   goal.relative_motion = relative_motion;
-  goal.max_velocity_scaling = velocity_scaling;
-  goal.max_acceleration_scaling = acceleration_scaling;
+  goal.velocity_scaling = velocity_scaling;
 
   const auto wrapped_result =
     send_action_goal<MoveToPose>(move_to_pose_client_, goal, "move_to_pose");
@@ -120,13 +118,11 @@ moveit_msgs::msg::MoveItErrorCodes MotionClient::move_to_pose(
 
 moveit_msgs::msg::MoveItErrorCodes MotionClient::move_to_joint(
   const std::vector<double> & joint_positions,
-  double velocity_scaling,
-  double acceleration_scaling)
+  double velocity_scaling)
 {
   MoveToJoint::Goal goal;
   goal.joint_target = joint_positions;
-  goal.max_velocity_scaling = velocity_scaling;
-  goal.max_acceleration_scaling = acceleration_scaling;
+  goal.velocity_scaling = velocity_scaling;
 
   const auto wrapped_result =
     send_action_goal<MoveToJoint>(move_to_joint_client_, goal, "move_to_joint");
@@ -140,15 +136,13 @@ MotionClient::plan_to_pose(
   const std::optional<std::vector<double>> & joint_start,
   bool cartesian_motion,
   bool relative_motion,
-  double velocity_scaling,
-  double acceleration_scaling)
+  double velocity_scaling)
 {
   PlanToPose::Goal goal;
   goal.pose_target = pose;
   goal.cartesian_motion = cartesian_motion;
   goal.relative_motion = relative_motion;
-  goal.max_velocity_scaling = velocity_scaling;
-  goal.max_acceleration_scaling = acceleration_scaling;
+  goal.velocity_scaling = velocity_scaling;
 
   if (joint_start.has_value()) {
     goal.joint_start = joint_start.value();
@@ -168,13 +162,11 @@ std::pair<moveit_msgs::msg::MoveItErrorCodes, trajectory_msgs::msg::JointTraject
 MotionClient::plan_to_joint(
   const std::vector<double> & joint_target,
   const std::optional<std::vector<double>> & joint_start,
-  double velocity_scaling,
-  double acceleration_scaling)
+  double velocity_scaling)
 {
   PlanToJoint::Goal goal;
   goal.joint_target = joint_target;
-  goal.max_velocity_scaling = velocity_scaling;
-  goal.max_acceleration_scaling = acceleration_scaling;
+  goal.velocity_scaling = velocity_scaling;
 
   if (joint_start.has_value()) {
     goal.joint_start = joint_start.value();

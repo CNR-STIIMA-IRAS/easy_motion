@@ -42,7 +42,7 @@ def main() -> None:
         0.0,    # wrist_3_joint
     ]
 
-    result = motion_client.move_to_joint(joint_goal_1, velocity_scaling=0.2, acceleration_scaling=0.2)
+    result = motion_client.move_to_joint(joint_goal_1, velocity_scaling=0.2)
     print("Move to joint result:", result)
 
     # # Example: attach_object

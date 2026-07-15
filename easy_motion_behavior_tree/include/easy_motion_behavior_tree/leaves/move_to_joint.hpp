@@ -19,8 +19,7 @@ public:
     return providedBasicPorts(
     {
       BT::InputPort<std::vector<double>>("joint_target"),
-      BT::InputPort<double>("max_velocity_scaling"),
-      BT::InputPort<double>("max_acceleration_scaling"),
+      BT::InputPort<double>("velocity_scaling"),
     }
     );
   }

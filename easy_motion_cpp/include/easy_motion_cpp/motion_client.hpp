@@ -50,13 +50,11 @@ public:
     const geometry_msgs::msg::PoseStamped & pose,
     bool cartesian_motion = false,
     bool relative_motion = false,
-    double velocity_scaling = 1.0,
-    double acceleration_scaling = 1.0);
+    double velocity_scaling = 1.0);
 
   moveit_msgs::msg::MoveItErrorCodes move_to_joint(
     const std::vector<double> & joint_positions,
-    double velocity_scaling = 1.0,
-    double acceleration_scaling = 1.0);
+    double velocity_scaling = 1.0);
 
   std::pair<moveit_msgs::msg::MoveItErrorCodes, trajectory_msgs::msg::JointTrajectory>
   plan_to_pose(
@@ -64,15 +62,13 @@ public:
     const std::optional<std::vector<double>> & joint_start = std::nullopt,
     bool cartesian_motion = false,
     bool relative_motion = false,
-    double velocity_scaling = 1.0,
-    double acceleration_scaling = 1.0);
+    double velocity_scaling = 1.0);
 
   std::pair<moveit_msgs::msg::MoveItErrorCodes, trajectory_msgs::msg::JointTrajectory>
   plan_to_joint(
     const std::vector<double> & joint_target,
     const std::optional<std::vector<double>> & joint_start = std::nullopt,
-    double velocity_scaling = 1.0,
-    double acceleration_scaling = 1.0);
+    double velocity_scaling = 1.0);
 
   moveit_msgs::msg::MoveItErrorCodes execute_last_planned_trajectory();
 

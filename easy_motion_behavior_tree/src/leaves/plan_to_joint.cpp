@@ -25,24 +25,16 @@ bool PlanToJoint::setGoal(RosActionNode::Goal & goal)
     joint_start.clear();
   }
 
-  double max_velocity_scaling = 1.0;
-  if (!getInput("max_velocity_scaling", max_velocity_scaling)) {
+  double velocity_scaling = 1.0;
+  if (!getInput("velocity_scaling", velocity_scaling)) {
     RCLCPP_INFO(
       node_.lock()->get_logger(),
-      "Missing parameter [max_velocity_scaling], set it as 1.0 by default");
-  }
-
-  double max_acceleration_scaling = 1.0;
-  if (!getInput("max_acceleration_scaling", max_acceleration_scaling)) {
-    RCLCPP_INFO(
-      node_.lock()->get_logger(),
-      "Missing parameter [max_acceleration_scaling], set it as 1.0 by default");
+      "Missing parameter [velocity_scaling], set it as 1.0 by default");
   }
 
   goal.joint_target = joint_target.value();
   goal.joint_start = joint_start;
-  goal.max_velocity_scaling = max_velocity_scaling;
-  goal.max_acceleration_scaling = max_acceleration_scaling;
+  goal.velocity_scaling = velocity_scaling;
 
   return true;
 }
