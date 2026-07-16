@@ -339,7 +339,7 @@ class MotionServer(Node):
 
         # Preparing action result
         action_result = MoveToPose.Result()
-
+        
         if goal_pose is None:
             self.get_logger().error("Failed to apply virtual or relative offset to the goal pose. Aborting motion.")
             action_result.result.val = MoveItErrorCodes.FAILURE
@@ -789,11 +789,16 @@ class MotionServer(Node):
         else:
             goal_pose = self._apply_virtual_offset(goal_pose)
 
-        self.broadcast_pose_goal_tf(goal_pose)  # For debugging purposes show the goal pose
-
         # Preparing action result
         action_result = PlanToPose.Result()
 
+        if goal_pose is None:
+            self.get_logger().error("Failed to apply virtual or relative offset to the goal pose. Aborting motion.")
+            action_result.result.val = MoveItErrorCodes.FAILURE
+            goal_handle.abort()
+            return action_result
+
+        self.broadcast_pose_goal_tf(goal_pose)  # For debugging purposes show the goal pose
 
         max_motion_retries = self.get_parameter('max_motion_retries').get_parameter_value().integer_value
         if cartesian_motion:
