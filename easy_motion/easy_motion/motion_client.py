@@ -179,7 +179,7 @@ class MotionClient(Node):
             RuntimeError: If the action server is not available or the goal was rejected.
         """
         if not self.plan_to_pose_client.wait_for_server(timeout_sec=5.0):
-            raise RuntimeError("MoveToPose action server not available")
+            raise RuntimeError("PlanToPose action server not available")
 
         goal_msg = PlanToPose.Goal()
         goal_msg.pose_target = pose
