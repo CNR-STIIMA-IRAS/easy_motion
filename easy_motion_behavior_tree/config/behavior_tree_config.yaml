@@ -16,4 +16,5 @@ bt_executer_node:
       - detach_object
       - can_transform
       - trigger_service
+      - execute_trajectory
     bt_package: easy_motion_behavior_tree
