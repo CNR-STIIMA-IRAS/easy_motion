@@ -81,6 +81,7 @@ BT::NodeStatus MoveToPose::onResultReceived(const RosActionNode::WrappedResult &
   RCLCPP_INFO(node_.lock()->get_logger(), "%s: onResultReceived", name().c_str());
   RCLCPP_INFO(node_.lock()->get_logger(), "%s Result: %d", name().c_str(), (wr.result->result).val);
   int code = wr.result->result.val;
+  setOutput("result_code", code);
 
   if (code != moveit_msgs::msg::MoveItErrorCodes::SUCCESS) {
     moveit::core::MoveItErrorCode error(code);  // wrap
@@ -92,11 +93,26 @@ BT::NodeStatus MoveToPose::onResultReceived(const RosActionNode::WrappedResult &
   return BT::NodeStatus::SUCCESS;
 }
 
-BT::NodeStatus MoveToPose::onFailure(BT::ActionNodeErrorCode error)
+BT::NodeStatus MoveToPose::onFailure(
+  BT::ActionNodeErrorCode error,
+  const std::optional<WrappedResult> & result)
 {
   RCLCPP_ERROR(
     node_.lock()->get_logger(), "%s: onFailure with error: %s", name().c_str(),
     toStr(error) );
+
+  if (result && result->result) {
+    const int code = result->result->result.val;
+    setOutput("result_code", code);
+
+    moveit::core::MoveItErrorCode moveit_error(code);
+    RCLCPP_ERROR(
+      node_.lock()->get_logger(), "%s failed with error code: %d (%s)",
+      name().c_str(), code, easy_motion::moveitErrorToString(moveit_error).c_str());
+  } else {
+    setOutput("result_code", moveit_msgs::msg::MoveItErrorCodes::FAILURE);
+  }
+
   return BT::NodeStatus::FAILURE;
 }
 

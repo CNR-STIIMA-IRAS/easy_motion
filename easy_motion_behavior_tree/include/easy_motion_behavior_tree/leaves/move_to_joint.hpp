@@ -20,13 +20,16 @@ public:
     {
       BT::InputPort<std::vector<double>>("joint_target"),
       BT::InputPort<double>("velocity_scaling"),
+      BT::OutputPort<int>("result_code"),
     }
     );
   }
 
   bool setGoal(Goal & goal) override;
   BT::NodeStatus onResultReceived(const WrappedResult & wr) override;
-  BT::NodeStatus onFailure(BT::ActionNodeErrorCode error) override;
+  BT::NodeStatus onFailure(
+    BT::ActionNodeErrorCode error,
+    const std::optional<WrappedResult> & result) override;
   BT::NodeStatus onFeedback(
     const std::shared_ptr<const easy_motion_msgs::action::MoveToJoint::Feedback> feedback) override;
 

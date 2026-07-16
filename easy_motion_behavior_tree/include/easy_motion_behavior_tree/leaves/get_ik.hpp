@@ -25,6 +25,9 @@ public:
     return providedBasicPorts(
     {
       BT::InputPort<geometry_msgs::msg::PoseStamped>("pose"),
+      BT::InputPort<std::string>("frame_id"),
+      BT::InputPort<std::vector<double>>("position"),
+      BT::InputPort<std::vector<double>>("orientation"),
       BT::InputPort<std::vector<double>>("seed"),
       BT::OutputPort<std::vector<double>>("ik_solution"),
       BT::OutputPort<int>("result_code"),

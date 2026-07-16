@@ -25,14 +25,16 @@ public:
       BT::InputPort<std::string>("frame_id"),
       BT::InputPort<std::vector<double>>("position"),
       BT::InputPort<std::vector<double>>("orientation"),
-
+      BT::OutputPort<int>("result_code"),
     }
     );
   }
 
   bool setGoal(Goal & goal) override;
   BT::NodeStatus onResultReceived(const WrappedResult & wr) override;
-  BT::NodeStatus onFailure(BT::ActionNodeErrorCode error) override;
+  BT::NodeStatus onFailure(
+    BT::ActionNodeErrorCode error,
+    const std::optional<WrappedResult> & result) override;
   BT::NodeStatus onFeedback(
     const std::shared_ptr<const easy_motion_msgs::action::MoveToPose::Feedback> feedback) override;
 

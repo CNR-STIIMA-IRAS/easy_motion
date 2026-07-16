@@ -98,11 +98,26 @@ BT::NodeStatus PlanToPose::onResultReceived(const RosActionNode::WrappedResult &
   return BT::NodeStatus::SUCCESS;
 }
 
-BT::NodeStatus PlanToPose::onFailure(BT::ActionNodeErrorCode error)
+BT::NodeStatus PlanToPose::onFailure(
+  BT::ActionNodeErrorCode error,
+  const std::optional<WrappedResult> & result)
 {
   RCLCPP_ERROR(
     node_.lock()->get_logger(), "%s: onFailure with error: %s", name().c_str(),
     toStr(error));
+
+  if (result && result->result) {
+    const int code = result->result->result.val;
+    setOutput("result_code", code);
+
+    moveit::core::MoveItErrorCode moveit_error(code);
+    RCLCPP_ERROR(
+      node_.lock()->get_logger(), "%s failed with error code: %d (%s)",
+      name().c_str(), code, easy_motion::moveitErrorToString(moveit_error).c_str());
+  } else {
+    setOutput("result_code", moveit_msgs::msg::MoveItErrorCodes::FAILURE);
+  }
+
   return BT::NodeStatus::FAILURE;
 }
 
