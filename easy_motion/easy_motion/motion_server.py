@@ -364,8 +364,8 @@ class MotionServer(Node):
         else:
             max_ik_retries = self.get_parameter('max_ik_retries').get_parameter_value().integer_value
             last_ik_result_code = MoveItErrorCodes()
-            for planning_attempt in range(max_motion_retries + 1):
-                for ik_attempt in range(max_ik_retries + 1):
+            for planning_attempt in range(max_motion_retries):
+                for ik_attempt in range(max_ik_retries):
                     robot_configuration, ik_result_code = self._compute_ik(goal_pose)
 
                     if ik_result_code.val == MoveItErrorCodes.SUCCESS and robot_configuration is not None:
@@ -409,9 +409,10 @@ class MotionServer(Node):
         self.moveit2.max_velocity = self.global_velocity_scaling
         self.moveit2.max_acceleration = self.global_acceleration_scaling
 
-        for attempt in range(1, max_attempts + 1):
-            self.get_logger().info(f"[Attempt {attempt}/{max_attempts}] Moving to configuration")
-
+        for attempt in range(max_attempts):
+            self.get_logger().info(
+                    f"[Attempt {attempt + 1}/{max_attempts}] Moving to configuration"
+                )
             trajectory = self.moveit2.plan(
                 joint_positions=robot_configuration,
                 joint_names=self.joint_names,
@@ -454,8 +455,8 @@ class MotionServer(Node):
         self.moveit2.max_velocity = self.global_velocity_scaling
         self.moveit2.max_acceleration = self.global_acceleration_scaling
 
-        for attempt in range(1, max_attempts + 1):
-            self.get_logger().info(f"[Attempt {attempt}/{max_attempts}] Planning to configuration")
+        for attempt in range(max_attempts):
+            self.get_logger().info(f"[Attempt {attempt + 1}/{max_attempts}] Planning to configuration")
             trj = self.moveit2.plan(
                 joint_positions=target_configuration,
                 start_joint_state=init_joint_state(
@@ -522,8 +523,8 @@ class MotionServer(Node):
         self.moveit2.max_velocity = self.global_velocity_scaling
         self.moveit2.max_acceleration = self.global_acceleration_scaling
         
-        for attempt in range(1, max_attempts + 1):
-            self.get_logger().info(f"[Attempt {attempt}/{max_attempts}] Moving to pose")
+        for attempt in range(max_attempts):
+            self.get_logger().info(f"[Attempt {attempt + 1}/{max_attempts}] Moving to pose")
 
             joint_trajectory = self.moveit2.plan(
                     pose=goal_pose,
@@ -576,8 +577,8 @@ class MotionServer(Node):
         self.moveit2.max_velocity = self.global_velocity_scaling
         self.moveit2.max_acceleration = self.global_acceleration_scaling
         
-        for attempt in range(1, max_attempts + 1):
-            self.get_logger().info(f"[Attempt {attempt}/{max_attempts}] Planning to configuration")
+        for attempt in range(max_attempts):
+            self.get_logger().info(f"[Attempt {attempt + 1}/{max_attempts}] Planning to configuration")
 
             trj = self.moveit2.plan(
                 pose=goal_pose,
@@ -818,11 +819,11 @@ class MotionServer(Node):
             max_ik_iterations = self.get_parameter('max_ik_iterations').get_parameter_value().integer_value
 
             last_ik_result_code = MoveItErrorCodes()
-            for planning_attempt in range(max_motion_retries + 1):
+            for planning_attempt in range(max_motion_retries):
                 robot_configuration = None
                 ik_result_code = MoveItErrorCodes()
                 ik_result_code.val = MoveItErrorCodes.NO_IK_SOLUTION
-                for ik_attempt in range(max_ik_retries + 1):
+                for ik_attempt in range(max_ik_retries):
                     # if joints_start is available, look for the closest IK solution
                     if joints_start is not None:
                         best_squared_norm = 999999.9
@@ -888,7 +889,7 @@ class MotionServer(Node):
 
         max_ik_retries = self.get_parameter('max_ik_retries').get_parameter_value().integer_value
         last_ik_result_code = MoveItErrorCodes()
-        for ik_attempt in range(max_ik_retries + 1):
+        for ik_attempt in range(max_ik_retries):
             robot_configuration, ik_result_code = self._compute_ik(goal_pose,seed)
 
             if ik_result_code.val == MoveItErrorCodes.SUCCESS and robot_configuration is not None:
