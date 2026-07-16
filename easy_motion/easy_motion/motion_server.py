@@ -75,6 +75,7 @@ class MotionServer(Node):
         ws_min = self.get_parameter("workspace_min_corner").get_parameter_value().double_array_value
         ws_max = self.get_parameter("workspace_max_corner").get_parameter_value().double_array_value
         ws_frame = self.get_parameter("workspace_frame_id").get_parameter_value().string_value
+        
         if not ws_frame:
             ws_frame = self.base_link_name
 
@@ -408,8 +409,12 @@ class MotionServer(Node):
                 action_result.result.val = motion_result.val
                 if motion_result.val == MoveItErrorCodes.SUCCESS:
                     break            
-        
-        goal_handle.succeed()
+
+        if action_result.result.val == MoveItErrorCodes.SUCCESS:
+            goal_handle.succeed()
+        else:
+            goal_handle.abort()
+
         return action_result
 
     def move_to_pose_cancel_callback(self, goal_handle):
@@ -767,7 +772,11 @@ class MotionServer(Node):
         action_result = MoveToJoint.Result()
         action_result.result.val = motion_result.val
         
-        goal_handle.succeed()
+        if action_result.result.val == MoveItErrorCodes.SUCCESS:
+            goal_handle.succeed()
+        else:
+            goal_handle.abort()
+
         return action_result
 
     def plan_to_joint_cancel_callback(self, goal_handle):
@@ -792,7 +801,11 @@ class MotionServer(Node):
         if trj is not None:
             action_result.trajectory = trj
 
-        goal_handle.succeed()
+        if action_result.result.val == MoveItErrorCodes.SUCCESS:
+            goal_handle.succeed()
+        else:
+            goal_handle.abort()
+
         return action_result
 
     def plan_to_pose_cancel_callback(self, goal_handle):
@@ -879,7 +892,11 @@ class MotionServer(Node):
         if trj is not None:
             action_result.trajectory = trj
 
-        goal_handle.succeed()
+        if action_result.result.val == MoveItErrorCodes.SUCCESS:
+            goal_handle.succeed()
+        else:
+            goal_handle.abort()
+
         return action_result
 
 
