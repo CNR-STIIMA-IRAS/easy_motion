@@ -393,6 +393,9 @@ class MotionServer(Node):
                                             velocity_scaling: float = 1.0) \
             -> MoveItErrorCodes:
         result_code = MoveItErrorCodes()
+        motion_result = None
+        partial_result = None
+
         if not robot_configuration or len(robot_configuration) != len(self.joint_names):
             self.get_logger().error("Invalid robot configuration provided for motion.")
             result_code.val = MoveItErrorCodes.INVALID_ROBOT_STATE
