@@ -82,6 +82,11 @@ add_library(plan_to_joint SHARED
 )
 list(APPEND plugin_libs plan_to_joint)
 
+add_library(execute_trajectory SHARED
+  src/leaves/execute_trajectory.cpp
+)
+list(APPEND plugin_libs execute_trajectory)
+
 add_library(get_ik SHARED
   src/leaves/get_ik.cpp
 )
