@@ -156,6 +156,11 @@ class MotionServer(Node):
                 "Compute IK service not available, cannot start motion server."
             )
             raise RuntimeError("Compute IK service not available")
+        if not self.compute_fk_client.wait_for_service(timeout_sec=10.0):
+            self.get_logger().error(
+                "Compute FK service not available, cannot start motion server."
+            )
+            raise RuntimeError("Compute FK service not available")
 
         self.tf_buffer = Buffer()
         self.tf_broadcaster = TransformBroadcaster(self)
