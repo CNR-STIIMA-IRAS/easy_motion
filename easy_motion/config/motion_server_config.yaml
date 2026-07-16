@@ -17,7 +17,7 @@ motion_server_node:
     cartesian_max_step: 0.0025
     cartesian_fraction_threshold: 0.0
     cartesian_jump_threshold: 0.0
-    cartesian_avoid_collisions: True
+    cartesian_avoid_collisions: False
     max_velocity: 0.5
     max_acceleration: 0.5
     safety_velocity_scaling: 1.0
