@@ -16,7 +16,8 @@ public:
 
   static BT::PortsList providedPorts()
   {
-    return providedBasicPorts({
+    return providedBasicPorts(
+    {
       BT::InputPort<trajectory_msgs::msg::JointTrajectory>("trajectory"),
       BT::OutputPort<int>("result_code"),
     });
