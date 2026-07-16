@@ -5,6 +5,7 @@ import rclpy
 from rclpy.action import ActionServer
 from rclpy.action.server import ServerGoalHandle
 from rclpy.node import Node
+from rclpy.parameter import Parameter
 
 from easy_motion_msgs.action import MoveToPose, MoveToJoint, PlanToPose, PlanToJoint
 from easy_motion_msgs.srv import AttachObject, DetachObject, GetIK, GetFK
@@ -19,6 +20,10 @@ from moveit_msgs.srv import GetPositionIK, GetPositionFK
 from easy_motion.easy_motion_utils import transform_to_affine, pose_stamped_to_affine, affine_to_transform, transform_to_pose_stamped, build_affine
 import numpy as np
 
+
+DEFAULT_MAX_MOTION_RETRIES = 3
+DEFAULT_MAX_IK_RETRIES = 3
+DEFAULT_MAX_IK_ITERATIONS = 1
 
 
 class MotionServer(Node):
@@ -43,10 +48,10 @@ class MotionServer(Node):
         self.declare_parameter("joint_tolerance", 0.0001)
         self.declare_parameter("tolerance_position", 0.001)
         self.declare_parameter("tolerance_orientation", 0.001)
-        self.declare_parameter("max_motion_retries", 3)
-        self.declare_parameter("max_ik_retries", 3)
+        self.declare_parameter("max_motion_retries", DEFAULT_MAX_MOTION_RETRIES)
+        self.declare_parameter("max_ik_retries", DEFAULT_MAX_IK_RETRIES)
         self.declare_parameter("ik_timeout", 20)
-        self.declare_parameter("max_ik_iterations", 1) # Used for better visual usage (think movements in tip frame)
+        self.declare_parameter("max_ik_iterations", DEFAULT_MAX_IK_ITERATIONS)
         self.declare_parameter("ik_avoid_collisions", False)
         self.declare_parameter("virtual_end_effector", 'tip') # Used for better visual usage (think movements in tip frame) 
         self.declare_parameter("workspace_min_corner", [-1.0, -1.0, -1.0])
@@ -61,6 +66,12 @@ class MotionServer(Node):
         self.global_velocity_scaling = self.get_parameter('max_velocity').get_parameter_value().double_value
         self.global_acceleration_scaling = self.get_parameter('max_acceleration').get_parameter_value().double_value
         self.safety_velocity_scaling = self.get_parameter('safety_velocity_scaling').get_parameter_value().double_value
+        self.max_motion_retries = self._get_positive_integer_parameter(
+            'max_motion_retries', DEFAULT_MAX_MOTION_RETRIES)
+        self.max_ik_retries = self._get_positive_integer_parameter(
+            'max_ik_retries', DEFAULT_MAX_IK_RETRIES)
+        self.max_ik_iterations = self._get_positive_integer_parameter(
+            'max_ik_iterations', DEFAULT_MAX_IK_ITERATIONS)
         ws_min = self.get_parameter("workspace_min_corner").get_parameter_value().double_array_value
         ws_max = self.get_parameter("workspace_max_corner").get_parameter_value().double_array_value
         ws_frame = self.get_parameter("workspace_frame_id").get_parameter_value().string_value
@@ -172,6 +183,18 @@ class MotionServer(Node):
 
         print("end effector: ", self.end_effector_name, flush=True)
         print("virtual end effector: ", self.virtual_end_effector, flush=True)
+
+    def _get_positive_integer_parameter(self, name: str, default: int) -> int:
+        value = self.get_parameter(name).get_parameter_value().integer_value
+        if value >= 1:
+            return value
+
+        self.get_logger().warning(
+            f"Invalid {name}={value}; using default {default}.")
+        self.set_parameters([
+            Parameter(name, Parameter.Type.INTEGER, default)
+        ])
+        return default
 
     def init_virtual_to_ee_transform(self) -> Optional[TransformStamped]:
         """
@@ -354,18 +377,16 @@ class MotionServer(Node):
         self.broadcast_pose_goal_tf(goal_pose)  # For debugging purposes show the goal pose
 
 
-        max_motion_retries = self.get_parameter('max_motion_retries').get_parameter_value().integer_value
         if cartesian_motion:
             motion_result = self._move_to_pose_with_retries(goal_pose=goal_pose, 
                                                             cartesian=True, 
-                                                            max_attempts=max_motion_retries,
+                                                            max_attempts=self.max_motion_retries,
                                                             velocity_scaling=velocity_scaling)
             action_result.result.val = motion_result.val
         else:
-            max_ik_retries = self.get_parameter('max_ik_retries').get_parameter_value().integer_value
             last_ik_result_code = MoveItErrorCodes()
-            for planning_attempt in range(max_motion_retries):
-                for ik_attempt in range(max_ik_retries):
+            for planning_attempt in range(self.max_motion_retries):
+                for ik_attempt in range(self.max_ik_retries):
                     robot_configuration, ik_result_code = self._compute_ik(goal_pose)
 
                     if ik_result_code.val == MoveItErrorCodes.SUCCESS and robot_configuration is not None:
@@ -375,7 +396,7 @@ class MotionServer(Node):
                     last_ik_result_code.val = ik_result_code.val if ik_result_code is not None else MoveItErrorCodes.NO_IK_SOLUTION
 
                     self.get_logger().warn(f"IK computation failed with code {last_ik_result_code.val}")
-                    self.get_logger().warn(f"Move to pose is aborted due to no IK solution after {max_ik_retries} attempts.")
+                    self.get_logger().warn(f"Move to pose is aborted due to no IK solution after {self.max_ik_retries} attempts.")
                     goal_handle.abort()
                     action_result.result.val = last_ik_result_code.val
                     return action_result
@@ -741,8 +762,8 @@ class MotionServer(Node):
         velocity_scaling = goal_handle.request.velocity_scaling
 
         self.get_logger().info(f"Moving to joint: {joints_goal}")
-        max_motion_retries = self.get_parameter('max_motion_retries').get_parameter_value().integer_value
-        motion_result = self._move_to_configuration_with_retries(joints_goal, max_motion_retries, velocity_scaling)
+        motion_result = self._move_to_configuration_with_retries(
+            joints_goal, self.max_motion_retries, velocity_scaling)
         action_result = MoveToJoint.Result()
         action_result.result.val = motion_result.val
         
@@ -763,8 +784,8 @@ class MotionServer(Node):
             self.moveit2.wait_new_joint_state()
             self.get_logger().info(f"Planning from current config to {joints_goal}")
 
-        max_motion_retries = self.get_parameter('max_motion_retries').get_parameter_value().integer_value
-        motion_result, trj = self._plan_to_configuration_with_retries(joints_goal, joints_start, max_motion_retries, velocity_scaling)
+        motion_result, trj = self._plan_to_configuration_with_retries(
+            joints_goal, joints_start, self.max_motion_retries, velocity_scaling)
 
         action_result = PlanToJoint.Result()
         action_result.result.val = motion_result.val
@@ -806,28 +827,24 @@ class MotionServer(Node):
 
         self.broadcast_pose_goal_tf(goal_pose)  # For debugging purposes show the goal pose
 
-        max_motion_retries = self.get_parameter('max_motion_retries').get_parameter_value().integer_value
         if cartesian_motion:
             motion_result, trj = self._plan_to_pose_with_retries(goal_pose=goal_pose,
                                                                 start_configuration=joints_start,
                                                                 cartesian=True,
-                                                                max_attempts=max_motion_retries,
+                                                                max_attempts=self.max_motion_retries,
                                                                 velocity_scaling=velocity_scaling)
             action_result.result.val = motion_result.val
         else:
-            max_ik_retries = self.get_parameter('max_ik_retries').get_parameter_value().integer_value
-            max_ik_iterations = self.get_parameter('max_ik_iterations').get_parameter_value().integer_value
-
             last_ik_result_code = MoveItErrorCodes()
-            for planning_attempt in range(max_motion_retries):
+            for planning_attempt in range(self.max_motion_retries):
                 robot_configuration = None
                 ik_result_code = MoveItErrorCodes()
                 ik_result_code.val = MoveItErrorCodes.NO_IK_SOLUTION
-                for ik_attempt in range(max_ik_retries):
+                for ik_attempt in range(self.max_ik_retries):
                     # if joints_start is available, look for the closest IK solution
                     if joints_start is not None:
                         best_squared_norm = 999999.9
-                        for _ in range(max_ik_iterations):
+                        for _ in range(self.max_ik_iterations):
                             tmp, tmp_ik_result_code = self._compute_ik(goal_pose)
                             if tmp_ik_result_code.val == MoveItErrorCodes.SUCCESS and tmp is not None:
                                 squared_norm = sum((x - y) ** 2 for x, y in zip(tmp, joints_start))
@@ -846,7 +863,7 @@ class MotionServer(Node):
 
                     self.get_logger().warn(f"IK computation failed with code {last_ik_result_code.val}")
                     self.get_logger().warn(
-                        f"Plan to pose is aborted due to no IK solution after {max_ik_retries} attempts.")
+                        f"Plan to pose is aborted due to no IK solution after {self.max_ik_retries} attempts.")
                     goal_handle.abort()
                     action_result.result.val = last_ik_result_code.val
                     return action_result
@@ -887,9 +904,8 @@ class MotionServer(Node):
         goal_pose: PoseStamped = request.pose
         seed: List[float] = request.seed if len(request.seed)>0 else None
 
-        max_ik_retries = self.get_parameter('max_ik_retries').get_parameter_value().integer_value
         last_ik_result_code = MoveItErrorCodes()
-        for ik_attempt in range(max_ik_retries):
+        for ik_attempt in range(self.max_ik_retries):
             robot_configuration, ik_result_code = self._compute_ik(goal_pose,seed)
 
             if ik_result_code.val == MoveItErrorCodes.SUCCESS and robot_configuration is not None:
