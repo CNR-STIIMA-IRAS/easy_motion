@@ -8,3 +8,4 @@ kdev4/
 *.pyc
 __pycache__
 .vscode
+/docs/

@@ -1,7 +1,0 @@
-easy_motion
-===========
-
-.. toctree::
-   :maxdepth: 4
-
-   easy_motion

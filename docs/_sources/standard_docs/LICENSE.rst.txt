@@ -1,5 +1,0 @@
-LICENSE
-)))))))
-
-.. literalinclude:: original/LICENSE.txt
-   :language: none

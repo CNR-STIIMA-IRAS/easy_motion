@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - main
-    paths-ignore:
-      - "docs/**"
 
   pull_request:
     branches:
@@ -14,7 +12,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   build-docs:
@@ -29,7 +27,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v6
 
       - name: Install Python dependencies
         run: |
@@ -44,7 +42,7 @@ jobs:
           colcon-defaults: |
             {
               "test": {
-                "parallel-workers" : 1
+                "parallel-workers": 1
               }
             }
           vcs-repo-file-url: https://raw.githubusercontent.com/CNR-STIIMA-IRAS/easy_motion/refs/heads/main/dependencies.repos
@@ -63,18 +61,35 @@ jobs:
           source "${{ steps.action_ros_ci.outputs.ros-workspace-directory-name }}/install/setup.bash"
           bash .github/scripts/build_docs.sh
 
-      - name: Commit generated documentation
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          git config --global --add safe.directory "$GITHUB_WORKSPACE"
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+      - name: Configure GitHub Pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v5
 
-          git add docs
+      - name: Upload GitHub Pages artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: docs
 
-          if git diff --cached --quiet; then
-            echo "Documentation is already up to date."
-          else
-            git commit -m "docs: update generated documentation [skip ci]"
-            git push
-          fi
+  deploy-docs:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build-docs
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    concurrency:
+      group: github-pages
+      cancel-in-progress: false
+
+    steps:
+      - name: Deploy documentation
+        id: deployment
+        uses: actions/deploy-pages@v4
