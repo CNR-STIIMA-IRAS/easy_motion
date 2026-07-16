@@ -52,7 +52,7 @@ class MotionServer(Node):
         self.declare_parameter("max_ik_retries", DEFAULT_MAX_IK_RETRIES)
         self.declare_parameter("ik_timeout", 20)
         self.declare_parameter("max_ik_iterations", DEFAULT_MAX_IK_ITERATIONS)
-        self.declare_parameter("ik_avoid_collisions", False)
+        self.declare_parameter("ik_avoid_collisions", True)
         self.declare_parameter("virtual_end_effector", 'tip') # Used for better visual usage (think movements in tip frame) 
         self.declare_parameter("workspace_min_corner", [-1.0, -1.0, -1.0])
         self.declare_parameter("workspace_max_corner", [ 1.0,  1.0,  1.0])
