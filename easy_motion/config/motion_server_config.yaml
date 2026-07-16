@@ -20,4 +20,5 @@ motion_server_node:
     cartesian_avoid_collisions: True
     max_velocity: 0.5
     max_acceleration: 0.5
+    safety_velocity_scaling: 1.0
     

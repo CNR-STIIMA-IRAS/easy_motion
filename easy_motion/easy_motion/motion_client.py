@@ -92,15 +92,14 @@ class MotionClient(Node):
             self.get_logger().warn(f"Gripper action server {gripper_action_name} not found.")
 
     def move_to_pose(self, pose: PoseStamped, cartesian_motion: bool = False, relative_motion = False,
-                     velocity_scaling: float = 1.0, acceleration_scaling: float = 1.0) -> MoveItErrorCodes:
+                     velocity_scaling: float = 1.0) -> MoveItErrorCodes:
         """Move the robot to a target pose.
 
         Args:
             pose (PoseStamped): Target pose for the robot.
             cartesian_motion (bool, optional): If True, uses Cartesian trajectories. Defaults to False.
             relative_motion (bool, optional): If True, consider pose as a displacement from the robot initial state. Defaults to False.
-            velocity_scaling (float): Velocity scaling for planning the trajectory. Will be multiplied by max_velocity
-            acceleration_scaling (float): Acceleration scaling for planning the trajectory. Will be multiplied by max_acceleration
+            velocity_scaling (float): Manual velocity scaling applied to the planned trajectory.
 
         Returns:
             MoveItErrorCodes: Result code returned by the motion planner.
@@ -115,8 +114,7 @@ class MotionClient(Node):
         goal_msg.pose_target = pose
         goal_msg.cartesian_motion = cartesian_motion
         goal_msg.relative_motion = relative_motion
-        goal_msg.max_velocity_scaling = velocity_scaling
-        goal_msg.max_acceleration_scaling = acceleration_scaling
+        goal_msg.velocity_scaling = velocity_scaling
 
         future = self.move_to_pose_client.send_goal_async(goal_msg)
         rclpy.spin_until_future_complete(self, future)
@@ -130,14 +128,13 @@ class MotionClient(Node):
         
         return result_future.result().result.result
 
-    def move_to_joint(self, joint_positions: list[float], velocity_scaling: float = 1.0, acceleration_scaling: float = 1.0) \
+    def move_to_joint(self, joint_positions: list[float], velocity_scaling: float = 1.0) \
             -> MoveItErrorCodes:
         """Move the robot to a specific joint configuration.
 
         Args:
             joint_positions (list[float]): List of target joint values.
-            velocity_scaling (float): Velocity scaling for planning the trajectory. Will be multiplied by max_velocity
-            acceleration_scaling (float): Acceleration scaling for planning the trajectory. Will be multiplied by max_acceleration
+            velocity_scaling (float): Manual velocity scaling applied to the planned trajectory.
         Returns:
             MoveItErrorCodes: Result code returned by the motion planner.
 
@@ -149,8 +146,7 @@ class MotionClient(Node):
 
         goal_msg = MoveToJoint.Goal()
         goal_msg.joint_target = joint_positions
-        goal_msg.max_velocity_scaling = velocity_scaling
-        goal_msg.max_acceleration_scaling = acceleration_scaling
+        goal_msg.velocity_scaling = velocity_scaling
 
         future = self.move_to_joint_client.send_goal_async(goal_msg)
         rclpy.spin_until_future_complete(self, future)
@@ -166,7 +162,7 @@ class MotionClient(Node):
 
     def plan_to_pose(self, pose: PoseStamped, joint_start: list[float] = None,
                      cartesian_motion: bool = False, relative_motion: bool = False,
-                     velocity_scaling: float = 1.0, acceleration_scaling: float = 1.0) \
+                     velocity_scaling: float = 1.0) \
             -> Tuple[MoveItErrorCodes, JointTrajectory]:
         """Plan a trajectory to the target pose.
 
@@ -175,8 +171,7 @@ class MotionClient(Node):
             joint_start (list[float]): List of start joint values. If None, use current move_group config.
             cartesian_motion (bool, optional): If True, uses Cartesian trajectories. Defaults to False.
             relative_motion (bool, optional): If True, consider pose as a displacement from the robot initial state. Defaults to False.
-            velocity_scaling (float): Velocity scaling for planning the trajectory. Will be multiplied by max_velocity
-            acceleration_scaling (float): Acceleration scaling for planning the trajectory. Will be multiplied by max_acceleration
+            velocity_scaling (float): Manual velocity scaling applied to the planned trajectory.
         Returns:
             MoveItErrorCodes: Result code returned by the motion planner.
 
@@ -190,8 +185,7 @@ class MotionClient(Node):
         goal_msg.pose_target = pose
         goal_msg.cartesian_motion = cartesian_motion
         goal_msg.relative_motion = relative_motion
-        goal_msg.max_velocity_scaling = velocity_scaling
-        goal_msg.max_acceleration_scaling = acceleration_scaling
+        goal_msg.velocity_scaling = velocity_scaling
         if joint_start is not None:
             goal_msg.joint_start = joint_start
 
@@ -211,14 +205,13 @@ class MotionClient(Node):
         return result_future.result().result.result, result_future.result().result.trajectory
 
     def plan_to_joint(self, joint_target: list[float], joint_start: list[float] = None,
-                      velocity_scaling: float = 1.0, acceleration_scaling: float = 1.0) -> Tuple[MoveItErrorCodes, JointTrajectory]:
+                      velocity_scaling: float = 1.0) -> Tuple[MoveItErrorCodes, JointTrajectory]:
         """Move the robot to a specific joint configuration.
 
         Args:
             joint_target (list[float]): List of target joint values.
             joint_start (list[float]): List of start joint values. If None, use current move_group config.
-            velocity_scaling (float): Velocity scaling for planning the trajectory. Will be multiplied by max_velocity
-            acceleration_scaling (float): Acceleration scaling for planning the trajectory. Will be multiplied by max_acceleration
+            velocity_scaling (float): Manual velocity scaling applied to the planned trajectory.
 
         Returns:
             MoveItErrorCodes: Result code returned by the motion planner
@@ -232,8 +225,7 @@ class MotionClient(Node):
 
         goal_msg = PlanToJoint.Goal()
         goal_msg.joint_target = joint_target
-        goal_msg.max_velocity_scaling = velocity_scaling
-        goal_msg.max_acceleration_scaling = acceleration_scaling
+        goal_msg.velocity_scaling = velocity_scaling
         if joint_start is not None:
             goal_msg.joint_start = joint_start
 

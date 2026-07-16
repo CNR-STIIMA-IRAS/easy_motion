@@ -36,7 +36,6 @@ def main():
         cartesian_motion=True,
         relative_motion=True,
         velocity_scaling=0.3,
-        acceleration_scaling=0.3,
     )
 
     print(f"Plan result: {result.val}")

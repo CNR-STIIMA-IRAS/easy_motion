@@ -22,8 +22,7 @@ public:
     {
       BT::InputPort<std::vector<double>>("joint_target"),
       BT::InputPort<std::vector<double>>("joint_start"),
-      BT::InputPort<double>("max_velocity_scaling"),
-      BT::InputPort<double>("max_acceleration_scaling"),
+      BT::InputPort<double>("velocity_scaling"),
       BT::OutputPort<trajectory_msgs::msg::JointTrajectory>("trajectory"),
       BT::OutputPort<int>("result_code"),
     });
