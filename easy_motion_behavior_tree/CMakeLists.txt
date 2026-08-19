@@ -44,6 +44,12 @@ add_executable(bt_executer_node
 )
 ament_target_dependencies(bt_executer_node ${dependencies})
 
+add_executable(dynamic_bt_executor_node
+  src/dynamic_bt_executor_node.cpp
+)
+
+ament_target_dependencies(dynamic_bt_executor_node ${dependencies})
+
 add_library(move_to_pose SHARED
     src/leaves/move_to_pose.cpp
 )
@@ -127,11 +133,22 @@ install(DIRECTORY launch config trees DESTINATION share/${PROJECT_NAME})
 
 install(TARGETS
   bt_executer_node
+  dynamic_bt_executor_node
   ${plugin_libs}
   EXPORT export_${PROJECT_NAME}
   ARCHIVE DESTINATION lib
   LIBRARY DESTINATION lib
   RUNTIME DESTINATION lib/${PROJECT_NAME}
+)
+
+# Required by behaviortree_ros2's dynamic executor; the one-shot executor loads
+# the same plugins from the standard library directory.
+install(
+  TARGETS ${plugin_libs}
+
+  LIBRARY DESTINATION share/${PROJECT_NAME}/bt_plugins
+  ARCHIVE DESTINATION share/${PROJECT_NAME}/bt_plugins
+  RUNTIME DESTINATION share/${PROJECT_NAME}/bt_plugins
 )
 
 install(DIRECTORY include

@@ -119,3 +119,19 @@ bt_executer_node:
 ```
 
 Only plugins used by the selected tree need to be loaded.
+
+## Dynamic executor
+
+The dynamic executor accepts a complete BehaviorTree.CPP XML document in the
+action goal payload and executes the tree selected by `target_tree`:
+
+```bash
+ros2 launch easy_motion_behavior_tree dynamic_bt_executor.launch.py
+ros2 action send_goal /execute_behavior_tree \
+  btcpp_ros2_interfaces/action/ExecuteTree \
+  '{target_tree: MainTree, payload: "<root BTCPP_format=\"4\"><BehaviorTree ID=\"MainTree\"><AlwaysSuccess/></BehaviorTree></root>"}'
+```
+
+The goal is rejected if the tree name or payload is empty, the XML is invalid,
+or `target_tree` is not defined in the received document. Plugin directories
+and execution parameters are set in `dynamic_bt_executor_config.yaml`.

@@ -1,0 +1,15 @@
+bt_action_server:
+  ros__parameters:
+
+    action_name: "execute_behavior_tree"
+
+    tick_frequency: 50
+
+    ros_plugins_timeout: 10000
+
+    groot2_port: 1667
+
+    plugins:
+      - easy_motion_behavior_tree/bt_plugins
+
+    # behavior_trees: []
