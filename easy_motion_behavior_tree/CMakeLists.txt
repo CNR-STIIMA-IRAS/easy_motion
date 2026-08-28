@@ -39,16 +39,31 @@ set(dependencies
   std_srvs
 )
 
+set(dependency_targets
+  ${rclcpp_TARGETS}
+  ${behaviortree_cpp_TARGETS}
+  ${behaviortree_ros2_TARGETS}
+  ${easy_motion_msgs_TARGETS}
+  ${control_msgs_TARGETS}
+  ${geometry_msgs_TARGETS}
+  ${moveit_msgs_TARGETS}
+  ${moveit_core_TARGETS}
+  ${trajectory_msgs_TARGETS}
+  ${tf2_ros_TARGETS}
+  ${tf2_TARGETS}
+  ${std_srvs_TARGETS}
+)
+
 add_executable(bt_executer_node
     src/bt_executer_node.cpp
 )
-ament_target_dependencies(bt_executer_node ${dependencies})
+target_link_libraries(bt_executer_node PRIVATE ${dependency_targets})
 
 add_executable(dynamic_bt_executor_node
   src/dynamic_bt_executor_node.cpp
 )
 
-ament_target_dependencies(dynamic_bt_executor_node ${dependencies})
+target_link_libraries(dynamic_bt_executor_node PRIVATE ${dependency_targets})
 
 add_library(move_to_pose SHARED
     src/leaves/move_to_pose.cpp
@@ -119,8 +134,7 @@ add_library(trigger_service SHARED
 list(APPEND plugin_libs trigger_service)
 
 foreach(bt_plugin ${plugin_libs})
-  # target_link_libraries(${bt_plugin} ${dependencies})
-  ament_target_dependencies(${bt_plugin} PUBLIC ${dependencies})
+  target_link_libraries(${bt_plugin} PUBLIC ${dependency_targets})
   target_compile_definitions(${bt_plugin} PRIVATE BT_PLUGIN_EXPORT)
   target_include_directories(
     ${bt_plugin} PUBLIC

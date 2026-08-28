@@ -27,26 +27,19 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   $<INSTALL_INTERFACE:include>
 )
 
-ament_target_dependencies(${PROJECT_NAME}
-  rclcpp
-  rclcpp_action
-  easy_motion_msgs
-  geometry_msgs
-  trajectory_msgs
-  moveit_msgs
-  control_msgs
+target_link_libraries(${PROJECT_NAME} PUBLIC
+  ${rclcpp_TARGETS}
+  ${rclcpp_action_TARGETS}
+  ${easy_motion_msgs_TARGETS}
+  ${geometry_msgs_TARGETS}
+  ${trajectory_msgs_TARGETS}
+  ${moveit_msgs_TARGETS}
+  ${control_msgs_TARGETS}
 )
 
 add_executable(simple_motion_client examples/simple_motion_client.cpp)
-target_link_libraries(simple_motion_client ${PROJECT_NAME})
-ament_target_dependencies(simple_motion_client
-  rclcpp
-  rclcpp_action
-  easy_motion_msgs
-  geometry_msgs
-  trajectory_msgs
-  moveit_msgs
-  control_msgs
+target_link_libraries(simple_motion_client PRIVATE
+  ${PROJECT_NAME}
 )
 
 install(TARGETS ${PROJECT_NAME}
