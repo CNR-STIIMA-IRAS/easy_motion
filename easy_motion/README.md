@@ -2,7 +2,10 @@
 
 ## Overview
 
-`easy_motion` is a small ROS 2 package that provides a MoveIt2-backed motion server and a convenient client API for manipulation tasks. It exposes actions for moving the robot to Cartesian poses and joint configurations, services for attaching/detaching objects in the MoveIt planning scene, and a simple gripper action client example. The package also includes small TF/affine utilities for frame conversions and an optional "virtual end-effector" offset to simplify tool-centered motion.
+`easy_motion` is a ROS 2 package that provides a MoveIt2-backed motion server and a Python client API for manipulation tasks.
+
+This README focuses on quick usage for this package only.
+For installation, dependencies, and global configuration, refer to the repository README: [../README.md](../README.md).
 
 ---
 
@@ -10,117 +13,100 @@
 
 * `MotionServer` node: integrates `pymoveit2` to plan & execute motions.
 
-  * Actions: `move_to_pose`, `move_to_joint` (custom `easy_motion_msgs` actions).
-  * Services: `attach_object`, `detach_object` (custom `easy_motion_msgs` services).
+  * Actions: `move_to_pose`, `move_to_joint`, `plan_to_pose`, `plan_to_joint`.
+  * Services: `attach_object`, `detach_object`, `get_ik`, `get_fk`.
   * Supports Cartesian vs. IK-based motions, retry logic, and broadcasting a `pose_goal_frame` TF for debugging.
 
 
 * `MotionClient` node: a lightweight client wrapper that:
 
-  * Sends goals to the server (`MoveToPose`, `MoveToJoint`).
+  * Sends goals to the server (`MoveToPose`, `MoveToJoint`, planning actions).
   * Calls attach/detach services.
-  * Controls a gripper via `control_msgs/GripperCommand` action. Take care of the action names.
+  * Calls IK/FK services.
+  * Controls a gripper via `control_msgs/GripperCommand` action.
 
 * `easy_motion_utils`: TF ↔ affine utilities and Pose/Transform helpers.
 
 ---
 
-## Requirements
-
-* ROS 2 (tested with Humble)
-* `pymoveit2` and MoveIt 2 stack
-* `easy_motion_msgs` (defines `MoveToPose`, `MoveToJoint`, `AttachObject`, `DetachObject`)
-
-The server uses a `compute_ik` service provided by MoveIt.
-
----
-
-## Installation
-
-1. Clone the repository into your ROS 2 workspace `src/`.
-2. Install Python dependencies (example using pip):
-
-```bash
-pip install -r requirements.txt
-# or at least:
-pip install numpy scipy pymoveit2
-```
-
-3. Build the workspace:
-
-```bash
-colcon build --packages-select easy_motion
-```
-
-4. Source the workspace:
-
-```bash
-source install/setup.bash
-```
-
----
-
-## Configuration (ROS parameters)
-
-The server exposes several parameters (defaults shown in the node):
-
-* `move_group_name` (string, default: `manipulator`)
-* `joint_names` (string\[], default: `['']`)
-* `base_link_name` (string, default: `base_link`)
-* `end_effector_name` (string, default: `tool0`)
-* `planner_id` (string, default: `BiTRRT`)
-* `cartesian_max_step`, `cartesian_fraction_threshold`, `cartesian_jump_threshold` (floats)
-* `cartesian_avoid_collisions` (bool)
-* `max_velocity`, `max_acceleration` (floats)
-* `use_move_group_action` (bool)
-* `allowed_planning_time` (float)
-* `tolerance_position`, `tolerance_orientation` (floats)
-* `max_motion_retries`, `max_ik_retries` (ints)
-* `ik_timeout` (int)
-* `virtual_end_effector` (string, name of a virtual frame; default: `tip`)
-
-You can set these via `ros2 param set` or in a launch file.
-
----
-
-## Running the server
-
-Start your MoveIt 2-related nodes (planning, controllers, joint\_state\_publisher) as required by your robot. Then launch the motion server node:
-
-```bash
-ros2 run easy_motion motion_server_node
-```
-
-If everything is configured, the server will attempt to connect to the `compute_ik` service and report readiness.
-
----
-
 ## Quick usage examples
 
-### Move to a pose (action)
+> **Note:** The ROS 2 node `motion_server_node` must be running in parallel before using any of the following examples.
 
-Send a `MoveToPose` goal using the client node or `ros2 action` CLI. Example with `ros2 action` (you need to craft a suitable goal JSON/YAML):
-
-```bash
-ros2 action send_goal /move_to_pose easy_motion_msgs/action/MoveToPose "{pose_target: {header: { frame_id: 'base_link'}, pose: { position: { x: 0.5, y: 0.0, z: 0.2 }, orientation: { x: 0, y: 0, z: 0, w: 1 }}}, cartesian_motion: false }"
-```
-
-To use Cartesian motion set `cartesian_motion: true`.
-
-### Move to joint configuration (action)
+### Direct call to `move_to_pose` (absolute target)
 
 ```bash
-ros2 action send_goal /move_to_joint easy_motion_msgs/action/MoveToJoint "{ joint_target: [0.0, -1.0, 1.0, 0.0, 0.0, 0.0] }"
+ros2 action send_goal /move_to_pose easy_motion_msgs/action/MoveToPose \
+"{
+  pose_target: {
+    header: {frame_id: 'base_link'},
+    pose: {
+      position: {x: 0.45, y: 0.0, z: 0.25},
+      orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}
+    }
+  },
+  cartesian_motion: false,
+  relative_motion: false,
+  velocity_scaling: 0.3
+}"
 ```
 
-### Attach / Detach object (services)
+### Direct call to `move_to_pose` (relative + cartesian)
+
+Small example inspired by `pose_example.py`:
+
+```bash
+ros2 action send_goal /move_to_pose easy_motion_msgs/action/MoveToPose \
+"{
+  pose_target: {
+    header: {frame_id: 'base_link'},
+    pose: {
+      position: {x: 0.0, y: 0.0, z: -0.10},
+      orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}
+    }
+  },
+  cartesian_motion: true,
+  relative_motion: true,
+  velocity_scaling: 0.2
+}"
+```
+
+### Direct call to `move_to_joint`
+
+```bash
+ros2 action send_goal /move_to_joint easy_motion_msgs/action/MoveToJoint \
+"{
+  joint_target: [0.0, -1.2, 1.4, -1.2, -1.57, 0.0],
+  velocity_scaling: 0.4
+}"
+```
+
+### Optional: direct planning call (`plan_to_pose`)
+
+```bash
+ros2 action send_goal /plan_to_pose easy_motion_msgs/action/PlanToPose \
+"{
+  pose_target: {
+    header: {frame_id: 'base_link'},
+    pose: {
+      position: {x: 0.4, y: 0.1, z: 0.3},
+      orientation: {x: 0.0, y: 0.0, z: 0.0, w: 1.0}
+    }
+  },
+  cartesian_motion: false,
+  relative_motion: false,
+  velocity_scaling: 0.3
+}"
+```
+
+### Direct call to object services
 
 ```bash
 ros2 service call /attach_object easy_motion_msgs/srv/AttachObject "{ object_id: 'my_box', target_frame_id: 'ee_link' }"
 ros2 service call /detach_object easy_motion_msgs/srv/DetachObject "{ object_id: 'my_box' }"
 ```
 
-### Gripper command (example)
+### Gripper action (outside the motion server)
 
 If your system exposes a gripper `control_msgs/GripperCommand` action (example name: `robotiq_action_controller/gripper_cmd`):
 
@@ -130,40 +116,89 @@ ros2 action send_goal /robotiq_action_controller/gripper_cmd control_msgs/action
 
 ---
 
-## API Overview
+## Mini Python client snippets
 
-🔗 [API Website](https://cnr-stiima-iras.github.io/drims2_motion_control/index.html)
+### 1) Minimal setup
 
-### MotionServer
+```python
+import rclpy
+from easy_motion.motion_client import MotionClient
 
-* Exposes action servers for `MoveToPose` and `MoveToJoint`.
-* Exposes services `attach_object` and `detach_object`.
-* Uses `pymoveit2.MoveIt2` for planning and execution.
-* Handles IK computation via the `compute_ik` service.
-* Broadcasts a `pose_goal_frame` transform for debugging when a goal pose is received.
-* Implements retry loops for both IK and motion execution.
+rclpy.init()
+client = MotionClient(gripper_action_name='/gripper_action_controller/gripper_cmd')
+# ... use methods below ...
+client.destroy_node()
+rclpy.shutdown()
+```
 
-### MotionClient
+### 2) Minimal `move_to_pose`
 
-Node wrapper around action servers and services to simplify usage from Python scripts. Here you can find the available API.
+```python
+from geometry_msgs.msg import PoseStamped
 
-<!-- --- -->
+pose = PoseStamped()
+pose.header.frame_id = 'base_link'
+pose.pose.position.z = -0.10
+pose.pose.orientation.w = 1.0
 
-<!-- ## Virtual end-effector note
+result = client.move_to_pose(
+    pose,
+    cartesian_motion=True,
+    relative_motion=True,
+    velocity_scaling=0.2,
+)
+print(result.val)
+```
 
-The server supports planning relative to a *virtual* end-effector frame. This is useful when you want to plan motions relative to a tool tip or a different reference than the real end-effector. The server will attempt to look up the transform between the `virtual_end_effector` frame and the configured `end_effector_name`. If the transform is not available at startup, it will retry when the first goal arrives. -->
+### 3) Minimal `move_to_joint`
 
-<!-- ---
+```python
+result = client.move_to_joint([0.0, -1.2, 1.4, -1.2, -1.57, 0.0], velocity_scaling=0.4)
+print(result.val)
+```
 
-## Troubleshooting
+### 4) Minimal attach/detach + gripper
 
-* **Compute IK service not available**: Ensure MoveIt is running and providing the `compute_ik` service. The server will raise and exit if it cannot connect at start.
-* **No joint state**: The IK computation uses the current joint state as a seed. Make sure `/joint_states` is published.
-* **Motion failures**: The server retries motions a configurable number of times. Inspect the node logs to see the `MoveItErrorCodes` returned from execution. -->
+```python
+ok = client.attach_object('dice', 'tool0')
+print('attach:', ok)
+
+reached, stalled = client.gripper_command(0.02, max_effort=5.0)
+print('gripper:', reached, stalled)
+
+ok = client.detach_object('dice')
+print('detach:', ok)
+```
+
+---
+
+## MotionClient API at a glance
+
+Main methods exposed by `MotionClient`:
+
+* `move_to_pose(pose, cartesian_motion=False, relative_motion=False, velocity_scaling=1.0)`
+* `move_to_joint(joint_positions, velocity_scaling=1.0)`
+* `plan_to_pose(pose, joint_start=None, cartesian_motion=False, relative_motion=False, velocity_scaling=1.0)`
+* `plan_to_joint(joint_target, joint_start=None, velocity_scaling=1.0)`
+* `execute_last_planned_trajectory()`
+* `execute_trajectory(trajectory, controller_names=None)`
+* `attach_object(object_id, target_frame_id)`
+* `detach_object(object_id)`
+* `get_ik(pose, seed=None)`
+* `get_fk(joint_state)`
+* `gripper_command(position, max_effort=0.0)`
+
+---
+
+## API links
+
+* MotionClient API (specific page):
+  [https://cnr-stiima-iras.github.io/easy_motion/easy_motion/easy_motion.motion_client.html](https://cnr-stiima-iras.github.io/easy_motion/easy_motion/easy_motion.motion_client.html)
+* Package docs index:
+  [https://cnr-stiima-iras.github.io/easy_motion/easy_motion/index.html](https://cnr-stiima-iras.github.io/easy_motion/easy_motion/index.html)
 
 ---
 
 ## Contributing
 
 Contributions and bug reports are welcome. Open issues or pull requests in the repository.
-
