@@ -1,9 +1,11 @@
+"""Conversions between ROS 2 poses, transforms, and affine matrices."""
+
 # from rclpy.node import Node
 # from moveit.planning import MoveItPy, PlanRequestParameters
 from geometry_msgs.msg import (PoseStamped, TransformStamped)
 from scipy.spatial.transform import Rotation as R
 import numpy as np
-from typing import Optional, Iterable
+from typing import Sequence
 
 
 # class CartesianPlannerParams:
@@ -25,27 +27,29 @@ from typing import Optional, Iterable
 
 #         return plan_request_param
 
-def quat_to_rot_xyzw(q):
-    """Quaternion [x, y, z, w] -> 3x3 rotation matrix (SciPy order)."""
+def quat_to_rot_xyzw(q: Sequence[float]) -> np.ndarray:
+    """Convert a quaternion to a rotation matrix.
+
+    Args:
+        q: Quaternion components in SciPy's ``[x, y, z, w]`` order.
+
+    Returns:
+        A 3x3 rotation matrix.
+    """
     r = R.from_quat([q[0], q[1], q[2], q[3]])
     return r.as_matrix()
 
+
 def transform_to_affine(transform: TransformStamped) -> np.ndarray:
-    """
-    Convert a ROS2 TransformStamped message into a 4x4 affine transformation matrix.
+    """Convert a ROS 2 stamped transform to a 4x4 affine matrix.
 
-    Parameters
-    ----------
-    transform : TransformStamped
-        The ROS2 TransformStamped message containing translation and rotation.
+    Args:
+        transform: Stamped transform containing a translation and rotation.
 
-    Returns
-    -------
-    np.ndarray
-        4x4 affine transformation matrix where:
-        - The top-left 3x3 block is the rotation matrix.
-        - The top-right 3x1 column is the translation vector.
-        - The last row is [0, 0, 0, 1].
+    Returns:
+        A 4x4 homogeneous transformation matrix. Its upper-left 3x3 block
+        contains the rotation and its upper-right 3x1 column contains the
+        translation.
     """
 
     transform = transform.transform
@@ -62,28 +66,25 @@ def transform_to_affine(transform: TransformStamped) -> np.ndarray:
     ]
     return build_affine(transform_translation, transform_rotation_matrix)
 
+
 def pose_stamped_to_affine(pose: PoseStamped) -> np.ndarray:
-    """
-    Convert a PoseStamped to a 4x4 affine transformation matrix.
+    """Convert a ROS 2 stamped pose to an affine matrix.
 
-    Parameters
-    ----------
-    pose : PoseStamped
-        The pose to convert.
+    Args:
+        pose: Stamped pose containing a position and orientation.
 
-    Returns
-    -------
-    np.ndarray
-        4x4 affine transformation matrix, with rotation in the top-left 3x3
-        and translation in the last column.
+    Returns:
+        A 4x4 homogeneous transformation matrix. Its upper-left 3x3 block
+        contains the rotation and its upper-right 3x1 column contains the
+        translation.
     """
     # Extract translation [x, y, z]
     t = pose.pose.position
-    translation: Iterable[float] = [t.x, t.y, t.z]
+    translation: Sequence[float] = [t.x, t.y, t.z]
 
     # Extract quaternion in [x, y, z, w] order
     q = pose.pose.orientation
-    rotation_xyzq: Iterable[float] = [q.x, q.y, q.z, q.w]
+    rotation_xyzq: Sequence[float] = [q.x, q.y, q.z, q.w]
 
     # Build the affine transformation matrix
     return build_affine(translation, rotation_xyzq)
@@ -93,23 +94,19 @@ def affine_to_transform(
     frame_id: str,
     child_frame_id: str
 ) -> TransformStamped:
-    """
-    Convert a 4x4 affine transformation matrix into a ROS2 TransformStamped.
+    """Convert an affine matrix to a ROS 2 stamped transform.
 
-    Parameters
-    ----------
-    affine : np.ndarray
-        4x4 transformation matrix. The top-left 3x3 block is the rotation,
-        the top-right 3x1 column is the translation.
-    frame_id : str
-        The name of the parent frame (TransformStamped.header.frame_id).
-    child_frame_id : str
-        The name of the child frame (TransformStamped.child_frame_id).
+    Args:
+        affine: A 4x4 homogeneous transformation matrix.
+        frame_id: Parent frame stored in ``TransformStamped.header.frame_id``.
+        child_frame_id: Child frame stored in
+            ``TransformStamped.child_frame_id``.
 
-    Returns
-    -------
-    TransformStamped
-        ROS2 TransformStamped message containing the given transform.
+    Returns:
+        A stamped transform containing the translation and rotation.
+
+    Raises:
+        ValueError: If ``affine`` does not have shape ``(4, 4)``.
     """
     if affine.shape != (4, 4):
         raise ValueError(f"Expected affine shape (4,4), got {affine.shape}")
@@ -136,18 +133,19 @@ def affine_to_transform(
     tf_msg.transform.rotation.w = float(qw)
 
     return tf_msg
-
-
-
 def build_affine(
-        translation: Optional[Iterable] = None,
-        rotation: Optional[Iterable] = None) -> np.ndarray:
-    """
-    Build an affine matrix from a quaternion and a translation.
+        translation: Sequence[float] | None = None,
+        rotation: Sequence[float] | None = None) -> np.ndarray:
+    """Build an affine matrix from a translation and a quaternion.
 
-    :param rotation: The quaternion as [w, x, y, z]
-    :param translation: The translation as [x, y, z]
-    :returns: The quaternion and the translation array
+    Args:
+        translation: Translation vector in ``[x, y, z]`` order. If omitted,
+            use a zero translation.
+        rotation: Quaternion in SciPy's ``[x, y, z, w]`` order. If omitted,
+            use the identity rotation.
+
+    Returns:
+        A 4x4 homogeneous transformation matrix.
     """
     affine = np.eye(4)
     if rotation is not None:
@@ -158,18 +156,13 @@ def build_affine(
 
 
 def transform_to_pose_stamped(transform: TransformStamped) -> PoseStamped:
-    """
-    Convert a TransformStamped to a PoseStamped.
+    """Convert a ROS 2 stamped transform to a stamped pose.
 
-    Parameters
-    ----------
-    transform : TransformStamped
-        The transform to convert.
+    Args:
+        transform: Stamped transform to convert.
 
-    Returns
-    -------
-    PoseStamped
-        The converted pose.
+    Returns:
+        A stamped pose with the same header, translation, and rotation.
     """
     pose = PoseStamped()
     pose.header = transform.header

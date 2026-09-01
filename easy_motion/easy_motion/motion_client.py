@@ -15,36 +15,39 @@ from trajectory_msgs.msg import JointTrajectory
 from moveit_msgs.action import ExecuteTrajectory
 
 class MotionClient(Node):
-    """ROS 2 Client for controlling robot motion and gripper.
+    """ROS 2 client for controlling robot motion and a gripper.
 
-    This class provides a simplified interface for sending commands
-    to the robot via action servers and services. Supported operations:
-    - Move to a target pose
-    - Move to joint configurations
-    - Attach/detach objects
-    - Move the gripper
+    Supported operations include:
+
+    - Moving to Cartesian poses or joint configurations.
+    - Planning trajectories without executing them.
+    - Executing previously planned trajectories.
+    - Computing inverse and forward kinematics.
+    - Attaching and detaching collision objects.
+    - Controlling a gripper.
     """
 
-
     def __init__(self,
-                 move_to_pose_action_name:str ='move_to_pose',
-                 move_to_joint_action_name:str ='move_to_joint',
-                 plan_to_pose_action_name:str ='plan_to_pose',
-                 plan_to_joint_action_name:str ='plan_to_joint',
-                 execute_trajectory_action_name ='execute_trajectory',
-                 gripper_action_name:str ='/gripper_action_controller/gripper_cmd'):
-        super().__init__('motion_client_node', use_global_arguments=False)
+                 move_to_pose_action_name: str = 'move_to_pose',
+                 move_to_joint_action_name: str = 'move_to_joint',
+                 plan_to_pose_action_name: str = 'plan_to_pose',
+                 plan_to_joint_action_name: str = 'plan_to_joint',
+                 execute_trajectory_action_name: str = 'execute_trajectory',
+                 gripper_action_name: str = '/gripper_action_controller/gripper_cmd'):
         """Initialize the MotionClient.
 
         Args:
-            move_to_pose_action_name (str): Action server name for moving to a pose.
-            move_to_joint_action_name (str): Action server name for moving to joint positions.
-            gripper_action_name (str): Action server name for controlling the gripper.
+            move_to_pose_action_name: Action server used to move to a pose.
+            move_to_joint_action_name: Action server used to move to joint positions.
+            plan_to_pose_action_name: Action server used to plan towards a pose.
+            plan_to_joint_action_name: Action server used to plan towards joint positions.
+            execute_trajectory_action_name: Action server used to execute trajectories.
+            gripper_action_name: Action server used to control the gripper.
 
         Raises:
-            RuntimeError: If one of the required action servers or services is not available.
+            RuntimeError: If a required action server or service is unavailable.
         """
-
+        super().__init__('motion_client_node', use_global_arguments=False)
 
         self.declare_parameter('move_to_pose_action_name', move_to_pose_action_name)
         self.declare_parameter('move_to_joint_action_name', move_to_joint_action_name)
@@ -91,21 +94,28 @@ class MotionClient(Node):
         if not self.gripper_client.wait_for_server(timeout_sec=1.0):
             self.get_logger().warn(f"Gripper action server {gripper_action_name} not found.")
 
-    def move_to_pose(self, pose: PoseStamped, cartesian_motion: bool = False, relative_motion = False,
+    def move_to_pose(self, pose: PoseStamped, cartesian_motion: bool = False,
+                     relative_motion: bool = False,
                      velocity_scaling: float = 1.0) -> MoveItErrorCodes:
         """Move the robot to a target pose.
 
         Args:
-            pose (PoseStamped): Target pose for the robot.
-            cartesian_motion (bool, optional): If True, uses Cartesian trajectories. Defaults to False.
-            relative_motion (bool, optional): If True, consider pose as a displacement from the robot initial state. Defaults to False.
-            velocity_scaling (float): Manual velocity scaling applied to the planned trajectory.
+            pose: Target pose for the robot.
+            cartesian_motion: Whether to use a Cartesian trajectory.
+            relative_motion: If True, interpret ``pose`` as a displacement from the
+                current controlled-frame pose (the configured virtual end-effector
+                frame, for example ``tip``, or the real end effector when no virtual
+                frame is configured). The translation and rotation are expressed
+                along the axes of ``pose.header.frame_id``. If False, interpret
+                ``pose`` as an absolute target expressed in that frame.
+            velocity_scaling: Manual velocity scaling factor applied to the planned
+                trajectory and combined with the configured safety scaling.
 
         Returns:
-            MoveItErrorCodes: Result code returned by the motion planner.
+            The result code returned by the motion planner.
 
         Raises:
-            RuntimeError: If the action server is not available or the goal was rejected.
+            RuntimeError: If the action server is unavailable or rejects the goal.
         """
         if not self.move_to_pose_client.wait_for_server(timeout_sec=5.0):
             raise RuntimeError("MoveToPose action server not available")
@@ -133,13 +143,15 @@ class MotionClient(Node):
         """Move the robot to a specific joint configuration.
 
         Args:
-            joint_positions (list[float]): List of target joint values.
-            velocity_scaling (float): Manual velocity scaling applied to the planned trajectory.
+            joint_positions: Target joint values, expressed in radians.
+            velocity_scaling: Manual velocity scaling factor applied to the planned
+                trajectory and combined with the configured safety scaling.
+
         Returns:
-            MoveItErrorCodes: Result code returned by the motion planner.
+            The result code returned by the motion planner.
 
         Raises:
-            RuntimeError: If the action server is not available or the goal was rejected.
+            RuntimeError: If the action server is unavailable or rejects the goal.
         """
         if not self.move_to_joint_client.wait_for_server(timeout_sec=5.0):
             raise RuntimeError("MoveToJoint action server not available")
@@ -160,23 +172,37 @@ class MotionClient(Node):
 
         return result_future.result().result.result
 
-    def plan_to_pose(self, pose: PoseStamped, joint_start: list[float] = None,
+    def plan_to_pose(self, pose: PoseStamped, joint_start: list[float] | None = None,
                      cartesian_motion: bool = False, relative_motion: bool = False,
                      velocity_scaling: float = 1.0) \
             -> Tuple[MoveItErrorCodes, JointTrajectory]:
         """Plan a trajectory to the target pose.
 
         Args:
-            pose (PoseStamped): Target pose for the robot.
-            joint_start (list[float]): List of start joint values. If None, use current move_group config.
-            cartesian_motion (bool, optional): If True, uses Cartesian trajectories. Defaults to False.
-            relative_motion (bool, optional): If True, consider pose as a displacement from the robot initial state. Defaults to False.
-            velocity_scaling (float): Manual velocity scaling applied to the planned trajectory.
+            pose: Target pose for the robot.
+            joint_start: Initial joint values. If omitted, use the current robot state.
+            cartesian_motion: Whether to plan a Cartesian trajectory.
+            relative_motion: If True, interpret ``pose`` as a displacement from the
+                current controlled-frame pose (the configured virtual end-effector
+                frame, for example ``tip``, or the real end effector when no virtual
+                frame is configured). The translation and rotation are expressed
+                along the axes of ``pose.header.frame_id``. If False, interpret
+                ``pose`` as an absolute target expressed in that frame.
+            velocity_scaling: Manual velocity scaling factor applied to the planned
+                trajectory and combined with the configured safety scaling.
+
         Returns:
-            MoveItErrorCodes: Result code returned by the motion planner.
+            A ``(result, trajectory)`` tuple, where ``result`` is the MoveIt planner
+            result code and ``trajectory`` is the planned joint trajectory. The
+            trajectory is empty if planning fails.
 
         Raises:
-            RuntimeError: If the action server is not available or the goal was rejected.
+            RuntimeError: If the action server is unavailable or rejects the goal.
+
+        Note:
+            When ``relative_motion`` is enabled, the relative target is computed
+            from the current end-effector pose, even when ``joint_start`` is
+            provided.
         """
         if not self.plan_to_pose_client.wait_for_server(timeout_sec=5.0):
             raise RuntimeError("PlanToPose action server not available")
@@ -204,21 +230,24 @@ class MotionClient(Node):
 
         return result_future.result().result.result, result_future.result().result.trajectory
 
-    def plan_to_joint(self, joint_target: list[float], joint_start: list[float] = None,
+    def plan_to_joint(self, joint_target: list[float],
+                      joint_start: list[float] | None = None,
                       velocity_scaling: float = 1.0) -> Tuple[MoveItErrorCodes, JointTrajectory]:
-        """Move the robot to a specific joint configuration.
+        """Plan a trajectory to a specific joint configuration.
 
         Args:
-            joint_target (list[float]): List of target joint values.
-            joint_start (list[float]): List of start joint values. If None, use current move_group config.
-            velocity_scaling (float): Manual velocity scaling applied to the planned trajectory.
+            joint_target: Target joint values, expressed in radians.
+            joint_start: Initial joint values. If omitted, use the current robot state.
+            velocity_scaling: Manual velocity scaling factor applied to the planned
+                trajectory and combined with the configured safety scaling.
 
         Returns:
-            MoveItErrorCodes: Result code returned by the motion planner
-            JointTrajectory: Planned trajectory. None if plan failed.
+            A ``(result, trajectory)`` tuple, where ``result`` is the MoveIt planner
+            result code and ``trajectory`` is the planned joint trajectory. The
+            trajectory is empty if planning fails.
 
         Raises:
-            RuntimeError: If the action server is not available or the goal was rejected.
+            RuntimeError: If the action server is unavailable or rejects the goal.
         """
         if not self.plan_to_joint_client.wait_for_server(timeout_sec=5.0):
             raise RuntimeError("PlanToJoint action server not available")
@@ -245,31 +274,31 @@ class MotionClient(Node):
         return result_future.result().result.result, result_future.result().result.trajectory
 
     def execute_last_planned_trajectory(self):
-        """Execute the last trajectory successfully planned by plan_to_joint() or plan_to_pose()
-
-        Args:
+        """Execute the last trajectory successfully produced by a planning method.
 
         Returns:
-            bool: True if the operation succeeded, False otherwise.
+            The result code returned by the trajectory executor.
 
         Raises:
-            RuntimeError: If the service is not available.
+            RuntimeError: If no trajectory is available or execution cannot start.
         """
         if self.last_planned_trj is None:
             raise RuntimeError("No existing trajectory available.")
         return self.execute_trajectory(self.last_planned_trj)
 
-    def execute_trajectory(self, trajectory: JointTrajectory, controller_names: list[str] | None = None) -> MoveItErrorCodes:
-        """Execute a given JointTrajectory
+    def execute_trajectory(self, trajectory: JointTrajectory,
+                           controller_names: list[str] | None = None) -> MoveItErrorCodes:
+        """Execute a joint trajectory.
 
         Args:
-            trajectory (JointTrajectory): the trj to be executed
+            trajectory: Joint trajectory to execute.
+            controller_names: Controllers to use, if supported by the action definition.
 
         Returns:
-            MoveItErrorCodes: Result code returned by the trajectory executor
+            The result code returned by the trajectory executor.
 
         Raises:
-            RuntimeError: If the service is not available.
+            RuntimeError: If the action server is unavailable or rejects the goal.
         """
         if not self.execute_trajectory_client.wait_for_server(timeout_sec=5.0):
             raise RuntimeError("ExecuteTrajectory action server not available")
@@ -299,11 +328,11 @@ class MotionClient(Node):
         """Attach an object to the robot (e.g., to the gripper).
 
         Args:
-            object_id (str): ID of the object in the MoveIt scene.
-            target_frame_id (str): Frame of the robot to which the object should be attached.
+            object_id: ID of the object in the MoveIt planning scene.
+            target_frame_id: Robot frame to which the object should be attached.
 
         Returns:
-            bool: True if the operation succeeded, False otherwise.
+            Whether the object was attached successfully.
 
         Raises:
             RuntimeError: If the service is not available.
@@ -324,10 +353,10 @@ class MotionClient(Node):
         """Detach an object from the robot.
 
         Args:
-            object_id (str): ID of the object to detach.
+            object_id: ID of the object to detach.
 
         Returns:
-            bool: True if the operation succeeded, False otherwise.
+            Whether the object was detached successfully.
 
         Raises:
             RuntimeError: If the service is not available.
@@ -343,18 +372,19 @@ class MotionClient(Node):
 
         return future.result().success
 
-    def get_ik(self, pose: PoseStamped, seed: Optional[List[float]]=None) -> Tuple[MoveItErrorCodes, List[float]]:
-        """Compute the inverse kinematics for the given pose
+    def get_ik(self, pose: PoseStamped,
+               seed: Optional[List[float]] = None) -> Tuple[MoveItErrorCodes, List[float]]:
+        """Compute inverse kinematics for a pose.
 
         Args:
-            seed: preferred joint state
-            pose (PoseStamped): Pose of the robot.
+            pose: Target end-effector pose.
+            seed: Preferred joint state for the IK solver.
 
         Returns:
-            MoveItErrorCodes: Result code returned by the IK solver
-            List[float]: IK solution.
+            A tuple containing the solver result code and the joint solution.
+
         Raises:
-            RuntimeError: If the service is not available.
+            RuntimeError: If the IK service is unavailable.
         """
         if not self.get_ik_client.wait_for_service(timeout_sec=5.0):
             raise RuntimeError("GetIK service not available")
@@ -370,15 +400,16 @@ class MotionClient(Node):
 
 
     def get_fk(self, joint_state: List[float]) -> Tuple[MoveItErrorCodes, PoseStamped]:
-        """Compute the forward kinematics for the given joint state
+        """Compute forward kinematics for a joint state.
 
         Args:
-            joint_state: Joint state to compute FK
+            joint_state: Joint values for which to compute forward kinematics.
+
         Returns:
-            MoveItErrorCodes: Result code returned by the FK service
-            PoseStamped: end-effector pose corresponding to joint state.
+            A tuple containing the service result code and the end-effector pose.
+
         Raises:
-            RuntimeError: If the service is not available.
+            RuntimeError: If the FK service is unavailable.
         """
         if not self.get_fk_client.wait_for_service(timeout_sec=5.0):
             raise RuntimeError("GetFK service not available")
@@ -393,19 +424,17 @@ class MotionClient(Node):
     def gripper_command(self, 
                         position: float, 
                         max_effort: float = 0.0) -> Tuple[bool, bool]:
-        """Send a command to the gripper, i.e, move it to a specific position.
+        """Move the gripper to a target position.
 
         Args:
-            position (float): Target position of the gripper (units depend on controller configuration).
-            max_effort (float, optional): Maximum force applied. Defaults to 0.0 (it's enough most of the time).
+            position: Target position in the units expected by the controller.
+            max_effort: Maximum effort. A value of 0.0 requests no explicit limit.
 
         Returns:
-            Tuple[bool, bool]:
-                - reached_goal (bool): True if the gripper reached the target position.
-                - stalled (bool): True if the gripper stalled during execution.
+            A ``(reached_goal, stalled)`` tuple describing the execution result.
 
         Raises:
-            RuntimeError: If the action server is not available or the goal was rejected.
+            RuntimeError: If the action server is unavailable or rejects the goal.
         """
         if not self.gripper_client.wait_for_server(timeout_sec=5.0):
             raise RuntimeError("GripperCommand action server not available")
