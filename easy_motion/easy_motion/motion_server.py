@@ -65,7 +65,8 @@ class MotionServer(Node):
         self.virtual_end_effector = self.get_parameter('virtual_end_effector').get_parameter_value().string_value
         self.global_velocity_scaling = self.get_parameter('max_velocity').get_parameter_value().double_value
         self.global_acceleration_scaling = self.get_parameter('max_acceleration').get_parameter_value().double_value
-        self.safety_velocity_scaling = self.get_parameter('safety_velocity_scaling').get_parameter_value().double_value
+        self.safety_velocity_scaling = self._check_velocity_scaling(
+            self.get_parameter('safety_velocity_scaling').get_parameter_value().double_value)
         self.max_motion_retries = self._get_positive_integer_parameter(
             'max_motion_retries', DEFAULT_MAX_MOTION_RETRIES)
         self.max_ik_retries = self._get_positive_integer_parameter(
@@ -196,6 +197,16 @@ class MotionServer(Node):
             Parameter(name, Parameter.Type.INTEGER, default)
         ])
         return default
+
+    def _check_velocity_scaling(self, velocity_scaling: float) -> float:
+        if velocity_scaling <= 0.0 or velocity_scaling > 1.0:
+            self.get_logger().warn(
+                f"Velocity scaling factor {velocity_scaling} is out of bounds "
+                "(0.0, 1.0]. Set to 1.0."
+            )
+            return 1.0
+
+        return velocity_scaling
 
     def init_virtual_to_ee_transform(self) -> Optional[TransformStamped]:
         """
@@ -511,10 +522,10 @@ class MotionServer(Node):
         def sec_to_duration(sec: float) -> builtin_interfaces.msg._duration.Duration:
             return rclpy.duration.Duration(seconds=sec).to_msg()
         
-        velocity_scaling *= self.safety_velocity_scaling
-        if velocity_scaling <= 0.0 or velocity_scaling > 1.0:
-            self.get_logger().warn(f"Effective velocity scaling factor {velocity_scaling} is out of bounds (0.0, 1.0]. Set to 1.0.")
-            velocity_scaling = 1.0
+        velocity_scaling = (
+            self._check_velocity_scaling(velocity_scaling)
+            * self.safety_velocity_scaling
+        )
 
         if velocity_scaling == 1.0:
             return joint_trajectory
