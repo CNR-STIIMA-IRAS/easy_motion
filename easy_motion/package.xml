@@ -13,6 +13,12 @@
   <test_depend>python3-pytest</test_depend>
 
   <depend>easy_motion_msgs</depend>
+  <depend>controller_manager_msgs</depend>
+  <depend>geometry_msgs</depend>
+  <depend>control_msgs</depend>
+  <depend>moveit_msgs</depend>
+  <depend>trajectory_msgs</depend>
+  <depend>tf2_ros</depend>
   
   <export>
     <build_type>ament_python</build_type>
