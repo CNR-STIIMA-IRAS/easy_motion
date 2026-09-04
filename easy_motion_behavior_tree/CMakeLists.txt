@@ -108,6 +108,11 @@ add_library(check_dice_face SHARED
 )
 list(APPEND plugin_libs check_dice_face)
 
+add_library(apply_transformation SHARED
+    src/leaves/apply_transformation.cpp
+)
+list(APPEND plugin_libs apply_transformation)
+
 add_library(can_transform SHARED
     src/leaves/can_transform.cpp
 )

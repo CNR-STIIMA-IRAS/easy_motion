@@ -2,7 +2,7 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>easy_motion_behavior_tree</name>
-  <version>0.0.0</version>
+  <version>1.0.0</version>
   <description>BehaviorTree.CPP plugins and executors for planning and executing robot motions through the Easy Motion ROS 2 interfaces.</description>
   <maintainer email="samuele.sandrini@polito.it">kalman</maintainer>
   <license>TODO: License declaration</license>

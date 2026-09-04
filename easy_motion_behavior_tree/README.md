@@ -36,6 +36,7 @@ when the ROS 2 action is aborted.
 | `AttachObject` | `object_id` (`string`), `target_frame_id` (`string`) | — | Attaches a collision object to a robot link in the MoveIt planning scene. |
 | `DetachObject` | `object_id` (`string`) | — | Detaches a collision object from the robot. |
 | `DiceIdentification` | — | `face_number` (`int`), `pose` (`PoseStamped`) | Calls the dice-identification service. |
+| `ApplyTransformation` | `pose` (`PoseStamped`), `translation` (`vector<double>`, optional, default: `0;0;0`), `orientation` (`vector<double>`, optional, default: `0;0;0;1`) | `transformed_pose` (`PoseStamped`) | Applies a local rigid transform to a pose (`T_out = T_pose * T_offset`). |
 | `CanTransform` | `source_frame` (`string`), `target_frame` (`string`), `timeout_ms` (`int`, optional, default: `0`) | — | Checks whether a TF transform is available. |
 | `CheckDiceFace` | `target_face` (`int`), `face` (`int`) | — | Returns success when the detected face matches the target face. |
 | `TriggerService` | — | `success` (`bool`), `message` (`string`) | Calls a `std_srvs/Trigger` service and exposes its response. |
@@ -102,6 +103,7 @@ bt_executer_node:
     bt_package: my_robot_behaviors
     plugins:
       - check_dice_face
+      - apply_transformation
       - can_transform
     ros_plugins:
       - move_to_joint
@@ -119,6 +121,24 @@ bt_executer_node:
 ```
 
 Only plugins used by the selected tree need to be loaded.
+
+For example, an identification pose can be turned into an approach pose by
+adding 10 cm along its local Z axis and rotating the tool by 180 degrees about
+its local X axis:
+
+```xml
+<DiceIdentification
+    service_name="/dice_identification"
+    pose="{detected_pose}"/>
+<ApplyTransformation
+    pose="{detected_pose}"
+    translation="0;0;0.10"
+    orientation="1;0;0;0"
+    transformed_pose="{approach_pose}"/>
+<MoveToPose
+    action_name="/move_to_pose"
+    pose_target="{approach_pose}"/>
+```
 
 ## Dynamic executor
 
