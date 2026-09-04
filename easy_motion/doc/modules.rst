@@ -4,8 +4,8 @@ Python API
 Easy Motion provides high-level clients for robot motion and controller
 management, together with utilities for ROS 2 poses and transforms.
 
-Explore the API you need
-------------------------
+Explore the API
+---------------
 
 :doc:`Motion Client <easy_motion.motion_client>`
     Plan and execute robot motions, compute kinematics, control a gripper,
@@ -18,9 +18,6 @@ Explore the API you need
 :doc:`Controller Manager Client <easy_motion.controller_manager_client>`
     Load, configure, activate, switch, inspect, and unload ros2_control
     controllers.
-
-Advanced API
-------------
 
 :doc:`Motion Server <easy_motion.motion_server>`
     Explore the server-side implementation that exposes Easy Motion actions
