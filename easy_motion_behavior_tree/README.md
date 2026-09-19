@@ -35,9 +35,7 @@ when the ROS 2 action is aborted.
 | `GripperCommand` | `position` (`double`), `max_effort` (`double`) | — | Sends a command to a ROS 2 gripper action server. A stalled gripper is considered successful. |
 | `AttachObject` | `object_id` (`string`), `target_frame_id` (`string`) | — | Attaches a collision object to a robot link in the MoveIt planning scene. |
 | `DetachObject` | `object_id` (`string`) | — | Detaches a collision object from the robot. |
-| `DiceIdentification` | — | `face_number` (`int`), `pose` (`PoseStamped`) | Calls the dice-identification service. |
 | `CanTransform` | `source_frame` (`string`), `target_frame` (`string`), `timeout_ms` (`int`, optional, default: `0`) | — | Checks whether a TF transform is available. |
-| `CheckDiceFace` | `target_face` (`int`), `face` (`int`) | — | Returns success when the detected face matches the target face. |
 | `TriggerService` | — | `success` (`bool`), `message` (`string`) | Calls a `std_srvs/Trigger` service and exposes its response. |
 
 ## ROS names
@@ -101,7 +99,6 @@ bt_executer_node:
     bt_xml_file: example.xml
     bt_package: my_robot_behaviors
     plugins:
-      - check_dice_face
       - can_transform
     ros_plugins:
       - move_to_joint
@@ -114,7 +111,6 @@ bt_executer_node:
       - gripper_command
       - attach_object
       - detach_object
-      - dice_identification
       - trigger_service
 ```
 

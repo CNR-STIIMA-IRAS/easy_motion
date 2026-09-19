@@ -11,6 +11,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # find dependencies
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_ros REQUIRED)
+find_package(ament_cmake_target_dependencies REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(behaviortree_cpp REQUIRED)
 find_package(behaviortree_ros2 REQUIRED)
@@ -65,10 +67,6 @@ add_library(gripper_command SHARED
 )
 list(APPEND plugin_libs gripper_command)
 
-add_library(dice_identification SHARED
-    src/leaves/dice_identification.cpp
-)
-list(APPEND plugin_libs dice_identification)
 add_library(attach_object SHARED
     src/leaves/attach_object.cpp
 )
@@ -102,11 +100,6 @@ add_library(get_fk SHARED
   src/leaves/get_fk.cpp
 )
 list(APPEND plugin_libs get_fk)
-
-add_library(check_dice_face SHARED
-    src/leaves/check_dice_face.cpp
-)
-list(APPEND plugin_libs check_dice_face)
 
 add_library(can_transform SHARED
     src/leaves/can_transform.cpp

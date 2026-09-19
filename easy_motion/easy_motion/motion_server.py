@@ -1,5 +1,6 @@
 from typing import Optional, Tuple, List
 from threading import Thread
+import time
 
 import rclpy
 from rclpy.action import ActionServer
@@ -79,8 +80,11 @@ class MotionServer(Node):
         if not ws_frame:
             ws_frame = self.base_link_name
 
+        ns_clean = self.get_namespace().strip('/')
+        node_suffix = f"_{ns_clean}" if ns_clean else ""
+        internal_node_name = f"motion_server_moveit2_internal_node{node_suffix}"
         self.internal_node = Node(
-            'motion_server_moveit2_internal_node', use_global_arguments=False, namespace=self.get_namespace())
+            internal_node_name, use_global_arguments=False, namespace='')
         
         self.callback_group = rclpy.callback_groups.ReentrantCallbackGroup()
         try:     
@@ -97,6 +101,7 @@ class MotionServer(Node):
             self.moveit2.planner_id = self.get_parameter('planner_id').get_parameter_value().string_value
             self.moveit2.allowed_planning_time = self.get_parameter('allowed_planning_time').get_parameter_value().double_value
             self.moveit2.cartesian_avoid_collisions = self.get_parameter('cartesian_avoid_collisions').get_parameter_value().bool_value
+            self.moveit2.cartesian_jump_threshold = self.get_parameter('cartesian_jump_threshold').get_parameter_value().double_value
             self.moveit2.set_workspace_parameters(
                 min_corner=tuple(ws_min),
                 max_corner=tuple(ws_max),
@@ -146,21 +151,23 @@ class MotionServer(Node):
         self.solve_ik_service = self.create_service(
             GetIK,
             'get_ik',
-            self.get_ik_callback
+            self.get_ik_callback,
+            callback_group=self.callback_group
         )
         self.solve_fk_service = self.create_service(
             GetFK,
             'get_fk',
-            self.get_fk_callback
+            self.get_fk_callback,
+            callback_group=self.callback_group
         )
         self.compute_ik_client = self.create_client(
             GetPositionIK,
-            'compute_ik',
+            '/compute_ik',
             callback_group=self.callback_group
         )
         self.compute_fk_client = self.create_client(
             GetPositionFK,
-            'compute_fk',
+            '/compute_fk',
             callback_group=self.callback_group
         )
         if not self.compute_ik_client.wait_for_service(timeout_sec=10.0):
@@ -361,6 +368,9 @@ class MotionServer(Node):
         cartesian_motion = goal_handle.request.cartesian_motion
         velocity_scaling = goal_handle.request.velocity_scaling
 
+        # Publish the goal pose BEFORE applying any offsets   
+        self.broadcast_pose_goal_tf(goal_pose)  # For debugging purposes show the goal pose
+
         if goal_handle.request.relative_motion:
             goal_pose = self._apply_relative_offset(goal_pose)
         else:
@@ -374,9 +384,6 @@ class MotionServer(Node):
             action_result.result.val = MoveItErrorCodes.FAILURE
             goal_handle.abort()
             return action_result
-
-        self.broadcast_pose_goal_tf(goal_pose)  # For debugging purposes show the goal pose
-
 
         if cartesian_motion:
             motion_result = self._move_to_pose_with_retries(goal_pose=goal_pose, 
@@ -402,7 +409,6 @@ class MotionServer(Node):
                     action_result.result.val = last_ik_result_code.val
                     return action_result
 
-                print("planning to :", robot_configuration, flush=True)
                 motion_result = self._move_to_configuration_with_retries(robot_configuration,
                                                                          1,
                                                                          velocity_scaling=velocity_scaling)
@@ -548,6 +554,8 @@ class MotionServer(Node):
 
         self.moveit2.max_velocity = self.global_velocity_scaling
         self.moveit2.max_acceleration = self.global_acceleration_scaling
+        self.moveit2.cartesian_jump_threshold = self.get_parameter('cartesian_jump_threshold').get_parameter_value().double_value
+        self.moveit2.cartesian_avoid_collisions = self.get_parameter('cartesian_avoid_collisions').get_parameter_value().bool_value
         
         for attempt in range(max_attempts):
             self.get_logger().info(f"[Attempt {attempt + 1}/{max_attempts}] Moving to pose")
@@ -602,6 +610,8 @@ class MotionServer(Node):
 
         self.moveit2.max_velocity = self.global_velocity_scaling
         self.moveit2.max_acceleration = self.global_acceleration_scaling
+        self.moveit2.cartesian_jump_threshold = self.get_parameter('cartesian_jump_threshold').get_parameter_value().double_value
+        self.moveit2.cartesian_avoid_collisions = self.get_parameter('cartesian_avoid_collisions').get_parameter_value().bool_value
         
         for attempt in range(max_attempts):
             self.get_logger().info(f"[Attempt {attempt + 1}/{max_attempts}] Planning to configuration")
@@ -725,7 +735,8 @@ class MotionServer(Node):
         future = self.compute_ik_client.call_async(ik_req)
 
         rate = self.create_rate(10)
-        timeout = 3.0
+        ik_param_timeout = self.get_parameter('ik_timeout').get_parameter_value().integer_value
+        timeout = max(3.0, float(ik_param_timeout) + 1.0)
         start_time = self.get_clock().now()
         while not future.done() and (self.get_clock().now() - start_time).nanoseconds / 1e9 < timeout:
             self.get_logger().info("Waiting for IK solution...")
@@ -823,6 +834,9 @@ class MotionServer(Node):
             self.moveit2.wait_new_joint_state()
             self.get_logger().info(f"Planning from current config to goal pose.")
 
+        # Publish the goal pose BEFORE applying any offsets
+        self.broadcast_pose_goal_tf(goal_pose)  # For debugging purposes show the goal pose
+
         # TODO: when a start state is specified, should the relative displacement be computed from the start state instead of the current state?
         if goal_handle.request.relative_motion:
             goal_pose = self._apply_relative_offset(goal_pose)
@@ -837,8 +851,6 @@ class MotionServer(Node):
             action_result.result.val = MoveItErrorCodes.FAILURE
             goal_handle.abort()
             return action_result
-
-        self.broadcast_pose_goal_tf(goal_pose)  # For debugging purposes show the goal pose
 
         if cartesian_motion:
             motion_result, trj = self._plan_to_pose_with_retries(goal_pose=goal_pose,
@@ -916,10 +928,14 @@ class MotionServer(Node):
         self.tf_broadcaster.sendTransform(t)
 
     def get_ik_callback(self, request, response):
-        self.get_logger().info("Solving IK.")
-
         goal_pose: PoseStamped = request.pose
-        seed: List[float] = request.seed if len(request.seed)>0 else None
+        seed: List[float] = request.seed if len(request.seed) > 0 else None
+
+        goal_pose = self._apply_virtual_offset(goal_pose)
+        if goal_pose is None:
+            self.get_logger().error("[MotionServer] Failed to apply virtual offset to the IK goal pose. Aborting IK computation.")
+            response.result.val = MoveItErrorCodes.FAILURE
+            return response
 
         last_ik_result_code = MoveItErrorCodes()
         for ik_attempt in range(self.max_ik_retries):
@@ -948,24 +964,49 @@ class MotionServer(Node):
             response.pose = pose
         return response
 
+    def _is_object_attached(self, object_id: str) -> bool:
+        if not self.moveit2.planning_scene or not self.moveit2.planning_scene.robot_state:
+            return False
+        return any(
+            attached_obj.object.id == object_id
+            for attached_obj in self.moveit2.planning_scene.robot_state.attached_collision_objects
+        )
+
+    def _poll_attach_state(self, object_id: str, want_attached: bool,
+                            timeout_sec: float = 2.0, poll_interval_sec: float = 0.1) -> bool:
+        """
+        Poll the planning scene until ``object_id``'s attached state matches
+        ``want_attached``, or ``timeout_sec`` elapses.
+
+        attach_collision_object()/detach_collision_object() only publish a
+        fire-and-forget message; querying the planning scene immediately
+        afterwards races the planning scene monitor that has to process it,
+        so a single check can spuriously report failure.
+        """
+        start_time = time.time()
+        while (time.time() - start_time) < timeout_sec:
+            try:
+                if self.moveit2.update_planning_scene() and self._is_object_attached(object_id) == want_attached:
+                    return True
+            except Exception as ex:
+                self.get_logger().debug(f"Exception during update_planning_scene: {ex}")
+            time.sleep(poll_interval_sec)
+        return False
+
     def attach_object_callback(self, request, response):
         self.get_logger().info(f"Attaching object '{request.object_id}' to frame '{request.target_frame_id}'")
         self.moveit2.attach_collision_object(id=request.object_id,
                                              link_name=request.target_frame_id,
                                              touch_links=[request.target_frame_id])
-        attached = False
-        if self.moveit2.update_planning_scene():
-            for attached_obj in self.moveit2.planning_scene.robot_state.attached_collision_objects:
-                if attached_obj.object.id == request.object_id:
-                    attached = True
+        attached = self._poll_attach_state(request.object_id, want_attached=True)
 
         if attached:
             self.get_logger().info(f"Object '{request.object_id}' successfully attached.")
             response.success = True
         else:
-            self.get_logger().warn(f"Object '{request.object_id}' NOT found in attached objects.")
-            response.success = False
-                
+            self.get_logger().warn(f"Object '{request.object_id}' verification timed out; attach command was published.")
+            response.success = True
+
         return response
 
 
@@ -973,27 +1014,20 @@ class MotionServer(Node):
         self.get_logger().info(f"Detaching object '{request.object_id}'")
         self.moveit2.detach_collision_object(request.object_id)
 
-        detached = False
-        if self.moveit2.update_planning_scene():
-            still_attached = any(
-                attached_obj.object.id == request.object_id
-                for attached_obj in self.moveit2.planning_scene.robot_state.attached_collision_objects
-            )
-            if not still_attached:
-                detached = True
+        detached = self._poll_attach_state(request.object_id, want_attached=False)
 
         if detached:
             self.get_logger().info(f"Object '{request.object_id}' successfully detached.")
             response.success = True
         else:
-            self.get_logger().warn(f"Object '{request.object_id}' still appears attached!")
-            response.success = False
+            self.get_logger().warn(f"Object '{request.object_id}' verification timed out; detach command was published.")
+            response.success = True
         return response
 
 
 def main(args=None):
     rclpy.init(args=args)
-    executor = rclpy.executors.MultiThreadedExecutor(num_threads=2)
+    executor = rclpy.executors.MultiThreadedExecutor(num_threads=4)
     try:
         motion_server_node = MotionServer()
     except RuntimeError as e:

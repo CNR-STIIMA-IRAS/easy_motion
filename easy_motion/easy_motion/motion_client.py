@@ -32,8 +32,10 @@ class MotionClient(Node):
                  move_to_joint_action_name: str = 'move_to_joint',
                  plan_to_pose_action_name: str = 'plan_to_pose',
                  plan_to_joint_action_name: str = 'plan_to_joint',
-                 execute_trajectory_action_name: str = 'execute_trajectory',
-                 gripper_action_name: str = '/gripper_action_controller/gripper_cmd'):
+                 execute_trajectory_action_name: str = '/execute_trajectory',
+                 gripper_action_name: str = '/gripper_action_controller/gripper_cmd',
+                 node_namespace: str = '',
+                 node_name: str = 'motion_client_node'):
         """Initialize the MotionClient.
 
         Args:
@@ -43,11 +45,13 @@ class MotionClient(Node):
             plan_to_joint_action_name: Action server used to plan towards joint positions.
             execute_trajectory_action_name: Action server used to execute trajectories.
             gripper_action_name: Action server used to control the gripper.
+            node_namespace: Optional namespace prefix for actions and services (e.g. '/arm_left').
+            node_name: ROS 2 node name (default: 'motion_client_node').
 
         Raises:
             RuntimeError: If a required action server or service is unavailable.
         """
-        super().__init__('motion_client_node', use_global_arguments=False)
+        super().__init__(node_name, namespace=node_namespace, use_global_arguments=False)
 
         self.declare_parameter('move_to_pose_action_name', move_to_pose_action_name)
         self.declare_parameter('move_to_joint_action_name', move_to_joint_action_name)
@@ -94,6 +98,19 @@ class MotionClient(Node):
         if not self.gripper_client.wait_for_server(timeout_sec=1.0):
             self.get_logger().warn(f"Gripper action server {gripper_action_name} not found.")
 
+    def _spin_until_complete(self, future, timeout_sec: float, timeout_msg: str):
+        """Spin until ``future`` completes, raising if it times out.
+
+        Every blocking wait in this client must go through here: a bare
+        ``rclpy.spin_until_future_complete`` with no timeout can hang the
+        calling node forever with no diagnostic if the server never replies
+        (e.g. service/action thread starvation on the server side).
+        """
+        rclpy.spin_until_future_complete(self, future, timeout_sec=timeout_sec)
+        if not future.done():
+            raise RuntimeError(timeout_msg)
+        return future.result()
+
     def move_to_pose(self, pose: PoseStamped, cartesian_motion: bool = False,
                      relative_motion: bool = False,
                      velocity_scaling: float = 1.0) -> MoveItErrorCodes:
@@ -127,16 +144,19 @@ class MotionClient(Node):
         goal_msg.velocity_scaling = velocity_scaling
 
         future = self.move_to_pose_client.send_goal_async(goal_msg)
-        rclpy.spin_until_future_complete(self, future)
-
-        goal_handle = future.result()
+        goal_handle = self._spin_until_complete(
+            future, 10.0, "Timed out waiting for move_to_pose goal to be accepted")
         if not goal_handle.accepted:
             raise RuntimeError("Goal to move_to_pose was rejected")
 
         result_future = goal_handle.get_result_async()
-        rclpy.spin_until_future_complete(self, result_future)
-        
-        return result_future.result().result.result
+        # Non-cartesian motion retries IK + execution internally (same nested
+        # max_motion_retries x max_ik_retries x ik_timeout budget as plan_to_pose,
+        # plus execution time) - keep this generous for the same reason.
+        result = self._spin_until_complete(
+            result_future, 300.0, "Timed out waiting for move_to_pose result")
+
+        return result.result.result
 
     def move_to_joint(self, joint_positions: list[float], velocity_scaling: float = 1.0) \
             -> MoveItErrorCodes:
@@ -161,16 +181,16 @@ class MotionClient(Node):
         goal_msg.velocity_scaling = velocity_scaling
 
         future = self.move_to_joint_client.send_goal_async(goal_msg)
-        rclpy.spin_until_future_complete(self, future)
-
-        goal_handle = future.result()
+        goal_handle = self._spin_until_complete(
+            future, 10.0, "Timed out waiting for move_to_joint goal to be accepted")
         if not goal_handle.accepted:
             raise RuntimeError("Goal to move_to_joint was rejected")
 
         result_future = goal_handle.get_result_async()
-        rclpy.spin_until_future_complete(self, result_future)
+        result = self._spin_until_complete(
+            result_future, 300.0, "Timed out waiting for move_to_joint result")
 
-        return result_future.result().result.result
+        return result.result.result
 
     def plan_to_pose(self, pose: PoseStamped, joint_start: list[float] | None = None,
                      cartesian_motion: bool = False, relative_motion: bool = False,
@@ -216,19 +236,23 @@ class MotionClient(Node):
             goal_msg.joint_start = joint_start
 
         future = self.plan_to_pose_client.send_goal_async(goal_msg)
-        rclpy.spin_until_future_complete(self, future)
-
-        goal_handle = future.result()
+        goal_handle = self._spin_until_complete(
+            future, 10.0, "Timed out waiting for plan_to_pose goal to be accepted")
         if not goal_handle.accepted:
             raise RuntimeError("Goal to plan_to_pose was rejected")
 
         result_future = goal_handle.get_result_async()
-        rclpy.spin_until_future_complete(self, result_future)
+        # Non-cartesian planning retries IK internally (max_motion_retries x
+        # max_ik_retries x ik_timeout, ~189s in the default server config) before
+        # giving up - keep this well above that so we don't race a server still
+        # legitimately searching for a solution.
+        result = self._spin_until_complete(
+            result_future, 300.0, "Timed out waiting for plan_to_pose result")
 
-        if result_future.result().result.result.val == MoveItErrorCodes.SUCCESS:
-            self.last_planned_trj = result_future.result().result.trajectory
+        if result.result.result.val == MoveItErrorCodes.SUCCESS:
+            self.last_planned_trj = result.result.trajectory
 
-        return result_future.result().result.result, result_future.result().result.trajectory
+        return result.result.result, result.result.trajectory
 
     def plan_to_joint(self, joint_target: list[float],
                       joint_start: list[float] | None = None,
@@ -259,19 +283,19 @@ class MotionClient(Node):
             goal_msg.joint_start = joint_start
 
         future = self.plan_to_joint_client.send_goal_async(goal_msg)
-        rclpy.spin_until_future_complete(self, future)
-
-        goal_handle = future.result()
+        goal_handle = self._spin_until_complete(
+            future, 10.0, "Timed out waiting for plan_to_joint goal to be accepted")
         if not goal_handle.accepted:
             raise RuntimeError("Goal to plan_to_joint was rejected")
 
         result_future = goal_handle.get_result_async()
-        rclpy.spin_until_future_complete(self, result_future)
+        result = self._spin_until_complete(
+            result_future, 60.0, "Timed out waiting for plan_to_joint result")
 
-        if result_future.result().result.result.val == MoveItErrorCodes.SUCCESS:
-            self.last_planned_trj = result_future.result().result.trajectory
+        if result.result.result.val == MoveItErrorCodes.SUCCESS:
+            self.last_planned_trj = result.result.trajectory
 
-        return result_future.result().result.result, result_future.result().result.trajectory
+        return result.result.result, result.result.trajectory
 
     def execute_last_planned_trajectory(self):
         """Execute the last trajectory successfully produced by a planning method.
@@ -313,16 +337,16 @@ class MotionClient(Node):
 
 
         future = self.execute_trajectory_client.send_goal_async(goal_msg)
-        rclpy.spin_until_future_complete(self, future)
-
-        goal_handle = future.result()
+        goal_handle = self._spin_until_complete(
+            future, 10.0, "Timed out waiting for execute_trajectory goal to be accepted")
         if not goal_handle.accepted:
             raise RuntimeError("Goal to execute_trajectory was rejected")
 
         result_future = goal_handle.get_result_async()
-        rclpy.spin_until_future_complete(self, result_future)
+        result = self._spin_until_complete(
+            result_future, 300.0, "Timed out waiting for execute_trajectory result")
 
-        return result_future.result().result.error_code
+        return result.result.error_code
 
     def attach_object(self, object_id: str, target_frame_id: str) -> bool:
         """Attach an object to the robot (e.g., to the gripper).
@@ -345,9 +369,10 @@ class MotionClient(Node):
         request.target_frame_id = target_frame_id
 
         future = self.attach_object_client.call_async(request)
-        rclpy.spin_until_future_complete(self, future)
+        result = self._spin_until_complete(
+            future, 30.0, "Timed out waiting for AttachObject response")
 
-        return future.result().success
+        return result.success
     
     def detach_object(self, object_id: str) -> bool:
         """Detach an object from the robot.
@@ -368,9 +393,10 @@ class MotionClient(Node):
         request.object_id = object_id
 
         future = self.detach_object_client.call_async(request)
-        rclpy.spin_until_future_complete(self, future)
+        result = self._spin_until_complete(
+            future, 30.0, "Timed out waiting for DetachObject response")
 
-        return future.result().success
+        return result.success
 
     def get_ik(self, pose: PoseStamped,
                seed: Optional[List[float]] = None) -> Tuple[MoveItErrorCodes, List[float]]:
@@ -394,9 +420,14 @@ class MotionClient(Node):
         if seed is not None:
             request.seed = seed
         future = self.get_ik_client.call_async(request)
-        rclpy.spin_until_future_complete(self, future)
+        # motion_server's get_ik_callback retries internally up to `max_ik_retries`
+        # times (default 3), each attempt bounded by ~ik_timeout+1s (default 21s) -
+        # a legitimate worst case around 63s. Stay comfortably above that so this
+        # doesn't race a server still legitimately searching for a solution.
+        result = self._spin_until_complete(
+            future, 90.0, "Timed out waiting for GetIK response")
 
-        return future.result().result, future.result().ik_solution
+        return result.result, result.ik_solution
 
 
     def get_fk(self, joint_state: List[float]) -> Tuple[MoveItErrorCodes, PoseStamped]:
@@ -417,9 +448,10 @@ class MotionClient(Node):
         request = GetFK.Request()
         request.joint_state  = joint_state
         future = self.get_fk_client.call_async(request)
-        rclpy.spin_until_future_complete(self, future)
+        result = self._spin_until_complete(
+            future, 30.0, "Timed out waiting for GetFK response")
 
-        return future.result().result, future.result().pose
+        return result.result, result.pose
 
     def gripper_command(self, 
                         position: float, 
@@ -444,16 +476,16 @@ class MotionClient(Node):
         goal_msg.command.max_effort = float(max_effort)
 
         future = self.gripper_client.send_goal_async(goal_msg)
-        rclpy.spin_until_future_complete(self, future)
-
-        goal_handle = future.result()
+        goal_handle = self._spin_until_complete(
+            future, 10.0, "Timed out waiting for gripper_command goal to be accepted")
         if not goal_handle.accepted:
             raise RuntimeError("Goal to gripper_command was rejected")
 
         result_future = goal_handle.get_result_async()
-        rclpy.spin_until_future_complete(self, result_future)
+        result = self._spin_until_complete(
+            result_future, 30.0, "Timed out waiting for gripper_command result")
 
-        reached_goal = result_future.result().result.reached_goal
-        stalled = result_future.result().result.stalled
+        reached_goal = result.result.reached_goal
+        stalled = result.result.stalled
 
         return reached_goal, stalled

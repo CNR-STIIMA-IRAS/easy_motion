@@ -20,7 +20,6 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "action/PlanToJoint.action"
   "action/PlanToPose.action"
   "action/ExecutePlannedTrajectory.action"
-  "srv/DiceIdentification.srv"
   "srv/AttachObject.srv"
   "srv/DetachObject.srv"
   "srv/GetIK.srv"
