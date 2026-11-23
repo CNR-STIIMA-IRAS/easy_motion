@@ -8,7 +8,7 @@ from easy_motion_msgs.action import MoveToPose, MoveToJoint, PlanToPose, PlanToJ
 from easy_motion_msgs.srv import AttachObject, DetachObject, GetIK, GetFK
 
 from geometry_msgs.msg import PoseStamped
-from control_msgs.action import GripperCommand
+from control_msgs.action import ParallelGripperCommand
 from moveit_msgs.msg import MoveItErrorCodes
 
 from trajectory_msgs.msg import JointTrajectory
@@ -32,7 +32,8 @@ class MotionClient(Node):
                  plan_to_pose_action_name:str ='plan_to_pose',
                  plan_to_joint_action_name:str ='plan_to_joint',
                  execute_trajectory_action_name ='execute_trajectory',
-                 gripper_action_name:str ='/gripper_action_controller/gripper_cmd'):
+                 gripper_action_name:str ='/gripper_action_controller/gripper_cmd',
+                 gripper_joint_name:str ='robotiq_hande_left_finger_joint'):
         super().__init__('motion_client_node', use_global_arguments=False)
         """Initialize the MotionClient.
 
@@ -52,6 +53,7 @@ class MotionClient(Node):
         self.declare_parameter('plan_to_joint_action_name', plan_to_joint_action_name)
         self.declare_parameter('execute_trajectory_action_name', execute_trajectory_action_name)
         self.declare_parameter('gripper_action_name', gripper_action_name)
+        self.declare_parameter('gripper_joint_name', gripper_joint_name)
 
         move_to_pose_action_name = self.get_parameter('move_to_pose_action_name').get_parameter_value().string_value
         move_to_joint_action_name = self.get_parameter('move_to_joint_action_name').get_parameter_value().string_value
@@ -66,7 +68,8 @@ class MotionClient(Node):
         self.plan_to_joint_client = ActionClient(self, PlanToJoint, plan_to_joint_action_name)
         self.execute_trajectory_client = ActionClient(self, ExecuteTrajectory, execute_trajectory_action_name)
 
-        self.gripper_client = ActionClient(self, GripperCommand, gripper_action_name)
+        self.gripper_joint_name = self.get_parameter('gripper_joint_name').value
+        self.gripper_client = ActionClient(self, ParallelGripperCommand, gripper_action_name)
         self.attach_object_client = self.create_client(AttachObject, 'attach_object')
         self.detach_object_client = self.create_client(DetachObject, 'detach_object')
         self.get_ik_client = self.create_client(GetIK, 'get_ik')
@@ -89,7 +92,7 @@ class MotionClient(Node):
         if not self.detach_object_client.wait_for_service(timeout_sec=10.0):
             raise RuntimeError("DetachObject service not available")
         if not self.gripper_client.wait_for_server(timeout_sec=1.0):
-            self.get_logger().warn(f"Gripper action server {gripper_action_name} not found.")
+            self.get_logger().warning(f"Gripper action server {gripper_action_name} not found.")
 
     def move_to_pose(self, pose: PoseStamped, cartesian_motion: bool = False, relative_motion = False,
                      velocity_scaling: float = 1.0) -> MoveItErrorCodes:
@@ -280,7 +283,7 @@ class MotionClient(Node):
             goal_msg.controller_names = controller_names or []
         else:
             if controller_names:
-                self.get_logger().warn("Controller names provided but ExecuteTrajectory action does not support them.")
+                self.get_logger().warning("Controller names provided but ExecuteTrajectory action does not support them.")
 
 
         future = self.execute_trajectory_client.send_goal_async(goal_msg)
@@ -408,11 +411,13 @@ class MotionClient(Node):
             RuntimeError: If the action server is not available or the goal was rejected.
         """
         if not self.gripper_client.wait_for_server(timeout_sec=5.0):
-            raise RuntimeError("GripperCommand action server not available")
+            raise RuntimeError("ParallelGripperCommand action server not available")
 
-        goal_msg = GripperCommand.Goal()
-        goal_msg.command.position = float(position)
-        goal_msg.command.max_effort = float(max_effort)
+        goal_msg = ParallelGripperCommand.Goal()
+        goal_msg.command.name = [self.gripper_joint_name]
+        goal_msg.command.position = [float(position)]
+        if max_effort > 0.0:
+            goal_msg.command.effort = [float(max_effort)]
 
         future = self.gripper_client.send_goal_async(goal_msg)
         rclpy.spin_until_future_complete(self, future)

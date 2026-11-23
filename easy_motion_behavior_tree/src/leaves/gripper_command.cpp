@@ -4,7 +4,7 @@ GripperCommand::GripperCommand(
   const std::string & name,
   const BT::NodeConfig & conf,
   const BT::RosNodeParams & params)
-: RosActionNode<control_msgs::action::GripperCommand>(name, conf, params)
+: RosActionNode<control_msgs::action::ParallelGripperCommand>(name, conf, params)
 {
 }
 
@@ -22,8 +22,15 @@ bool GripperCommand::setGoal(RosActionNode::Goal & goal)
     throw BT::RuntimeError("Missing parameter [max_effort]");
   }
 
-  goal.command.position = position;
-  goal.command.max_effort = max_effort;
+  std::string joint;
+  if (!getInput("joint", joint)) {
+    throw BT::RuntimeError("Missing parameter [joint]");
+  }
+  goal.command.name = {joint};
+  goal.command.position = {position};
+  if (max_effort > 0.0) {
+    goal.command.effort = {max_effort};
+  }
   return true;
 }
 
@@ -49,7 +56,7 @@ BT::NodeStatus GripperCommand::onFailure(BT::ActionNodeErrorCode error)
 }
 
 BT::NodeStatus GripperCommand::onFeedback(
-  const std::shared_ptr<const control_msgs::action::GripperCommand::Feedback> feedback)
+  const std::shared_ptr<const control_msgs::action::ParallelGripperCommand::Feedback> feedback)
 {
   (void) feedback;
   return BT::NodeStatus::RUNNING;

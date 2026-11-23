@@ -4,6 +4,7 @@ from threading import Thread
 import rclpy
 from rclpy.action import ActionServer
 from rclpy.action.server import ServerGoalHandle
+from rclpy.action import CancelResponse
 from rclpy.node import Node
 from rclpy.parameter import Parameter
 
@@ -396,8 +397,8 @@ class MotionServer(Node):
                 else:
                     last_ik_result_code.val = ik_result_code.val if ik_result_code is not None else MoveItErrorCodes.NO_IK_SOLUTION
 
-                    self.get_logger().warn(f"IK computation failed with code {last_ik_result_code.val}")
-                    self.get_logger().warn(f"Move to pose is aborted due to no IK solution after {self.max_ik_retries} attempts.")
+                    self.get_logger().warning(f"IK computation failed with code {last_ik_result_code.val}")
+                    self.get_logger().warning(f"Move to pose is aborted due to no IK solution after {self.max_ik_retries} attempts.")
                     goal_handle.abort()
                     action_result.result.val = last_ik_result_code.val
                     return action_result
@@ -418,7 +419,7 @@ class MotionServer(Node):
         return action_result
 
     def move_to_pose_cancel_callback(self, goal_handle):
-        pass
+        return CancelResponse.REJECT
 
     def _move_to_configuration_with_retries(self, robot_configuration: List[float], max_attempts: int,
                                             velocity_scaling: float = 1.0) \
@@ -444,7 +445,7 @@ class MotionServer(Node):
                 joint_names=self.joint_names,
             )
             if trajectory is None:
-                self.get_logger().warn("Planning failed. Retrying...")
+                self.get_logger().warning("Planning failed. Retrying...")
                 continue
             self.moveit2.execute(self._apply_manual_velocity_scaling(trajectory, velocity_scaling))
             partial_result = self.moveit2.wait_until_executed()
@@ -458,7 +459,7 @@ class MotionServer(Node):
                 self.get_logger().info("Motion executed successfully.")
                 return motion_result
 
-            self.get_logger().warn(f"Motion failed with code {motion_result.val if motion_result else 'N/A'}; retrying...")
+            self.get_logger().warning(f"Motion failed with code {motion_result.val if motion_result else 'N/A'}; retrying...")
 
         # If all attempts fail
         result_code.val = motion_result.val if motion_result and partial_result else MoveItErrorCodes.FAILURE
@@ -496,7 +497,7 @@ class MotionServer(Node):
                 result_code.val = MoveItErrorCodes.SUCCESS
                 return result_code, self._apply_manual_velocity_scaling(trj, velocity_scaling)
 
-            self.get_logger().warn(f"Planning failed. Retrying...")
+            self.get_logger().warning(f"Planning failed. Retrying...")
 
         # If all attempts fail
         result_code.val = MoveItErrorCodes.FAILURE
@@ -513,7 +514,7 @@ class MotionServer(Node):
         
         velocity_scaling *= self.safety_velocity_scaling
         if velocity_scaling <= 0.0 or velocity_scaling > 1.0:
-            self.get_logger().warn(f"Effective velocity scaling factor {velocity_scaling} is out of bounds (0.0, 1.0]. Set to 1.0.")
+            self.get_logger().warning(f"Effective velocity scaling factor {velocity_scaling} is out of bounds (0.0, 1.0]. Set to 1.0.")
             velocity_scaling = 1.0
 
         if velocity_scaling == 1.0:
@@ -555,7 +556,7 @@ class MotionServer(Node):
             joint_trajectory = self.moveit2.plan(
                     pose=goal_pose,
                     cartesian=cartesian,
-                    max_step=cartesian_max_step,
+                    cartesian_max_step=cartesian_max_step,
                     cartesian_fraction_threshold=cartesian_fraction_threshold,
                     tolerance_position=tolerance_position,
                     tolerance_orientation=tolerance_orientation
@@ -563,7 +564,7 @@ class MotionServer(Node):
             if joint_trajectory:
                 self.moveit2.execute(self._apply_manual_velocity_scaling(joint_trajectory, velocity_scaling))
             else:
-                self.get_logger().warn("Planning failed. Retrying...")
+                self.get_logger().warning("Planning failed. Retrying...")
                 continue
             partial_result = self.moveit2.wait_until_executed()
             motion_result = self.moveit2.get_last_execution_error_code()
@@ -574,7 +575,7 @@ class MotionServer(Node):
                 self.get_logger().info("Motion executed successfully.")
                 return motion_result
 
-            self.get_logger().warn(f"Motion failed with code {motion_result.val if motion_result else 'N/A'}; retrying...")
+            self.get_logger().warning(f"Motion failed with code {motion_result.val if motion_result else 'N/A'}; retrying...")
 
         # If all attempts fail
         result_code.val = motion_result.val if motion_result else MoveItErrorCodes.FAILURE
@@ -609,7 +610,7 @@ class MotionServer(Node):
             trj = self.moveit2.plan(
                 pose=goal_pose,
                 cartesian=cartesian,
-                max_step=cartesian_max_step,
+                cartesian_max_step=cartesian_max_step,
                 cartesian_fraction_threshold=cartesian_fraction_threshold,
                 tolerance_position=tolerance_position,
                 tolerance_orientation=tolerance_orientation,
@@ -623,7 +624,7 @@ class MotionServer(Node):
                 result_code.val = MoveItErrorCodes.SUCCESS
                 return result_code, self._apply_manual_velocity_scaling(trj, velocity_scaling)
 
-            self.get_logger().warn(f"Planning failed. Retrying...")
+            self.get_logger().warning(f"Planning failed. Retrying...")
 
         # If all attempts fail
         result_code.val = MoveItErrorCodes.FAILURE
@@ -645,7 +646,7 @@ class MotionServer(Node):
             self.get_logger().info("Motion executed successfully.")
             return motion_result
 
-        self.get_logger().warn(f"Motion failed with code {motion_result.val if motion_result else 'N/A'}")
+        self.get_logger().warning(f"Motion failed with code {motion_result.val if motion_result else 'N/A'}")
         result_code.val = motion_result.val if motion_result and partial_result else MoveItErrorCodes.FAILURE
         return result_code
 
@@ -669,7 +670,7 @@ class MotionServer(Node):
             rate.sleep()
 
         if not future.done():
-            self.get_logger().warn("FK service call timeout.")
+            self.get_logger().warning("FK service call timeout.")
             return_code.val = MoveItErrorCodes.FAILURE
             return None, return_code
 
@@ -681,7 +682,7 @@ class MotionServer(Node):
             return None, return_code
 
         if response.error_code.val != MoveItErrorCodes.SUCCESS or len(response.pose_stamped)==0:
-            self.get_logger().warn(f"FK failed with code {response.error_code.val}")
+            self.get_logger().warning(f"FK failed with code {response.error_code.val}")
             return None, response.error_code
 
         return response.pose_stamped[0], response.error_code
@@ -713,7 +714,7 @@ class MotionServer(Node):
             ik_req.ik_request.robot_state.joint_state.position = seed
         else:
             # Current joint state as seed (default)
-            self.moveit2.wait_new_joint_state()
+            self.moveit2.wait_for_joint_state(timeout_sec=3.0)
             if self.moveit2.joint_state is not None:
                 ik_req.ik_request.robot_state.joint_state = self.moveit2.joint_state
             else:
@@ -732,7 +733,7 @@ class MotionServer(Node):
             rate.sleep()
 
         if not future.done():
-            self.get_logger().warn("IK service call timeout.")
+            self.get_logger().warning("IK service call timeout.")
             return_code.val = MoveItErrorCodes.NO_IK_SOLUTION
             return None, return_code
 
@@ -744,7 +745,7 @@ class MotionServer(Node):
             return None, return_code
 
         if response.error_code.val != MoveItErrorCodes.SUCCESS:
-            self.get_logger().warn(f"IK failed with code {response.error_code.val}")
+            self.get_logger().warning(f"IK failed with code {response.error_code.val}")
             return None, response.error_code
 
         # Map to self.joint_names order
@@ -760,7 +761,7 @@ class MotionServer(Node):
         return positions, response.error_code
 
     def move_to_joint_cancel_callback(self, goal_handle):
-        pass
+        return CancelResponse.REJECT
 
     def move_to_joint_callback(self, goal_handle: ServerGoalHandle) -> MoveToJoint.Result:
         joints_goal = goal_handle.request.joint_target
@@ -780,7 +781,7 @@ class MotionServer(Node):
         return action_result
 
     def plan_to_joint_cancel_callback(self, goal_handle):
-        pass
+        return CancelResponse.REJECT
 
     def plan_to_joint_callback(self, goal_handle: ServerGoalHandle) -> PlanToJoint.Result:
 
@@ -790,7 +791,7 @@ class MotionServer(Node):
         if joints_start:
             self.get_logger().info(f"Planning from joint {joints_start} to {joints_goal}")
         else:
-            self.moveit2.wait_new_joint_state()
+            self.moveit2.wait_for_joint_state(timeout_sec=3.0)
             self.get_logger().info(f"Planning from current config to {joints_goal}")
 
         motion_result, trj = self._plan_to_configuration_with_retries(
@@ -809,7 +810,7 @@ class MotionServer(Node):
         return action_result
 
     def plan_to_pose_cancel_callback(self, goal_handle):
-        pass
+        return CancelResponse.REJECT
 
     def plan_to_pose_callback(self, goal_handle: ServerGoalHandle) -> PlanToPose.Result:
         goal_pose: PoseStamped = goal_handle.request.pose_target
@@ -820,7 +821,7 @@ class MotionServer(Node):
         if joints_start:
             self.get_logger().info(f"Planning from joint {joints_start} to goal pose.")
         else:
-            self.moveit2.wait_new_joint_state()
+            self.moveit2.wait_for_joint_state(timeout_sec=3.0)
             self.get_logger().info(f"Planning from current config to goal pose.")
 
         # TODO: when a start state is specified, should the relative displacement be computed from the start state instead of the current state?
@@ -855,10 +856,10 @@ class MotionServer(Node):
                 ik_result_code.val = MoveItErrorCodes.NO_IK_SOLUTION
                 for ik_attempt in range(self.max_ik_retries):
                     # if joints_start is available, look for the closest IK solution
-                    if joints_start is not None:
+                    if joints_start:
                         best_squared_norm = 999999.9
                         for _ in range(self.max_ik_iterations):
-                            tmp, tmp_ik_result_code = self._compute_ik(goal_pose)
+                            tmp, tmp_ik_result_code = self._compute_ik(goal_pose, seed=joints_start)
                             if tmp_ik_result_code.val == MoveItErrorCodes.SUCCESS and tmp is not None:
                                 squared_norm = sum((x - y) ** 2 for x, y in zip(tmp, joints_start))
                                 if squared_norm < best_squared_norm:
@@ -874,8 +875,8 @@ class MotionServer(Node):
                 else:
                     last_ik_result_code.val = ik_result_code.val if ik_result_code is not None else MoveItErrorCodes.NO_IK_SOLUTION
 
-                    self.get_logger().warn(f"IK computation failed with code {last_ik_result_code.val}")
-                    self.get_logger().warn(
+                    self.get_logger().warning(f"IK computation failed with code {last_ik_result_code.val}")
+                    self.get_logger().warning(
                         f"Plan to pose is aborted due to no IK solution after {self.max_ik_retries} attempts.")
                     goal_handle.abort()
                     action_result.result.val = last_ik_result_code.val
@@ -930,7 +931,7 @@ class MotionServer(Node):
         else:
             last_ik_result_code.val = ik_result_code.val if ik_result_code is not None else MoveItErrorCodes.NO_IK_SOLUTION
 
-            self.get_logger().warn(f"IK computation failed with code {last_ik_result_code.val}")
+            self.get_logger().warning(f"IK computation failed with code {last_ik_result_code.val}")
             response.result.val = last_ik_result_code.val
             return response
 
@@ -963,7 +964,7 @@ class MotionServer(Node):
             self.get_logger().info(f"Object '{request.object_id}' successfully attached.")
             response.success = True
         else:
-            self.get_logger().warn(f"Object '{request.object_id}' NOT found in attached objects.")
+            self.get_logger().warning(f"Object '{request.object_id}' NOT found in attached objects.")
             response.success = False
                 
         return response
@@ -986,7 +987,7 @@ class MotionServer(Node):
             self.get_logger().info(f"Object '{request.object_id}' successfully detached.")
             response.success = True
         else:
-            self.get_logger().warn(f"Object '{request.object_id}' still appears attached!")
+            self.get_logger().warning(f"Object '{request.object_id}' still appears attached!")
             response.success = False
         return response
 
@@ -1001,6 +1002,7 @@ def main(args=None):
         rclpy.shutdown()
         return
     executor.add_node(motion_server_node)
+    executor.add_node(motion_server_node.internal_node)
     spin_thread = Thread(target=executor.spin, daemon=True)
     spin_thread.start()
     motion_server_node.init_virtual_to_ee_transform()

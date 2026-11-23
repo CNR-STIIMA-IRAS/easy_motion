@@ -1,10 +1,10 @@
 #include "behaviortree_ros2/bt_action_node.hpp"
 #include "behaviortree_ros2/plugins.hpp"
 
-#include <control_msgs/action/gripper_command.hpp>
+#include <control_msgs/action/parallel_gripper_command.hpp>
 
 
-class GripperCommand : public BT::RosActionNode<control_msgs::action::GripperCommand>
+class GripperCommand : public BT::RosActionNode<control_msgs::action::ParallelGripperCommand>
 {
 public:
   GripperCommand(
@@ -18,6 +18,7 @@ public:
     {
       BT::InputPort<double>("position"),
       BT::InputPort<double>("max_effort"),
+      BT::InputPort<std::string>("joint", "robotiq_hande_left_finger_joint"),
     }
     );
   }
@@ -26,6 +27,6 @@ public:
   BT::NodeStatus onResultReceived(const WrappedResult & wr) override;
   BT::NodeStatus onFailure(BT::ActionNodeErrorCode error) override;
   BT::NodeStatus onFeedback(
-    const std::shared_ptr<const control_msgs::action::GripperCommand::Feedback> feedback) override;
+    const std::shared_ptr<const control_msgs::action::ParallelGripperCommand::Feedback> feedback) override;
 
 };

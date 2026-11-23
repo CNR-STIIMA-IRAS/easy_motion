@@ -18,7 +18,8 @@ MotionClient::MotionClient(
   const std::string & plan_to_joint_action_name,
   const std::string & execute_trajectory_action_name,
   const std::string & gripper_action_name,
-  rclcpp::NodeOptions options)
+  rclcpp::NodeOptions options,
+  const std::string & gripper_joint_name)
 : Node("motion_client_node", options.use_global_arguments(false))
 {
   this->declare_parameter<std::string>("move_to_pose_action_name", move_to_pose_action_name);
@@ -29,6 +30,7 @@ MotionClient::MotionClient(
     "execute_trajectory_action_name",
     execute_trajectory_action_name);
   this->declare_parameter<std::string>("gripper_action_name", gripper_action_name);
+  this->declare_parameter<std::string>("gripper_joint_name", gripper_joint_name);
 
   const auto move_to_pose_name = this->get_parameter("move_to_pose_action_name").as_string();
   const auto move_to_joint_name = this->get_parameter("move_to_joint_action_name").as_string();
@@ -309,8 +311,11 @@ std::pair<bool, bool> MotionClient::gripper_command(
   double max_effort)
 {
   GripperCommand::Goal goal;
-  goal.command.position = position;
-  goal.command.max_effort = max_effort;
+  goal.command.name = {this->get_parameter("gripper_joint_name").as_string()};
+  goal.command.position = {position};
+  if (max_effort > 0.0) {
+    goal.command.effort = {max_effort};
+  }
 
   const auto wrapped_result =
     send_action_goal<GripperCommand>(gripper_client_, goal, "gripper_command");

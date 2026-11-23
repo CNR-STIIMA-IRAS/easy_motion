@@ -20,6 +20,9 @@
   <depend>geometry_msgs</depend>
   <depend>moveit_msgs</depend>
   <depend>moveit</depend>
+  <depend>moveit_core</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
   <depend>trajectory_msgs</depend>
   <depend>std_srvs</depend>
 

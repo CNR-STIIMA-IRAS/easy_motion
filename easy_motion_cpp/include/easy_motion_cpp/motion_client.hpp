@@ -8,7 +8,7 @@
 #include <utility>
 #include <vector>
 
-#include <control_msgs/action/gripper_command.hpp>
+#include <control_msgs/action/parallel_gripper_command.hpp>
 #include <easy_motion_msgs/action/move_to_joint.hpp>
 #include <easy_motion_msgs/action/move_to_pose.hpp>
 #include <easy_motion_msgs/action/plan_to_joint.hpp>
@@ -35,7 +35,7 @@ public:
   using PlanToPose = easy_motion_msgs::action::PlanToPose;
   using PlanToJoint = easy_motion_msgs::action::PlanToJoint;
   using ExecuteTrajectory = moveit_msgs::action::ExecuteTrajectory;
-  using GripperCommand = control_msgs::action::GripperCommand;
+  using GripperCommand = control_msgs::action::ParallelGripperCommand;
 
   explicit MotionClient(
     const std::string & move_to_pose_action_name = "move_to_pose",
@@ -44,7 +44,8 @@ public:
     const std::string & plan_to_joint_action_name = "plan_to_joint",
     const std::string & execute_trajectory_action_name = "execute_trajectory",
     const std::string & gripper_action_name = "/gripper_action_controller/gripper_cmd",
-    rclcpp::NodeOptions options = rclcpp::NodeOptions());
+    rclcpp::NodeOptions options = rclcpp::NodeOptions(),
+    const std::string & gripper_joint_name = "robotiq_hande_left_finger_joint");
 
   moveit_msgs::msg::MoveItErrorCodes move_to_pose(
     const geometry_msgs::msg::PoseStamped & pose,

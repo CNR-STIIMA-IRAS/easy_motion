@@ -97,6 +97,30 @@ If everything is configured, the server will attempt to connect to the `compute_
 
 ## Quick usage examples
 
+### Selective integration smoke test
+
+With your robot's MoveIt stack and Easy Motion server running, use the
+[smoke-test example](./examples/motion_client_smoke_test.py) to check individual
+client operations. Supply joint positions in the order configured by the motion
+server. Pose tests derive a reachable target with FK unless `--pose` and
+`--pose-frame` are supplied. `--test-all` includes **robot motion**; use mock
+hardware first or verify the target is safe for your real robot.
+
+```bash
+ros2 run easy_motion motion_client_smoke_test \
+  --joint-goal -1.67007 -1.8 -1.35 -1.6 1.6 0.5 \
+  --test-fk --test-ik --test-plan-to-joint --test-plan-to-pose
+
+# Include both move actions after checking the target and robot workspace:
+ros2 run easy_motion motion_client_smoke_test \
+  --joint-goal -1.67007 -1.8 -1.35 -1.6 1.6 0.5 --test-all
+```
+
+Use `--test-execute-trajectory` with a planning flag, or opt in to
+`--test-gripper`, `--test-attach`, and `--test-detach` with their required
+position, object ID, and link arguments. Run `--help` for all flags. The script
+prints a result for each check and exits with a nonzero status if any fail.
+
 ### Move to a pose (action)
 
 Send a `MoveToPose` goal using the client node or `ros2 action` CLI. Example with `ros2 action` (you need to craft a suitable goal JSON/YAML):
